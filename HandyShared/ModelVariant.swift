@@ -11,7 +11,7 @@ public enum ModelVariant: String, CaseIterable, Identifiable, Codable {
 
     public var displayName: String {
         switch self {
-        case .parakeetUnified: return "Parakeet Unified EN 0.6B (Recommended)"
+        case .parakeetUnified: return "Parakeet Unified EN 0.6B"
         case .whisperSmall:    return "Whisper Small"
         case .whisperMedium:   return "Whisper Medium"
         case .whisperTurbo:    return "Whisper Turbo"

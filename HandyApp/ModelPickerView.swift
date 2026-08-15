@@ -56,7 +56,7 @@ struct ModelCard: View {
                         Text(variant.displayName)
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundStyle(.white)
-                        if variant == .parakeetUnified {
+                        if variant.isRecommended {
                             Text("recommended")
                                 .font(.system(size: 11, weight: .medium))
                                 .foregroundStyle(Color.black)

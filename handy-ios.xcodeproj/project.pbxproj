@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
+		27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81D2832195FDCA62F53744A /* LandingView.swift */; };
 		545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438801C5723A2840E5FF006 /* ContentView.swift */; };
 		5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
 		6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
+		74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */; };
+		7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */; };
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
@@ -31,7 +34,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
 		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe_bridge.h; sourceTree = "<group>"; };
 		4438801C5723A2840E5FF006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		53964BDF36E1682520B9BD98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -39,11 +44,13 @@
 		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C65FB70CC1420D972669F3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyApp.entitlements; sourceTree = "<group>"; };
+		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
 		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
 		E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyKeyboard.entitlements; sourceTree = "<group>"; };
+		EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -74,8 +81,18 @@
 				C921CE9CF63FD1A4FBAD6B3C /* HandyApp */,
 				187F32C4189499D0C15304B1 /* HandyKeyboard */,
 				8E68E4339D70E997B81180FA /* HandyShared */,
+				B700ED2C5C399E2DCEA60CA1 /* TranscribeCpp */,
 				FFF067E749F46AB72248D245 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		B700ED2C5C399E2DCEA60CA1 /* TranscribeCpp */ = {
+			isa = PBXGroup;
+			children = (
+				3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */,
+				EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */,
+			);
+			path = TranscribeCpp;
 			sourceTree = "<group>";
 		};
 		C921CE9CF63FD1A4FBAD6B3C /* HandyApp */ = {
@@ -85,6 +102,8 @@
 				B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */,
 				C16E4AC4D14593AD71E363D4 /* HandyApp.swift */,
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
+				B81D2832195FDCA62F53744A /* LandingView.swift */,
+				0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */,
 			);
 			path = HandyApp;
 			sourceTree = "<group>";
@@ -193,8 +212,11 @@
 				F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */,
 				5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */,
 				DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */,
+				27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */,
 				D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */,
+				7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */,
 				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
+				74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */,
 				BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +386,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -400,7 +422,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;

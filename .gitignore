@@ -1,0 +1,17 @@
+.DS_Store
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.xccheckout
+*.moved-aside
+*.pbxuser
+*.perspectivev3
+*.xcworkspace/xcuserdata
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+Pods/
+.build/
+whisper.cpp-ios/build/
+HandyShared/Models/

@@ -1,0 +1,441 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
+		545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
+		5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438801C5723A2840E5FF006 /* ContentView.swift */; };
+		5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
+		6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
+		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
+		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
+		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
+		D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
+		DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E4AC4D14593AD71E363D4 /* HandyApp.swift */; };
+		F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5319A009CE0DCB19C129A7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF24284E07793627E0CF0C19 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3A83528C075967BFBDC4D53;
+			remoteInfo = HandyApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4438801C5723A2840E5FF006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		53964BDF36E1682520B9BD98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
+		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93C65FB70CC1420D972669F3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyApp.entitlements; sourceTree = "<group>"; };
+		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
+		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
+		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
+		E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyKeyboard.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		187F32C4189499D0C15304B1 /* HandyKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */,
+				53964BDF36E1682520B9BD98 /* Info.plist */,
+				4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */,
+			);
+			path = HandyKeyboard;
+			sourceTree = "<group>";
+		};
+		8E68E4339D70E997B81180FA /* HandyShared */ = {
+			isa = PBXGroup;
+			children = (
+				93C65FB70CC1420D972669F3 /* AudioRecorder.swift */,
+				CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */,
+				E079793B8C65B3D871F504C8 /* ModelVariant.swift */,
+				74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */,
+			);
+			path = HandyShared;
+			sourceTree = "<group>";
+		};
+		9F19F90C2F9A6F2E8D5BF627 = {
+			isa = PBXGroup;
+			children = (
+				C921CE9CF63FD1A4FBAD6B3C /* HandyApp */,
+				187F32C4189499D0C15304B1 /* HandyKeyboard */,
+				8E68E4339D70E997B81180FA /* HandyShared */,
+				FFF067E749F46AB72248D245 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C921CE9CF63FD1A4FBAD6B3C /* HandyApp */ = {
+			isa = PBXGroup;
+			children = (
+				4438801C5723A2840E5FF006 /* ContentView.swift */,
+				B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */,
+				C16E4AC4D14593AD71E363D4 /* HandyApp.swift */,
+				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
+			);
+			path = HandyApp;
+			sourceTree = "<group>";
+		};
+		FFF067E749F46AB72248D245 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				785CAF7887C80651EEA9FBE6 /* HandyApp.app */,
+				1896584561EC3BCA98D38209 /* HandyKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D3A83528C075967BFBDC4D53 /* HandyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 909A2A839112C460F92BCDB7 /* Build configuration list for PBXNativeTarget "HandyApp" */;
+			buildPhases = (
+				9AC120D59A630E02E19FF989 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HandyApp;
+			packageProductDependencies = (
+			);
+			productName = HandyApp;
+			productReference = 785CAF7887C80651EEA9FBE6 /* HandyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EDE81DE8A190B319E6F63B95 /* HandyKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 081F128B4C8F61E5AAC584A6 /* Build configuration list for PBXNativeTarget "HandyKeyboard" */;
+			buildPhases = (
+				15C7A0F74271ABDA98F7BD15 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B5359A9D75FBC6484527A06 /* PBXTargetDependency */,
+			);
+			name = HandyKeyboard;
+			packageProductDependencies = (
+			);
+			productName = HandyKeyboard;
+			productReference = 1896584561EC3BCA98D38209 /* HandyKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF24284E07793627E0CF0C19 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					D3A83528C075967BFBDC4D53 = {
+						DevelopmentTeam = "";
+					};
+					EDE81DE8A190B319E6F63B95 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = DEED9617015B3F016C38CB3B /* Build configuration list for PBXProject "handy-ios" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9F19F90C2F9A6F2E8D5BF627;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3A83528C075967BFBDC4D53 /* HandyApp */,
+				EDE81DE8A190B319E6F63B95 /* HandyKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15C7A0F74271ABDA98F7BD15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */,
+				B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */,
+				9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */,
+				5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */,
+				545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AC120D59A630E02E19FF989 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */,
+				5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */,
+				DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */,
+				D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */,
+				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
+				BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B5359A9D75FBC6484527A06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3A83528C075967BFBDC4D53 /* HandyApp */;
+			targetProxy = 5319A009CE0DCB19C129A7BD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E5C01370463ED08061CECA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		3EB1A808F1A14ABBA4FC41E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		69B43CC30E5700C20865C8CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_GROUP_IDENTIFIER = group.computer.handy;
+				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
+				INFOPLIST_FILE = HandyKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A9E1C68E1A8205EC8D2BE211 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_GROUP_IDENTIFIER = group.computer.handy;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = HandyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B66EE14ADE13C12019FA035B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_GROUP_IDENTIFIER = group.computer.handy;
+				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
+				INFOPLIST_FILE = HandyKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E76D26DDB2F7020120A9FFE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APP_GROUP_IDENTIFIER = group.computer.handy;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = HandyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		081F128B4C8F61E5AAC584A6 /* Build configuration list for PBXNativeTarget "HandyKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69B43CC30E5700C20865C8CC /* Debug */,
+				B66EE14ADE13C12019FA035B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		909A2A839112C460F92BCDB7 /* Build configuration list for PBXNativeTarget "HandyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E76D26DDB2F7020120A9FFE0 /* Debug */,
+				A9E1C68E1A8205EC8D2BE211 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DEED9617015B3F016C38CB3B /* Build configuration list for PBXProject "handy-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EB1A808F1A14ABBA4FC41E7 /* Debug */,
+				1E5C01370463ED08061CECA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF24284E07793627E0CF0C19 /* Project object */;
+}

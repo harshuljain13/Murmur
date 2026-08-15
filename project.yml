@@ -1,0 +1,80 @@
+name: handy-ios
+options:
+  bundleIdPrefix: computer.handy
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    DEVELOPMENT_TEAM: ""
+    ENABLE_BITCODE: NO
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+
+targets:
+  HandyApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: HandyApp
+      - path: HandyShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app
+        INFOPLIST_FILE: HandyApp/Info.plist
+        APP_GROUP_IDENTIFIER: group.computer.handy
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
+    entitlements:
+      path: HandyApp/HandyApp.entitlements
+    info:
+      path: HandyApp/Info.plist
+      properties:
+        CFBundleName: Handy
+        CFBundleDisplayName: Handy
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        NSMicrophoneUsageDescription: "Handy uses the microphone to transcribe your speech to text."
+        UILaunchScreen:
+          UIColorName: ""
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+
+  HandyKeyboard:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: HandyKeyboard
+      - path: HandyShared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app.keyboard
+        INFOPLIST_FILE: HandyKeyboard/Info.plist
+        APP_GROUP_IDENTIFIER: group.computer.handy
+    entitlements:
+      path: HandyKeyboard/HandyKeyboard.entitlements
+    info:
+      path: HandyKeyboard/Info.plist
+      properties:
+        CFBundleName: HandyKeyboard
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        NSExtension:
+          NSExtensionAttributes:
+            IsASCIICapable: false
+            PrefersRightToLeft: false
+            PrimaryLanguage: en-US
+            RequestsOpenAccess: true
+          NSExtensionPointIdentifier: com.apple.keyboard-input-mode
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
+    dependencies:
+      - target: HandyApp
+        embed: false

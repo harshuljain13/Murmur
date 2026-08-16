@@ -5,6 +5,26 @@ options:
     iOS: "17.0"
   xcodeVersion: "16.0"
   createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+schemes:
+  Handy:
+    build:
+      targets:
+        HandyApp: all
+        HandyKeyboard: all
+    run:
+      config: Debug
+      targets:
+        - HandyApp
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
 
 settings:
   base:

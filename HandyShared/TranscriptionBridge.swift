@@ -7,7 +7,7 @@ import Foundation
 ///   Keyboard calls openURL(handy://transcribe) → wakes HandyApp
 ///   HandyApp reads audio, infers, writes result to UserDefaults
 ///   Keyboard polls UserDefaults["transcriptionResult"] every 300ms
-public final class TranscriptionBridge {
+public final class TranscriptionBridge: @unchecked Sendable {
     public static let shared = TranscriptionBridge()
 
     private let appGroup = "group.computer.handy"

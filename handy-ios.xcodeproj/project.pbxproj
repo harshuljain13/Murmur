@@ -413,7 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,7 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

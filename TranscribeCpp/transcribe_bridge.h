@@ -1,4 +1,4 @@
-// Bridging header — uses the real transcribe.cpp C API now that
-// libtranscribe.a is compiled via scripts/build_transcribe_ios.sh
+// Bridging header for HandyApp → transcribe.cpp C API
+// HEADER_SEARCH_PATHS includes $(PROJECT_DIR)/TranscribeCpp/include
 #pragma once
-#include "include/transcribe.h"
+#include "transcribe.h"

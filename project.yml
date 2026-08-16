@@ -49,7 +49,7 @@ targets:
         SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
         LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
         OTHER_LDFLAGS: -ltranscribe
-        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp
+        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
     entitlements:
       path: HandyApp/HandyApp.entitlements
     info:

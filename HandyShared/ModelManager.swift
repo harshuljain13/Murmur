@@ -39,7 +39,7 @@ public final class ModelManager: ObservableObject {
 
         let (tempURL, _) = try! await URLSession.shared.download(
             for: URLRequest(url: variant.remoteURL),
-            delegate: ProgressDelegate { [weak self] progress in
+            delegate: ProgressDelegate { @Sendable [weak self] progress in
                 Task { @MainActor in self?.downloadStates[variant] = .downloading(progress) }
             }
         )
@@ -78,8 +78,8 @@ public final class ModelManager: ObservableObject {
 
 // URLSession download progress via delegate
 private final class ProgressDelegate: NSObject, URLSessionTaskDelegate {
-    let onProgress: (Double) -> Void
-    init(_ onProgress: @escaping (Double) -> Void) { self.onProgress = onProgress }
+    let onProgress: @Sendable (Double) -> Void
+    init(_ onProgress: @Sendable @escaping (Double) -> Void) { self.onProgress = onProgress }
 
     func urlSession(_ session: URLSession, didCreateTask task: URLSessionTask) {}
 

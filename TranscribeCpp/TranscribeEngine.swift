@@ -3,26 +3,31 @@ import Foundation
 /// Swift wrapper around the transcribe.cpp C API.
 public final class TranscribeEngine {
 
-    private var model: UnsafeMutablePointer<transcribe_model>?
-    private var session: UnsafeMutablePointer<transcribe_session>?
+    // transcribe_model and transcribe_session are opaque structs — use OpaquePointer
+    private var model: OpaquePointer?
+    private var session: OpaquePointer?
 
     public init(modelPath: String) throws {
         var loadParams = transcribe_model_load_params()
         transcribe_model_load_params_init(&loadParams)
 
-        let status = transcribe_model_load_file(modelPath, &loadParams, &model)
-        guard status == TRANSCRIBE_OK, model != nil else {
+        var modelPtr: OpaquePointer?
+        let status = transcribe_model_load_file(modelPath, &loadParams, &modelPtr)
+        guard status == TRANSCRIBE_OK, let m = modelPtr else {
             throw TranscribeError.modelLoadFailed(path: modelPath, status: Int(status.rawValue))
         }
+        model = m
 
         var sessionParams = transcribe_session_params()
         transcribe_session_params_init(&sessionParams)
 
-        let sStatus = transcribe_session_init(model, &sessionParams, &session)
-        guard sStatus == TRANSCRIBE_OK, session != nil else {
-            transcribe_model_free(model)
+        var sessionPtr: OpaquePointer?
+        let sStatus = transcribe_session_init(m, &sessionParams, &sessionPtr)
+        guard sStatus == TRANSCRIBE_OK, let s = sessionPtr else {
+            transcribe_model_free(m)
             throw TranscribeError.sessionCreateFailed(status: Int(sStatus.rawValue))
         }
+        session = s
     }
 
     deinit {

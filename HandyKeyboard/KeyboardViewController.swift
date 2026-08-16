@@ -242,8 +242,12 @@ final class KeyboardViewController: UIInputViewController {
                     let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
                     if !trimmed.isEmpty {
                         self.textDocumentProxy.insertText(trimmed)
+                        self.setStatus("Tap to speak")
+                    } else {
+                        // Empty result almost always means silent audio →
+                        // mic permission not granted to the Handy app.
+                        self.setStatus("No audio — enable mic in the Handy app", error: true)
                     }
-                    self.setStatus("Tap to speak")
                     self.micButton.isEnabled = true
                 }
             } catch {

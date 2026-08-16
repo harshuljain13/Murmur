@@ -1,6 +1,9 @@
 import SwiftUI
+import AVFoundation
 
 struct SetupView: View {
+    @State private var micGranted = AVAudioApplication.shared.recordPermission == .granted
+
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
@@ -20,10 +23,19 @@ struct SetupView: View {
                 .padding(.bottom, 40)
 
                 VStack(spacing: 12) {
-                    StepRow(number: "1", text: "Open **Settings → General → Keyboard → Keyboards**")
-                    StepRow(number: "2", text: "Tap **Add New Keyboard**")
-                    StepRow(number: "3", text: "Select **Handy**")
-                    StepRow(number: "4", text: "Tap **Handy** again and turn on **Allow Full Access**\n(required for microphone in keyboard)")
+                    Button(action: requestMic) {
+                        StepRow(
+                            number: micGranted ? "✓" : "1",
+                            text: micGranted
+                                ? "**Microphone enabled** ✓"
+                                : "**Tap here to allow the microphone** (required — the keyboard can only record after the app is granted mic access)",
+                            highlight: !micGranted
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    StepRow(number: "2", text: "Open **Settings → General → Keyboard → Keyboards**")
+                    StepRow(number: "3", text: "Tap **Add New Keyboard** → select **Handy**")
+                    StepRow(number: "4", text: "Tap **Handy** again → turn on **Allow Full Access**")
                 }
                 .padding(.horizontal, 24)
 
@@ -54,12 +66,25 @@ struct SetupView: View {
                 .padding(.bottom, 48)
             }
         }
+        .onAppear {
+            // Prompt for mic on first view so the keyboard can later record.
+            if AVAudioApplication.shared.recordPermission == .undetermined {
+                requestMic()
+            }
+        }
+    }
+
+    private func requestMic() {
+        AVAudioApplication.requestRecordPermission { granted in
+            DispatchQueue.main.async { micGranted = granted }
+        }
     }
 }
 
 private struct StepRow: View {
     let number: String
     let text: String
+    var highlight: Bool = false
 
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
@@ -78,7 +103,11 @@ private struct StepRow: View {
             Spacer()
         }
         .padding(16)
-        .background(Color.white.opacity(0.05))
+        .background(highlight ? Color.white.opacity(0.14) : Color.white.opacity(0.05))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(highlight ? Color.white.opacity(0.4) : Color.clear, lineWidth: 1)
+        )
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }

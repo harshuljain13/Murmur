@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ModelPickerView: View {
-    @ObservedObject var modelManager: ModelManager
+    @EnvironmentObject var modelManager: ModelManager
 
     var body: some View {
         ZStack {
@@ -25,7 +25,7 @@ struct ModelPickerView: View {
                 ScrollView {
                     VStack(spacing: 12) {
                         ForEach(ModelVariant.allCases) { variant in
-                            ModelCard(variant: variant, manager: modelManager)
+                            ModelCard(variant: variant)
                         }
                     }
                     .padding(.horizontal, 20)
@@ -38,7 +38,7 @@ struct ModelPickerView: View {
 
 struct ModelCard: View {
     let variant: ModelVariant
-    @ObservedObject var manager: ModelManager
+    @EnvironmentObject var manager: ModelManager
 
     private var downloadState: ModelDownloadState {
         manager.state(for: variant)
@@ -155,5 +155,5 @@ struct ModelCard: View {
 }
 
 #Preview {
-    ModelPickerView(modelManager: ModelManager())
+    ModelPickerView().environmentObject(ModelManager())
 }

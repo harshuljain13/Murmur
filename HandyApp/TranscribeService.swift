@@ -28,11 +28,12 @@ final class TranscribeService: ObservableObject {
 
     private let inference = InferenceActor()
     private let bridge = TranscriptionBridge.shared
-    private let modelManager = ModelManager()
+    private var modelManager: ModelManager?
 
     private init() {}
 
-    func start() async {
+    func start(modelManager: ModelManager) async {
+        self.modelManager = modelManager
         await modelManager.loadState()
         await loadEngine()
     }
@@ -42,7 +43,7 @@ final class TranscribeService: ObservableObject {
     }
 
     private func loadEngine() async {
-        guard let url = modelManager.activeModelFileURL() else { return }
+        guard let url = modelManager?.activeModelFileURL() else { return }
         try? await inference.load(modelPath: url.path)
     }
 

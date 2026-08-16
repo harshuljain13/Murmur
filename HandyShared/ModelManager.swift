@@ -38,21 +38,35 @@ public final class ModelManager: ObservableObject {
 
         downloadStates[variant] = .downloading(0)
 
-        let delegate = DownloadProgressDelegate { @Sendable [weak self] progress in
-            Task { @MainActor in self?.downloadStates[variant] = .downloading(progress) }
-        }
-        let session = URLSession(configuration: .default, delegate: delegate, delegateQueue: nil)
-
         do {
-            let (tempURL, _) = try await session.download(from: variant.remoteURL)
-            try? FileManager.default.removeItem(at: destURL)
-            try FileManager.default.moveItem(at: tempURL, to: destURL)
+            let (asyncBytes, response) = try await URLSession.shared.bytes(from: variant.remoteURL)
+            let totalBytes = response.expectedContentLength
+
+            FileManager.default.createFile(atPath: destURL.path, contents: nil)
+            let fileHandle = try FileHandle(forWritingTo: destURL)
+            var received: Int64 = 0
+            var chunk = Data(capacity: 512 * 1024)
+
+            for try await byte in asyncBytes {
+                chunk.append(byte)
+                received += 1
+                if chunk.count >= 512 * 1024 {
+                    fileHandle.write(chunk)
+                    chunk.removeAll(keepingCapacity: true)
+                    if totalBytes > 0 {
+                        downloadStates[variant] = .downloading(Double(received) / Double(totalBytes))
+                    }
+                }
+            }
+            if !chunk.isEmpty { fileHandle.write(chunk) }
+            try fileHandle.close()
+
             downloadStates[variant] = .ready
             if activeModel == nil { setActive(variant) }
         } catch {
             downloadStates[variant] = .notDownloaded
+            try? FileManager.default.removeItem(at: destURL)
         }
-        session.invalidateAndCancel()
     }
 
     public func setActive(_ variant: ModelVariant) {
@@ -95,21 +109,3 @@ public final class ModelManager: ObservableObject {
     }
 }
 
-// URLSessionDownloadDelegate to track download progress
-private final class DownloadProgressDelegate: NSObject, URLSessionDownloadDelegate, @unchecked Sendable {
-    let onProgress: @Sendable (Double) -> Void
-    init(_ onProgress: @Sendable @escaping (Double) -> Void) { self.onProgress = onProgress }
-
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-                    didWriteData bytesWritten: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) {
-        guard totalBytesExpectedToWrite > 0 else { return }
-        onProgress(Double(totalBytesWritten) / Double(totalBytesExpectedToWrite))
-    }
-
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-        // Handled in the async/await call site
-    }
-}

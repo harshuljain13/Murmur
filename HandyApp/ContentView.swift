@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var modelManager = ModelManager()
+    @EnvironmentObject private var modelManager: ModelManager
     @State private var showModelPicker = false
 
     var body: some View {
         if showModelPicker {
-            ModelPickerView(modelManager: modelManager)
+            ModelPickerView()
                 .transition(.move(edge: .trailing))
         } else {
             LandingView {

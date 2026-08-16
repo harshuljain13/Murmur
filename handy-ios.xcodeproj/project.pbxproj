@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
+		C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD853313E2F5286232652686 /* SetupView.swift */; };
 		D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E4AC4D14593AD71E363D4 /* HandyApp.swift */; };
 		F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
@@ -36,7 +37,7 @@
 
 /* Begin PBXFileReference section */
 		0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
-		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe_bridge.h; sourceTree = "<group>"; };
 		4356584FB56238D0B120CCF6 /* extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extensions.h; sourceTree = "<group>"; };
 		4438801C5723A2840E5FF006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,7 +46,7 @@
 		6A1E048FE98BB7A92378930E /* TranscribeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeService.swift; sourceTree = "<group>"; };
 		6ABAF8E560540ECEA15BDEE1 /* voxtral_realtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voxtral_realtime.h; sourceTree = "<group>"; };
 		74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
-		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E683A484D340E9B0614A46 /* parakeet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parakeet.h; sourceTree = "<group>"; };
 		7E3AE6B7E54BAE0F2E3E1A35 /* sortformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sortformer.h; sourceTree = "<group>"; };
 		7EF3D3C8C71DC65443F66E7C /* whisper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whisper.h; sourceTree = "<group>"; };
@@ -56,6 +57,7 @@
 		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
 		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CD853313E2F5286232652686 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
 		E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyKeyboard.entitlements; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
 				B81D2832195FDCA62F53744A /* LandingView.swift */,
 				0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */,
+				CD853313E2F5286232652686 /* SetupView.swift */,
 				6A1E048FE98BB7A92378930E /* TranscribeService.swift */,
 			);
 			path = HandyApp;
@@ -196,6 +199,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					D3A83528C075967BFBDC4D53 = {
+						DevelopmentTeam = "";
+					};
+					EDE81DE8A190B319E6F63B95 = {
+						DevelopmentTeam = "";
+					};
+				};
 			};
 			buildConfigurationList = DEED9617015B3F016C38CB3B /* Build configuration list for PBXProject "handy-ios" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -207,6 +218,7 @@
 			);
 			mainGroup = 9F19F90C2F9A6F2E8D5BF627;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -240,6 +252,7 @@
 				D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */,
 				7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */,
 				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
+				C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */,
 				74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */,
 				8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */,
 				BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */,
@@ -385,7 +398,6 @@
 			buildSettings = {
 				APP_GROUP_IDENTIFIER = group.computer.handy;
 				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
-				DEVELOPMENT_TEAM = ML63WLS943;
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -405,7 +417,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = ML63WLS943;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -413,18 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = (
-					"-ltranscribe",
-					"-lc++",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Metal,
-					"-framework",
-					MetalKit,
-					"-framework",
-					Foundation,
-				);
+				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
@@ -437,7 +437,6 @@
 			buildSettings = {
 				APP_GROUP_IDENTIFIER = group.computer.handy;
 				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
-				DEVELOPMENT_TEAM = ML63WLS943;
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -457,7 +456,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = ML63WLS943;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -465,18 +463,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = (
-					"-ltranscribe",
-					"-lc++",
-					"-framework",
-					Accelerate,
-					"-framework",
-					Metal,
-					"-framework",
-					MetalKit,
-					"-framework",
-					Foundation,
-				);
+				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;

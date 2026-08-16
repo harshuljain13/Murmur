@@ -84,12 +84,22 @@ final class KeyboardViewController: UIInputViewController {
         setStatus("Opening Handy…")
 
         // Open the main app to record (only the app can use the mic on iOS).
+        // Requires Full Access. Walk the responder chain to UIApplication and
+        // use the modern open(_:options:completionHandler:).
         let url = URL(string: "handy://record")!
         var responder: UIResponder? = self
         while let r = responder {
-            if let app = r as? UIApplication { _ = app.perform(#selector(UIApplication.openURL(_:)), with: url); break }
+            if let app = r as? UIApplication {
+                app.open(url, options: [:]) { [weak self] success in
+                    if !success {
+                        self?.setStatus("Enable 'Allow Full Access' for Handy")
+                    }
+                }
+                return
+            }
             responder = r.next
         }
+        setStatus("Couldn't open Handy — enable Full Access")
     }
 
     private func insertPendingResultIfAny() {

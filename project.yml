@@ -48,17 +48,10 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app
         INFOPLIST_FILE: HandyApp/Info.plist
-        APP_GROUP_IDENTIFIER: group.computer.handy
         SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
         LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
         OTHER_LDFLAGS: -ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
         HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
-    entitlements:
-      path: HandyApp/HandyApp.entitlements
-    capabilities:
-      com.apple.security.application-groups:
-        groups:
-          - group.computer.handy
     info:
       path: HandyApp/Info.plist
       properties:
@@ -93,9 +86,6 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app.keyboard
         INFOPLIST_FILE: HandyKeyboard/Info.plist
-        APP_GROUP_IDENTIFIER: group.computer.handy
-    entitlements:
-      path: HandyKeyboard/HandyKeyboard.entitlements
     info:
       path: HandyKeyboard/Info.plist
       properties:

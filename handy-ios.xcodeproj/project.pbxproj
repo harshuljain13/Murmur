@@ -68,14 +68,12 @@
 		8DC560737DD029BD0C491651 /* transcribe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe.h; sourceTree = "<group>"; };
 		93C65FB70CC1420D972669F3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		B2A36040F3A8C1565A78E853 /* moonshine_streaming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moonshine_streaming.h; sourceTree = "<group>"; };
-		B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyApp.entitlements; sourceTree = "<group>"; };
 		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
 		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CD853313E2F5286232652686 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
-		E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyKeyboard.entitlements; sourceTree = "<group>"; };
 		EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +81,6 @@
 		187F32C4189499D0C15304B1 /* HandyKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */,
 				53964BDF36E1682520B9BD98 /* Info.plist */,
 				4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */,
 			);
@@ -135,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				4438801C5723A2840E5FF006 /* ContentView.swift */,
-				B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */,
 				C16E4AC4D14593AD71E363D4 /* HandyApp.swift */,
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
 				B81D2832195FDCA62F53744A /* LandingView.swift */,
@@ -412,8 +408,6 @@
 		69B43CC30E5700C20865C8CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_GROUP_IDENTIFIER = group.computer.handy;
-				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -429,9 +423,7 @@
 		A9E1C68E1A8205EC8D2BE211 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_GROUP_IDENTIFIER = group.computer.handy;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;
@@ -451,8 +443,6 @@
 		B66EE14ADE13C12019FA035B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_GROUP_IDENTIFIER = group.computer.handy;
-				CODE_SIGN_ENTITLEMENTS = HandyKeyboard/HandyKeyboard.entitlements;
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -468,9 +458,7 @@
 		E76D26DDB2F7020120A9FFE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APP_GROUP_IDENTIFIER = group.computer.handy;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyApp/Info.plist;

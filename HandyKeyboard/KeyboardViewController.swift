@@ -73,11 +73,9 @@ final class KeyboardViewController: UIInputViewController {
             statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
 
-        // Show error if no model ready
-        if !bridge.hasActiveModel {
-            setStatus("Open Handy app to download a model", error: true)
-            micButton.isEnabled = false
-        }
+        // Note: we can't reliably check model state across the process boundary
+        // without an App Group, so the mic is always enabled. If no model is
+        // downloaded, the main app writes back an error result which we display.
     }
 
     // MARK: - Recording

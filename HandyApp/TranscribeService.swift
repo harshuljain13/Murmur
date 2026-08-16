@@ -1,5 +1,6 @@
 import Foundation
 import AVFoundation
+import UIKit
 
 private actor InferenceActor {
     private var engine: TranscribeEngine?
@@ -36,6 +37,38 @@ final class TranscribeService: ObservableObject {
 
     func handleTranscribeURL() {
         Task { await runTranscription() }
+    }
+
+    var hasModel: Bool { modelManager?.activeModelFileURL() != nil }
+
+    /// Transcribe a recorded audio file (from the app's own recorder), publish
+    /// the text to the pasteboard so the Handy keyboard can insert it on return.
+    /// Returns the transcript (or nil on failure).
+    func transcribeRecording(url: URL) async -> String? {
+        isTranscribing = true
+        defer { isTranscribing = false }
+
+        if await !inference.isLoaded() { await loadEngine() }
+        guard await inference.isLoaded() else { return nil }
+
+        do {
+            let file = try AVAudioFile(forReading: url)
+            let format = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16_000, channels: 1, interleaved: false)!
+            let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length))!
+            try file.read(into: buffer)
+            guard let ch = buffer.floatChannelData?[0] else { return nil }
+            let samples = Array(UnsafeBufferPointer(start: ch, count: Int(buffer.frameLength)))
+
+            let text = try await inference.transcribe(samples: samples)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !text.isEmpty else { return nil }
+
+            bridge.writeResult(text)          // for the keyboard to insert
+            UIPasteboard.general.string = text // fallback: user can paste manually
+            return text
+        } catch {
+            return nil
+        }
     }
 
     private func loadEngine() async {

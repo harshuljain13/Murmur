@@ -83,15 +83,10 @@ targets:
     sources:
       - path: HandyKeyboard
       - path: HandyShared
-      - path: TranscribeCpp
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app.keyboard
         INFOPLIST_FILE: HandyKeyboard/Info.plist
-        SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
-        LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
-        OTHER_LDFLAGS: -ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
-        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
     info:
       path: HandyKeyboard/Info.plist
       properties:

@@ -6,6 +6,7 @@ enum AppScreen {
 
 struct ContentView: View {
     @EnvironmentObject private var modelManager: ModelManager
+    @EnvironmentObject private var router: AppRouter
     @State private var screen: AppScreen = .landing
 
     var body: some View {
@@ -27,6 +28,9 @@ struct ContentView: View {
                 SetupView()
                     .transition(.move(edge: .trailing))
             }
+        }
+        .fullScreenCover(isPresented: $router.showRecording) {
+            RecordingView()
         }
         .onAppear {
             // If model already downloaded from a previous launch, skip to setup

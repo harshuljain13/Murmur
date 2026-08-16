@@ -9,17 +9,16 @@
 /* Begin PBXBuildFile section */
 		1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
 		27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81D2832195FDCA62F53744A /* LandingView.swift */; };
-		36B93641A7FCD89DDAC0EDDA /* KeyboardModelStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F369F41A639CE153319840D /* KeyboardModelStore.swift */; };
+		42721359941CB835A56BFEB4 /* AppRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */; };
 		545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438801C5723A2840E5FF006 /* ContentView.swift */; };
 		5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
 		6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
 		74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */; };
 		7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */; };
-		873A21C2BDCDBDB8590D0649 /* TranscribeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */; };
 		8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E048FE98BB7A92378930E /* TranscribeService.swift */; };
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
-		A2C13B6A86FCAA631A5C4D59 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1FF67173C589BD851A87F5 /* WaveformView.swift */; };
+		AE0862F40B111665AAAF8475 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */; };
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD853313E2F5286232652686 /* SetupView.swift */; };
@@ -68,16 +67,16 @@
 		79E683A484D340E9B0614A46 /* parakeet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parakeet.h; sourceTree = "<group>"; };
 		7E3AE6B7E54BAE0F2E3E1A35 /* sortformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sortformer.h; sourceTree = "<group>"; };
 		7EF3D3C8C71DC65443F66E7C /* whisper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whisper.h; sourceTree = "<group>"; };
-		7F369F41A639CE153319840D /* KeyboardModelStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModelStore.swift; sourceTree = "<group>"; };
 		8DC560737DD029BD0C491651 /* transcribe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe.h; sourceTree = "<group>"; };
 		93C65FB70CC1420D972669F3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecorder.swift; sourceTree = "<group>"; };
 		B2A36040F3A8C1565A78E853 /* moonshine_streaming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moonshine_streaming.h; sourceTree = "<group>"; };
 		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
 		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CD853313E2F5286232652686 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
-		DF1FF67173C589BD851A87F5 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
 		EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,9 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				53964BDF36E1682520B9BD98 /* Info.plist */,
-				7F369F41A639CE153319840D /* KeyboardModelStore.swift */,
 				4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */,
-				DF1FF67173C589BD851A87F5 /* WaveformView.swift */,
 			);
 			path = HandyKeyboard;
 			sourceTree = "<group>";
@@ -138,11 +135,13 @@
 		C921CE9CF63FD1A4FBAD6B3C /* HandyApp */ = {
 			isa = PBXGroup;
 			children = (
+				AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */,
 				4438801C5723A2840E5FF006 /* ContentView.swift */,
 				C16E4AC4D14593AD71E363D4 /* HandyApp.swift */,
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
 				B81D2832195FDCA62F53744A /* LandingView.swift */,
 				0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */,
+				A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */,
 				CD853313E2F5286232652686 /* SetupView.swift */,
 				6A1E048FE98BB7A92378930E /* TranscribeService.swift */,
 			);
@@ -255,13 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */,
-				36B93641A7FCD89DDAC0EDDA /* KeyboardModelStore.swift in Sources */,
 				B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */,
 				9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */,
 				5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */,
-				873A21C2BDCDBDB8590D0649 /* TranscribeEngine.swift in Sources */,
 				545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */,
-				A2C13B6A86FCAA631A5C4D59 /* WaveformView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42721359941CB835A56BFEB4 /* AppRecorder.swift in Sources */,
 				F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */,
 				5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */,
 				DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */,
@@ -276,6 +273,7 @@
 				D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */,
 				7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */,
 				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
+				AE0862F40B111665AAAF8475 /* RecordingView.swift in Sources */,
 				C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */,
 				74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */,
 				8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */,
@@ -422,18 +420,14 @@
 		69B43CC30E5700C20865C8CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app.keyboard;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -461,18 +455,14 @@
 		B66EE14ADE13C12019FA035B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
 				INFOPLIST_FILE = HandyKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app.keyboard;
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

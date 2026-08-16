@@ -1,6 +1,6 @@
 import Foundation
 
-public enum ModelVariant: String, CaseIterable, Identifiable, Codable {
+public enum ModelVariant: String, CaseIterable, Identifiable, Codable, Sendable {
     case parakeetQ4    = "parakeet-unified-en-0.6b-Q4_K_M"
     case parakeetQ8    = "parakeet-unified-en-0.6b-Q8_0"
     case nemotron      = "nemotron-3.5-asr-streaming-0.6b-Q8_0"

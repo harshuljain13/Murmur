@@ -4,181 +4,264 @@ import AVFoundation
 final class KeyboardViewController: UIInputViewController {
 
     // MARK: - UI
-    private let micButton = UIButton(type: .system)
-    private let statusLabel = UILabel()
-    private let nextKeyboardButton = UIButton(type: .system)
+    private let globeButton   = UIButton(type: .system)
+    private let micButton     = UIButton(type: .system)
+    private let statusLabel   = UILabel()
+    private let waveformView  = WaveformView()
+    private let downloadButton = UIButton(type: .system)
+    private let progressBar   = UIProgressView(progressViewStyle: .default)
 
     // MARK: - State
-    private var audioRecorder: AVAudioRecorder?
-    private var isRecording = false
-    private var pollTimer: Timer?
-    private var requestTimestamp: TimeInterval = 0
+    private let store = KeyboardModelStore()
+    private var engine: TranscribeEngine?
+    private let inferenceQueue = DispatchQueue(label: "computer.handy.inference", qos: .userInitiated)
 
-    private let bridge = TranscriptionBridge.shared
+    private var audioRecorder: AVAudioRecorder?
+    private var meterTimer: Timer?
+    private var isRecording = false
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        refreshState()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        pollTimer?.invalidate()
-        if isRecording { stopRecording(submit: false) }
+        if isRecording { finishRecording(submit: false) }
     }
 
-    // MARK: - UI Setup
+    // MARK: - UI
 
     private func setupUI() {
-        view.backgroundColor = UIColor(red: 0.06, green: 0.06, blue: 0.06, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.06, alpha: 1)
 
-        // Globe key
-        nextKeyboardButton.setTitle("🌐", for: .normal)
-        nextKeyboardButton.titleLabel?.font = .systemFont(ofSize: 20)
-        nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
-        nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
+        globeButton.setImage(UIImage(systemName: "globe"), for: .normal)
+        globeButton.tintColor = UIColor.white.withAlphaComponent(0.5)
+        globeButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+        globeButton.translatesAutoresizingMaskIntoConstraints = false
 
-        // Mic
-        micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
+        micButton.setImage(micImage("mic.fill"), for: .normal)
         micButton.tintColor = .white
         micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
-        micButton.layer.cornerRadius = 36
+        micButton.layer.cornerRadius = 34
         micButton.clipsToBounds = true
         micButton.translatesAutoresizingMaskIntoConstraints = false
         micButton.addTarget(self, action: #selector(micTapped), for: .touchUpInside)
 
-        // Status
-        statusLabel.text = "Tap mic to speak"
+        waveformView.barColor = .white
+        waveformView.translatesAutoresizingMaskIntoConstraints = false
+        waveformView.isHidden = true
+
+        statusLabel.text = "Tap to speak"
         statusLabel.textAlignment = .center
-        statusLabel.font = .systemFont(ofSize: 13)
-        statusLabel.textColor = UIColor.white.withAlphaComponent(0.4)
+        statusLabel.font = .systemFont(ofSize: 13, weight: .medium)
+        statusLabel.textColor = UIColor.white.withAlphaComponent(0.45)
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        [nextKeyboardButton, micButton, statusLabel].forEach { view.addSubview($0) }
+        var cfg = UIButton.Configuration.filled()
+        cfg.title = "Download Parakeet (477 MB)"
+        cfg.baseBackgroundColor = .white
+        cfg.baseForegroundColor = .black
+        cfg.cornerStyle = .capsule
+        downloadButton.configuration = cfg
+        downloadButton.translatesAutoresizingMaskIntoConstraints = false
+        downloadButton.addTarget(self, action: #selector(downloadTapped), for: .touchUpInside)
+        downloadButton.isHidden = true
+
+        progressBar.progressTintColor = .white
+        progressBar.trackTintColor = UIColor.white.withAlphaComponent(0.15)
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        progressBar.isHidden = true
+
+        [globeButton, micButton, waveformView, statusLabel, downloadButton, progressBar].forEach { view.addSubview($0) }
 
         NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 160),
+            view.heightAnchor.constraint(equalToConstant: 220),
 
-            nextKeyboardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            nextKeyboardButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            globeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+            globeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+
+            waveformView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            waveformView.topAnchor.constraint(equalTo: view.topAnchor, constant: 44),
+            waveformView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            waveformView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            waveformView.heightAnchor.constraint(equalToConstant: 56),
 
             micButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            micButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -8),
-            micButton.widthAnchor.constraint(equalToConstant: 72),
-            micButton.heightAnchor.constraint(equalToConstant: 72),
+            micButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -56),
+            micButton.widthAnchor.constraint(equalToConstant: 68),
+            micButton.heightAnchor.constraint(equalToConstant: 68),
 
             statusLabel.topAnchor.constraint(equalTo: micButton.bottomAnchor, constant: 10),
             statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
+            statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
 
-        // Note: we can't reliably check model state across the process boundary
-        // without an App Group, so the mic is always enabled. If no model is
-        // downloaded, the main app writes back an error result which we display.
+            downloadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            downloadButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            progressBar.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            progressBar.topAnchor.constraint(equalTo: downloadButton.bottomAnchor, constant: 16),
+            progressBar.widthAnchor.constraint(equalToConstant: 220),
+        ])
+    }
+
+    private func micImage(_ name: String) -> UIImage? {
+        UIImage(systemName: name, withConfiguration: UIImage.SymbolConfiguration(pointSize: 26))
+    }
+
+    // MARK: - State machine
+
+    private func refreshState() {
+        if store.isDownloaded {
+            downloadButton.isHidden = true
+            progressBar.isHidden = true
+            micButton.isHidden = false
+            setStatus("Tap to speak")
+        } else {
+            micButton.isHidden = true
+            waveformView.isHidden = true
+            downloadButton.isHidden = false
+            setStatus("Download the model once to enable dictation")
+        }
+    }
+
+    // MARK: - Model download
+
+    @objc private func downloadTapped() {
+        downloadButton.isEnabled = false
+        downloadButton.isHidden = true
+        progressBar.isHidden = false
+        progressBar.progress = 0
+        setStatus("Downloading… 0%")
+
+        Task { @MainActor in
+            do {
+                try await store.download { p in
+                    DispatchQueue.main.async { [weak self] in
+                        self?.progressBar.progress = Float(p)
+                        self?.setStatus("Downloading… \(Int(p * 100))%")
+                    }
+                }
+                self.progressBar.isHidden = true
+                self.refreshState()
+            } catch {
+                self.setStatus("Download failed — tap to retry", error: true)
+                self.downloadButton.isEnabled = true
+                self.downloadButton.isHidden = false
+                self.progressBar.isHidden = true
+            }
+        }
     }
 
     // MARK: - Recording
 
     @objc private func micTapped() {
-        if isRecording { stopRecording(submit: true) }
-        else { startRecording() }
+        guard store.isDownloaded else { return }
+        if isRecording { finishRecording(submit: true) }
+        else { beginRecording() }
     }
 
-    private func startRecording() {
-        let audioURL = bridge.audioDirURL().appendingPathComponent("pending.wav")
-
+    private func beginRecording() {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("handy_rec.wav")
         let settings: [String: Any] = [
-            AVFormatIDKey:            Int(kAudioFormatLinearPCM),
-            AVSampleRateKey:          16_000,
-            AVNumberOfChannelsKey:    1,
-            AVLinearPCMBitDepthKey:   16,
-            AVLinearPCMIsFloatKey:    false,
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 16_000,
+            AVNumberOfChannelsKey: 1,
+            AVLinearPCMBitDepthKey: 16,
+            AVLinearPCMIsFloatKey: false,
             AVLinearPCMIsBigEndianKey: false,
         ]
-
         do {
             try AVAudioSession.sharedInstance().setCategory(.record, mode: .measurement, options: .duckOthers)
             try AVAudioSession.sharedInstance().setActive(true)
-            audioRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
-            audioRecorder?.record()
+            let rec = try AVAudioRecorder(url: url, settings: settings)
+            rec.isMeteringEnabled = true
+            rec.record()
+            audioRecorder = rec
             isRecording = true
-            micButton.backgroundColor = UIColor.systemRed.withAlphaComponent(0.8)
-            micButton.setImage(UIImage(systemName: "stop.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
-            setStatus("Recording…")
+
+            micButton.backgroundColor = UIColor.systemRed
+            micButton.setImage(micImage("stop.fill"), for: .normal)
+            waveformView.isHidden = false
+            waveformView.reset()
+            setStatus("Listening…")
+
+            meterTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { [weak self] _ in
+                self?.sampleMeter()
+            }
         } catch {
-            setStatus("Mic error — enable Full Access in Settings", error: true)
+            setStatus("Mic error — enable Full Access", error: true)
         }
     }
 
-    private func stopRecording(submit: Bool) {
+    private func sampleMeter() {
+        guard let rec = audioRecorder else { return }
+        rec.updateMeters()
+        let power = rec.averagePower(forChannel: 0) // -160 (silence) ... 0 (loud)
+        // Map dB to a pleasant 0...1 curve
+        let normalized = pow(10, power / 40)        // -160 → ~0.0001, 0 → 1
+        waveformView.push(CGFloat(min(1, max(0.02, normalized))))
+    }
+
+    private func finishRecording(submit: Bool) {
+        meterTimer?.invalidate(); meterTimer = nil
         audioRecorder?.stop()
+        let url = audioRecorder?.url
+        audioRecorder = nil
         isRecording = false
-        micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
-        micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
         try? AVAudioSession.sharedInstance().setActive(false)
 
-        guard submit, let url = audioRecorder?.url else { setStatus("Tap mic to speak"); return }
-        guard let audioData = try? Data(contentsOf: url) else { setStatus("Recording error"); return }
+        micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
+        micButton.setImage(micImage("mic.fill"), for: .normal)
+        waveformView.isHidden = true
+        waveformView.reset()
 
-        // UIPasteboard.general is readable by both the extension and the main app
-        // without any entitlements. We use a named type so we don't clobber the user's clipboard.
-        UIPasteboard.general.setData(audioData, forPasteboardType: "computer.handy.audio")
-        submitToApp()
+        guard submit, let url else { setStatus("Tap to speak"); return }
+        transcribe(url: url)
     }
 
-    // MARK: - IPC
+    // MARK: - Inference (in-process)
 
-    private func submitToApp() {
+    private func transcribe(url: URL) {
         setStatus("Transcribing…")
-        bridge.clearResult()
-        requestTimestamp = Date().timeIntervalSince1970
+        micButton.isEnabled = false
 
-        // Wake / foreground the main app
-        let url = URL(string: "handy://transcribe")!
-        var responder: UIResponder? = self
-        while let r = responder {
-            if let app = r as? UIApplication {
-                app.open(url)
-                break
+        inferenceQueue.async { [weak self] in
+            guard let self else { return }
+            do {
+                if self.engine == nil {
+                    self.engine = try TranscribeEngine(modelPath: self.store.modelURL.path)
+                }
+                let samples = try Self.loadPCM(from: url)
+                let text = try self.engine!.transcribe(samples: samples)
+                DispatchQueue.main.async {
+                    let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !trimmed.isEmpty {
+                        self.textDocumentProxy.insertText(trimmed)
+                    }
+                    self.setStatus("Tap to speak")
+                    self.micButton.isEnabled = true
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.setStatus("Transcription failed", error: true)
+                    self.micButton.isEnabled = true
+                }
             }
-            responder = r.next
         }
-
-        startPolling()
     }
 
-    private func startPolling() {
-        pollTimer?.invalidate()
-        let started = requestTimestamp
-        var elapsed = 0.0
-        let bridge = self.bridge
-
-        pollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] timer in
-            guard let self else { timer.invalidate(); return }
-
-            if let result = bridge.readResult(newerThan: started) {
-                timer.invalidate()
-                DispatchQueue.main.async {
-                    if result.hasPrefix("ERROR:") {
-                        self.setStatus(String(result.dropFirst(7)), error: true)
-                    } else {
-                        self.textDocumentProxy.insertText(result)
-                        self.setStatus("Tap mic to speak")
-                    }
-                    bridge.clearResult()
-                }
-                return
-            }
-
-            elapsed += 0.3
-            if elapsed >= 30 {
-                timer.invalidate()
-                DispatchQueue.main.async {
-                    self.setStatus("Timed out — is Handy app installed?", error: true)
-                }
-            }
-        }
+    private static func loadPCM(from url: URL) throws -> [Float] {
+        let file = try AVAudioFile(forReading: url)
+        let fmt = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16_000, channels: 1, interleaved: false)!
+        let buf = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: AVAudioFrameCount(file.length))!
+        try file.read(into: buf)
+        guard let ch = buf.floatChannelData?[0] else { return [] }
+        return Array(UnsafeBufferPointer(start: ch, count: Int(buf.frameLength)))
     }
 
     // MARK: - Helpers
@@ -187,6 +270,6 @@ final class KeyboardViewController: UIInputViewController {
         statusLabel.text = text
         statusLabel.textColor = error
             ? UIColor.systemOrange.withAlphaComponent(0.9)
-            : UIColor.white.withAlphaComponent(0.4)
+            : UIColor.white.withAlphaComponent(0.45)
     }
 }

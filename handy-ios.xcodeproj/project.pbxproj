@@ -15,6 +15,7 @@
 		6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
 		74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */; };
 		7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */; };
+		8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E048FE98BB7A92378930E /* TranscribeService.swift */; };
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
@@ -37,12 +38,20 @@
 		0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
 		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe_bridge.h; sourceTree = "<group>"; };
+		4356584FB56238D0B120CCF6 /* extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extensions.h; sourceTree = "<group>"; };
 		4438801C5723A2840E5FF006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		53964BDF36E1682520B9BD98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6A1E048FE98BB7A92378930E /* TranscribeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeService.swift; sourceTree = "<group>"; };
+		6ABAF8E560540ECEA15BDEE1 /* voxtral_realtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voxtral_realtime.h; sourceTree = "<group>"; };
 		74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
 		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		79E683A484D340E9B0614A46 /* parakeet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parakeet.h; sourceTree = "<group>"; };
+		7E3AE6B7E54BAE0F2E3E1A35 /* sortformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sortformer.h; sourceTree = "<group>"; };
+		7EF3D3C8C71DC65443F66E7C /* whisper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whisper.h; sourceTree = "<group>"; };
+		8DC560737DD029BD0C491651 /* transcribe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe.h; sourceTree = "<group>"; };
 		93C65FB70CC1420D972669F3 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		B2A36040F3A8C1565A78E853 /* moonshine_streaming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moonshine_streaming.h; sourceTree = "<group>"; };
 		B4CB13E8E5C852167D1F34FB /* HandyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyApp.entitlements; sourceTree = "<group>"; };
 		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
@@ -62,6 +71,15 @@
 				4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */,
 			);
 			path = HandyKeyboard;
+			sourceTree = "<group>";
+		};
+		4C76287ACCDB4C43109BFCD2 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				8DC560737DD029BD0C491651 /* transcribe.h */,
+				CC51DC0B4AF3FB603E9366A5 /* transcribe */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		8E68E4339D70E997B81180FA /* HandyShared */ = {
@@ -91,6 +109,7 @@
 			children = (
 				3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */,
 				EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */,
+				4C76287ACCDB4C43109BFCD2 /* include */,
 			);
 			path = TranscribeCpp;
 			sourceTree = "<group>";
@@ -104,8 +123,22 @@
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
 				B81D2832195FDCA62F53744A /* LandingView.swift */,
 				0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */,
+				6A1E048FE98BB7A92378930E /* TranscribeService.swift */,
 			);
 			path = HandyApp;
+			sourceTree = "<group>";
+		};
+		CC51DC0B4AF3FB603E9366A5 /* transcribe */ = {
+			isa = PBXGroup;
+			children = (
+				4356584FB56238D0B120CCF6 /* extensions.h */,
+				B2A36040F3A8C1565A78E853 /* moonshine_streaming.h */,
+				79E683A484D340E9B0614A46 /* parakeet.h */,
+				7E3AE6B7E54BAE0F2E3E1A35 /* sortformer.h */,
+				6ABAF8E560540ECEA15BDEE1 /* voxtral_realtime.h */,
+				7EF3D3C8C71DC65443F66E7C /* whisper.h */,
+			);
+			path = transcribe;
 			sourceTree = "<group>";
 		};
 		FFF067E749F46AB72248D245 /* Products */ = {
@@ -217,6 +250,7 @@
 				7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */,
 				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
 				74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */,
+				8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */,
 				BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,11 +413,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
+				OTHER_LDFLAGS = "-ltranscribe";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
@@ -415,11 +452,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp";
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
+				OTHER_LDFLAGS = "-ltranscribe";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;

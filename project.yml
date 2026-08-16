@@ -27,9 +27,9 @@ targets:
         INFOPLIST_FILE: HandyApp/Info.plist
         APP_GROUP_IDENTIFIER: group.computer.handy
         SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
-        # Once libtranscribe.a is built via scripts/build_transcribe_ios.sh:
-        # LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
-        # OTHER_LDFLAGS: -ltranscribe
+        LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
+        OTHER_LDFLAGS: -ltranscribe
+        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp
     entitlements:
       path: HandyApp/HandyApp.entitlements
     info:
@@ -40,6 +40,10 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         NSMicrophoneUsageDescription: "Handy uses the microphone to transcribe your speech to text."
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - handy
+            CFBundleURLName: computer.handy.app
         UILaunchScreen:
           UIColorName: ""
         UISupportedInterfaceOrientations:

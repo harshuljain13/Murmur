@@ -12,20 +12,19 @@ public final class ModelManager: ObservableObject {
     @Published public var activeModel: ModelVariant?
 
     private let appGroup = "group.computer.handy"
-    private var downloadTasks: [ModelVariant: URLSessionDownloadTask] = [:]
 
     public init() {}
 
     public func loadState() async {
         for variant in ModelVariant.allCases {
-            if modelFileURL(for: variant) != nil {
-                downloadStates[variant] = .ready
-            } else {
-                downloadStates[variant] = .notDownloaded
-            }
+            downloadStates[variant] = fileExists(for: variant) ? .ready : .notDownloaded
         }
-        activeModel = UserDefaults(suiteName: appGroup)?.string(forKey: "activeModel")
-            .flatMap { ModelVariant(rawValue: $0) }
+        activeModel = savedActiveModel()
+
+        // Auto-select first ready model if none saved
+        if activeModel == nil, let ready = ModelVariant.allCases.first(where: { fileExists(for: $0) }) {
+            setActive(ready)
+        }
     }
 
     public func state(for variant: ModelVariant) -> ModelDownloadState {
@@ -33,37 +32,22 @@ public final class ModelManager: ObservableObject {
     }
 
     public func download(_ variant: ModelVariant) async {
-        guard let containerURL = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: appGroup) else { return }
-
-        let destURL = containerURL.appendingPathComponent("Models/\(variant.filename)")
-        try? FileManager.default.createDirectory(
-            at: destURL.deletingLastPathComponent(),
-            withIntermediateDirectories: true
-        )
+        guard let destURL = modelFileURL(for: variant, mustExist: false) else { return }
+        try? FileManager.default.createDirectory(at: destURL.deletingLastPathComponent(), withIntermediateDirectories: true)
 
         downloadStates[variant] = .downloading(0)
 
-        let (asyncBytes, response) = try! await URLSession.shared.bytes(from: variant.remoteURL)
-        let totalBytes = response.expectedContentLength
-        var downloadedBytes: Int64 = 0
-        var buffer = Data()
-
-        for try await byte in asyncBytes {
-            buffer.append(byte)
-            downloadedBytes += 1
-            if downloadedBytes % 262_144 == 0 { // update every 256KB
-                let progress = totalBytes > 0 ? Double(downloadedBytes) / Double(totalBytes) : 0
-                downloadStates[variant] = .downloading(progress)
+        let (tempURL, _) = try! await URLSession.shared.download(
+            for: URLRequest(url: variant.remoteURL),
+            delegate: ProgressDelegate { [weak self] progress in
+                Task { @MainActor in self?.downloadStates[variant] = .downloading(progress) }
             }
-        }
+        )
 
-        try? buffer.write(to: destURL)
+        try? FileManager.default.moveItem(at: tempURL, to: destURL)
         downloadStates[variant] = .ready
 
-        if activeModel == nil {
-            setActive(variant)
-        }
+        if activeModel == nil { setActive(variant) }
     }
 
     public func setActive(_ variant: ModelVariant) {
@@ -71,15 +55,38 @@ public final class ModelManager: ObservableObject {
         UserDefaults(suiteName: appGroup)?.set(variant.rawValue, forKey: "activeModel")
     }
 
-    public func modelFileURL(for variant: ModelVariant) -> URL? {
-        guard let containerURL = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: appGroup) else { return nil }
-        let url = containerURL.appendingPathComponent("Models/\(variant.filename)")
-        return FileManager.default.fileExists(atPath: url.path) ? url : nil
-    }
-
     public func activeModelFileURL() -> URL? {
         guard let active = activeModel else { return nil }
-        return modelFileURL(for: active)
+        return modelFileURL(for: active, mustExist: true)
+    }
+
+    private func fileExists(for variant: ModelVariant) -> Bool {
+        modelFileURL(for: variant, mustExist: true) != nil
+    }
+
+    private func modelFileURL(for variant: ModelVariant, mustExist: Bool) -> URL? {
+        guard let base = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else { return nil }
+        let url = base.appendingPathComponent("Models/\(variant.filename)")
+        if mustExist && !FileManager.default.fileExists(atPath: url.path) { return nil }
+        return url
+    }
+
+    private func savedActiveModel() -> ModelVariant? {
+        UserDefaults(suiteName: appGroup)?.string(forKey: "activeModel").flatMap { ModelVariant(rawValue: $0) }
+    }
+}
+
+// URLSession download progress via delegate
+private final class ProgressDelegate: NSObject, URLSessionTaskDelegate {
+    let onProgress: (Double) -> Void
+    init(_ onProgress: @escaping (Double) -> Void) { self.onProgress = onProgress }
+
+    func urlSession(_ session: URLSession, didCreateTask task: URLSessionTask) {}
+
+    func urlSession(_ session: URLSession, task: URLSessionTask,
+                    didSendBodyData bytesSent: Int64, totalBytesSent: Int64,
+                    totalBytesExpectedToSend: Int64) {
+        guard totalBytesExpectedToSend > 0 else { return }
+        onProgress(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
     }
 }

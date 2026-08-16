@@ -3,159 +3,183 @@ import AVFoundation
 
 final class KeyboardViewController: UIInputViewController {
 
+    // MARK: - UI
     private let micButton = UIButton(type: .system)
     private let statusLabel = UILabel()
     private let nextKeyboardButton = UIButton(type: .system)
 
+    // MARK: - State
     private var audioRecorder: AVAudioRecorder?
     private var isRecording = false
-    private var pendingRequestId: UUID?
-    private var resultPollTimer: Timer?
+    private var pollTimer: Timer?
+    private var requestTimestamp: TimeInterval = 0
 
-    private let appGroup = "group.computer.handy"
+    private let bridge = TranscriptionBridge.shared
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
 
-    // MARK: - UI
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        pollTimer?.invalidate()
+        if isRecording { stopRecording(submit: false) }
+    }
+
+    // MARK: - UI Setup
 
     private func setupUI() {
-        view.backgroundColor = UIColor.systemGroupedBackground
+        view.backgroundColor = UIColor(red: 0.06, green: 0.06, blue: 0.06, alpha: 1)
 
+        // Globe key
         nextKeyboardButton.setTitle("🌐", for: .normal)
+        nextKeyboardButton.titleLabel?.font = .systemFont(ofSize: 20)
         nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
 
-        micButton.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
-        micButton.contentVerticalAlignment = .fill
-        micButton.contentHorizontalAlignment = .fill
-        micButton.tintColor = .label
+        // Mic
+        micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
+        micButton.tintColor = .white
+        micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
+        micButton.layer.cornerRadius = 36
+        micButton.clipsToBounds = true
         micButton.translatesAutoresizingMaskIntoConstraints = false
-        micButton.addTarget(self, action: #selector(micButtonTapped), for: .touchUpInside)
+        micButton.addTarget(self, action: #selector(micTapped), for: .touchUpInside)
 
+        // Status
         statusLabel.text = "Tap mic to speak"
         statusLabel.textAlignment = .center
         statusLabel.font = .systemFont(ofSize: 13)
-        statusLabel.textColor = .secondaryLabel
+        statusLabel.textColor = UIColor.white.withAlphaComponent(0.4)
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(nextKeyboardButton)
-        view.addSubview(micButton)
-        view.addSubview(statusLabel)
+        [nextKeyboardButton, micButton, statusLabel].forEach { view.addSubview($0) }
 
         NSLayoutConstraint.activate([
-            nextKeyboardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
-            nextKeyboardButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            view.heightAnchor.constraint(equalToConstant: 160),
+
+            nextKeyboardButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            nextKeyboardButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
 
             micButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            micButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            micButton.widthAnchor.constraint(equalToConstant: 56),
-            micButton.heightAnchor.constraint(equalToConstant: 56),
+            micButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -8),
+            micButton.widthAnchor.constraint(equalToConstant: 72),
+            micButton.heightAnchor.constraint(equalToConstant: 72),
 
-            statusLabel.topAnchor.constraint(equalTo: micButton.bottomAnchor, constant: 8),
+            statusLabel.topAnchor.constraint(equalTo: micButton.bottomAnchor, constant: 10),
             statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
         ])
+
+        // Show error if no model ready
+        if !bridge.hasActiveModel {
+            setStatus("Open Handy app to download a model", error: true)
+            micButton.isEnabled = false
+        }
     }
 
     // MARK: - Recording
 
-    @objc private func micButtonTapped() {
-        if isRecording {
-            stopRecording()
-        } else {
-            startRecording()
-        }
+    @objc private func micTapped() {
+        if isRecording { stopRecording(submit: true) }
+        else { startRecording() }
     }
 
     private func startRecording() {
-        let audioURL = tempAudioURL()
+        guard let audioDir = bridge.audioDirURL() else { return }
+        let audioURL = audioDir.appendingPathComponent("pending.wav")
+
         let settings: [String: Any] = [
-            AVFormatIDKey: Int(kAudioFormatLinearPCM),
-            AVSampleRateKey: 16_000,
-            AVNumberOfChannelsKey: 1,
-            AVLinearPCMBitDepthKey: 16,
-            AVLinearPCMIsFloatKey: false,
+            AVFormatIDKey:            Int(kAudioFormatLinearPCM),
+            AVSampleRateKey:          16_000,
+            AVNumberOfChannelsKey:    1,
+            AVLinearPCMBitDepthKey:   16,
+            AVLinearPCMIsFloatKey:    false,
+            AVLinearPCMIsBigEndianKey: false,
         ]
 
         do {
-            try AVAudioSession.sharedInstance().setCategory(.record, mode: .measurement)
+            try AVAudioSession.sharedInstance().setCategory(.record, mode: .measurement, options: .duckOthers)
             try AVAudioSession.sharedInstance().setActive(true)
             audioRecorder = try AVAudioRecorder(url: audioURL, settings: settings)
             audioRecorder?.record()
             isRecording = true
-            micButton.tintColor = .systemRed
-            micButton.setImage(UIImage(systemName: "stop.circle.fill"), for: .normal)
-            statusLabel.text = "Recording…"
+            micButton.backgroundColor = UIColor.systemRed.withAlphaComponent(0.8)
+            micButton.setImage(UIImage(systemName: "stop.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
+            setStatus("Recording…")
         } catch {
-            statusLabel.text = "Mic error: \(error.localizedDescription)"
+            setStatus("Mic error — enable Full Access in Settings", error: true)
         }
     }
 
-    private func stopRecording() {
+    private func stopRecording(submit: Bool) {
         audioRecorder?.stop()
         isRecording = false
-        micButton.tintColor = .label
-        micButton.setImage(UIImage(systemName: "mic.circle.fill"), for: .normal)
-        statusLabel.text = "Transcribing…"
+        micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
+        micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
+        try? AVAudioSession.sharedInstance().setActive(false)
 
-        guard let url = audioRecorder?.url else { return }
-        submitForTranscription(audioURL: url)
+        guard submit else { setStatus("Tap mic to speak"); return }
+        submitToApp()
     }
 
     // MARK: - IPC
 
-    private func submitForTranscription(audioURL: URL) {
-        guard let containerURL = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-            statusLabel.text = "App Group error — enable Full Access"
-            return
+    private func submitToApp() {
+        setStatus("Transcribing…")
+        bridge.clearResult()
+        requestTimestamp = Date().timeIntervalSince1970
+
+        // Wake / foreground the main app
+        let url = URL(string: "handy://transcribe")!
+        var responder: UIResponder? = self
+        while let r = responder {
+            if let app = r as? UIApplication {
+                app.open(url)
+                break
+            }
+            responder = r.next
         }
 
-        let sharedAudioURL = containerURL.appendingPathComponent("pending_audio.wav")
-        try? FileManager.default.removeItem(at: sharedAudioURL)
-        try? FileManager.default.copyItem(at: audioURL, to: sharedAudioURL)
-
-        let request = TranscriptionRequest(audioFileURL: sharedAudioURL)
-        pendingRequestId = request.id
-
-        do {
-            try TranscriptionBridge.shared.postRequest(request)
-            startPollingForResult(requestId: request.id)
-        } catch {
-            statusLabel.text = "Failed to send request"
-        }
+        startPolling()
     }
 
-    private func startPollingForResult(requestId: UUID) {
-        resultPollTimer?.invalidate()
-        resultPollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] timer in
+    private func startPolling() {
+        pollTimer?.invalidate()
+        let started = requestTimestamp
+        var elapsed = 0.0
+
+        pollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] timer in
             guard let self else { timer.invalidate(); return }
-            if let result = TranscriptionBridge.shared.readResult(for: requestId) {
+
+            if let result = self.bridge.readResult(newerThan: started) {
                 timer.invalidate()
-                DispatchQueue.main.async {
-                    self.insertText(result.text)
-                    self.statusLabel.text = "Tap mic to speak"
+                if result.hasPrefix("ERROR:") {
+                    self.setStatus(String(result.dropFirst(7)), error: true)
+                } else {
+                    self.textDocumentProxy.insertText(result)
+                    self.setStatus("Tap mic to speak")
                 }
+                self.bridge.clearResult()
+                return
             }
-        }
-        // Timeout after 30s
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) { [weak self] in
-            self?.resultPollTimer?.invalidate()
-            if self?.statusLabel.text == "Transcribing…" {
-                self?.statusLabel.text = "Timed out — open Handy app"
+
+            elapsed += 0.3
+            if elapsed >= 30 {
+                timer.invalidate()
+                self.setStatus("Timed out — is Handy app installed?", error: true)
             }
         }
     }
 
-    private func insertText(_ text: String) {
-        textDocumentProxy.insertText(text)
-    }
+    // MARK: - Helpers
 
-    private func tempAudioURL() -> URL {
-        FileManager.default.temporaryDirectory.appendingPathComponent("handy_recording.wav")
+    private func setStatus(_ text: String, error: Bool = false) {
+        statusLabel.text = text
+        statusLabel.textColor = error
+            ? UIColor.systemOrange.withAlphaComponent(0.9)
+            : UIColor.white.withAlphaComponent(0.4)
     }
 }

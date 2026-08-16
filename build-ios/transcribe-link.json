@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "commit": "856d7c1",
+  "shared": false,
+  "backend_dl": false,
+  "module_dir": null,
+  "backends": ["metal", "cpu"],
+  "metal_embed": true,
+  "include_dir": "include",
+  "lib_dir": "lib",
+  "libraries": ["transcribe", "ggml", "ggml-cpu", "ggml-metal", "ggml-base"],
+  "library_paths": [],
+  "system_libs": ["c++", "m"],
+  "frameworks": ["Accelerate", "Foundation", "Metal", "MetalKit"],
+  "link_flags": []
+}

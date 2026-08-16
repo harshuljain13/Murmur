@@ -1,0 +1,1875 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		4A8362793A9AE3EEE253DDC1 /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F0E7AC9033BE4360A950FD47 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				BC27A64B38AACEB0F2D1496B /* Generate CMakeFiles/ZERO_CHECK */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		E41DE8F728C210228B953F3B /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2F1F87B89E604A169DA2F5C4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				F753288A7B76907815C18FEA /* Generate CMakeFiles/ALL_BUILD */,
+			);
+			dependencies = (
+				CEEC32699B5E43A3B89ECE7E /* PBXTargetDependency */,
+				53A24C5E25AF48DDBFBDDFCA /* PBXTargetDependency */,
+				993550F81B1045F6ACDE2EBA /* PBXTargetDependency */,
+				92058FBE9805492783C6FF01 /* PBXTargetDependency */,
+				3F24A315C1BE4941A3BCEE55 /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+		F719DE38FF36B0616801E09A /* install */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 872CA24BD35241539DA2A7B6 /* Build configuration list for PBXAggregateTarget "install" */;
+			buildPhases = (
+				93426DA6A4AC2C2AC9CE883C /* CMake PostBuild Rules */,
+			);
+			dependencies = (
+				A6BDE28F5D0F495392D7C028 /* PBXTargetDependency */,
+			);
+			name = install;
+			productName = install;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		00E385D1F03F4381BF561587 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp */ = {isa = PBXBuildFile; fileRef = 1492241EB5E44D7786905489 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp */; };
+		02D2A0D1A30D465C82DC3D2D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.cpp */ = {isa = PBXBuildFile; fileRef = 1184B154828B4409B4310446 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.cpp */; };
+		038EB248620B4026A0F29DA9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-opt.cpp */ = {isa = PBXBuildFile; fileRef = F7BC36FA4A434C2BB0C3A922 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-opt.cpp */; };
+		088D1730981B4207A48A6919 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/gguf.h */ = {isa = PBXBuildFile; fileRef = 5FABA4113AE24880B2A70CEB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/gguf.h */; };
+		0DB07EBF211E4BF799754C29 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.cpp */ = {isa = PBXBuildFile; fileRef = A14060A4FAF24E89A9AF8D0C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.cpp */; };
+		10A32963ED22483CAB9028EB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.h */ = {isa = PBXBuildFile; fileRef = 79F91421CE3D4E009A5F4E8E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.h */; };
+		13FB18931CFF43779EBB4A2A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp */ = {isa = PBXBuildFile; fileRef = 1F2A51817C1042418ED90992 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp */; };
+		16680815BE5C4E878B28A4C5 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.h */ = {isa = PBXBuildFile; fileRef = ABF0E0F457BB48E597ADEBAF /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.h */; };
+		1A2C61A7EAB24E498419C26D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend.cpp */ = {isa = PBXBuildFile; fileRef = 117E8A2A657E4CAB9E38D1D7 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend.cpp */; };
+		22E40E8509D142F5A607CC26 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-meta.cpp */ = {isa = PBXBuildFile; fileRef = DDEF75138FD84FE78A8128D6 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-meta.cpp */; };
+		23C64F2C26F0430EA5A10694 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/CMakeFiles/ggml-metal.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = F700E3042BF24E89B0D62328 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/CMakeFiles/ggml-metal.dir/Info.plist */; };
+		2AE662FB72954AFAB6E21228 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.cpp */ = {isa = PBXBuildFile; fileRef = ED0E51A9C58B4DD096EF597A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.cpp */; };
+		2EF5860F16904B4FB0187AA1 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-base.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = 27FD3092BE6F4DBB918F80B3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-base.dir/Info.plist */; };
+		35E7F48BCC3C4D35B0A34EC9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.cpp */ = {isa = PBXBuildFile; fileRef = 61B9A4A080114DC2A2704895 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.cpp */; };
+		3A54D35D2F2F49FDA2A5B8D0 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.cpp */ = {isa = PBXBuildFile; fileRef = 175A304A714A421385C0FA3A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.cpp */; };
+		3A65BD55CA6B4C94B87AB0CF /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/gguf.cpp */ = {isa = PBXBuildFile; fileRef = F8F37BB425CB40BAACA6E133 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/gguf.cpp */; };
+		3AB9B2A0EF394BDB8BB66783 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.cpp */ = {isa = PBXBuildFile; fileRef = BC8D8D073868443EB1D94777 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.cpp */; };
+		4595A622AAAE47F98576AEBA /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-cpp.h */ = {isa = PBXBuildFile; fileRef = E2C92FF8D3174A54BE226BB8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-cpp.h */; };
+		49070BFD0FB04FADBE641BC6 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 0F2F605570994B6D854EE49A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/CMakeLists.txt */; };
+		4D65CE85ED6046D2BF498D6E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-alloc.h */ = {isa = PBXBuildFile; fileRef = FB438A59EABE4EF3B1866F56 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-alloc.h */; };
+		4D8517AA7FFD4E71ABBA499F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = A08EF662D9BA415A85480AA4 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */; };
+		50DDF5FC3C8D46EAB1636A91 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.h */ = {isa = PBXBuildFile; fileRef = 690361B35283453C8EDF2501 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.h */; };
+		5136E5CF12C7479EA997A491 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-context.m */ = {isa = PBXBuildFile; fileRef = 26D90CBD708946BB8C3BE2F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-context.m */; };
+		55E815577A1E4309BA13132A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-opt.h */ = {isa = PBXBuildFile; fileRef = 19D482EA09214C8B89A2497E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-opt.h */; };
+		623B04BB1EB34D818111806F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.cpp */ = {isa = PBXBuildFile; fileRef = 1966FAF2D64A4BEAB0CAD373 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.cpp */; };
+		63FF6D841E5049AE8E3442DC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s */ = {isa = PBXBuildFile; fileRef = 9319BA63B8184ED4BD298396 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s */; };
+		6667784F8A4F47BD85AEC419 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-backend.h */ = {isa = PBXBuildFile; fileRef = 2A443BEAD787438A86F6235A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-backend.h */; };
+		6885E72F5BB7425095E15F72 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 721FF812BBAF4C68BA339829 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */; };
+		69979F7A3B2E428DB8FA4DBB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-reg.cpp */ = {isa = PBXBuildFile; fileRef = D545FF10C9224F3696814B73 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-reg.cpp */; };
+		72C34D0B0F0A4D7080EE7DB4 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.h */ = {isa = PBXBuildFile; fileRef = 3FFEB297D6934C2CA827BA7B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.h */; };
+		77BE35ADE10D42819F6676D5 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.c */ = {isa = PBXBuildFile; fileRef = 9EE3D3E3257842539857CF7E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.c */; };
+		7AF411A07A2D4F3683D63F38 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.cpp */ = {isa = PBXBuildFile; fileRef = D6BA7D87021041658EFE1A70 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.cpp */; };
+		8778B5CB7FFB4814A37A2F32 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.h */ = {isa = PBXBuildFile; fileRef = 7CEA489553664FB3836393B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.h */; };
+		891E922768E2438583650832 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.h */ = {isa = PBXBuildFile; fileRef = F43E7E5C2F0444C5AAE2EAA9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.h */; };
+		892F81366F5749C4B375C046 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.c */ = {isa = PBXBuildFile; fileRef = 0EC3C94903EA420EA1B9F862 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.c */; };
+		8B9D0333743244C28E25D822 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.h */ = {isa = PBXBuildFile; fileRef = 573CFD35340F4F78A3DB6054 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.h */; };
+		917E48457311415E90B6E496 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = 8C933E01DB9C4DF48FF75C13 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml.dir/Info.plist */; };
+		9D9E92F7F81C4FA9B803E4E1 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/simd-mappings.h */ = {isa = PBXBuildFile; fileRef = A4DB31C2420449FDB9AB1696 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/simd-mappings.h */; };
+		A16A3504AA634798A937940B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu-impl.h */ = {isa = PBXBuildFile; fileRef = 470EC7257ADD41548D125315 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu-impl.h */; };
+		A2496C35C2C44DF19DDFF639 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.cpp */ = {isa = PBXBuildFile; fileRef = 27223FFB7C8E411AB8A1D296 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.cpp */; };
+		A4900043FBF64D9DBE098905 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.cpp */ = {isa = PBXBuildFile; fileRef = 0EDA2559A1F34D09B2D6C13E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.cpp */; };
+		AB36CE1502124F25A86515CC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.h */ = {isa = PBXBuildFile; fileRef = 5BC2219665D144E39E600127 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.h */; };
+		AD0B18C1ABA042298CA0626F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.m */ = {isa = PBXBuildFile; fileRef = AFDE5DDD3B4147B5A7923D80 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.m */; };
+		B37CD3A4B89144BDB39E9840 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.h */ = {isa = PBXBuildFile; fileRef = 5381CA3F699E4DE9A31B58BD /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.h */; };
+		B4F10BAB311F4BCD8E49EA62 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/common.h */ = {isa = PBXBuildFile; fileRef = 13BB6FDA56E7445BB55234F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/common.h */; };
+		BB64467309A6404381839823 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.cpp */ = {isa = PBXBuildFile; fileRef = 64918D8C125A4152A5C3CF4E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.cpp */; };
+		C434507CAF65414D9CCBB224 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/quants.c */ = {isa = PBXBuildFile; fileRef = 67A50EF0E9934FC196CB1F8F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/quants.c */; };
+		D3D2884F33EB41F2A7210AD6 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.h */ = {isa = PBXBuildFile; fileRef = 74557F1FFC4141308C542294 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.h */; };
+		D517299BA7994A3887F71885 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp */ = {isa = PBXBuildFile; fileRef = AFBAAC30B04C429FB00A8F1A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp */; };
+		D7645E4069584BAF81D2A067 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-cpu.dir/Info.plist */ = {isa = PBXBuildFile; fileRef = 97565378077B4A56A19A930C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-cpu.dir/Info.plist */; };
+		DAB0D6D1C25C41DD98ED616D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.cpp */ = {isa = PBXBuildFile; fileRef = 7032416C66204DE1834E9DDA /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.cpp */; };
+		DB2FDAB2EB464188AB3C3877 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-dl.cpp */ = {isa = PBXBuildFile; fileRef = 45C5B8B808694F4BADCFA30C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-dl.cpp */; };
+		DB769030D3174CD99BF4F352 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s.rule */ = {isa = PBXBuildFile; fileRef = E2E1CFE326694535B4809675 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s.rule */; };
+		DC0D91E8EDB54D9B99EF6F9B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml.h */ = {isa = PBXBuildFile; fileRef = F2F15C12DA454E29B26A00AC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml.h */; };
+		DD6D63F4F5B547BCBEDCAA2D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.c */ = {isa = PBXBuildFile; fileRef = 84933E7A5C18407BA425DA72 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.c */; };
+		E57162C661A64E5F9A3D08D5 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp */ = {isa = PBXBuildFile; fileRef = 582D08D30F134850A4C72B1D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp */; };
+		E738A2D9A4894361B7DA4799 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp */ = {isa = PBXBuildFile; fileRef = 3193D98674DE4D6CAE570281 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp */; };
+		E76015BF7A704C8999CD071F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.h */ = {isa = PBXBuildFile; fileRef = CFCDF52BA40946D28A460006 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.h */; };
+		F39D484ACFE449EB8B4B689E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp */ = {isa = PBXBuildFile; fileRef = 4AE40D28579C4F8E8F5A4093 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp */; };
+		F779C4F2F70249DAAB6FB116 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.c */ = {isa = PBXBuildFile; fileRef = B5B32E2F693F4A75ADB2482F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.c */; };
+		F8B1978FC67541C5B6F01FFB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.h */ = {isa = PBXBuildFile; fileRef = 4181E191E27244CE939AC7C3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.h */; };
+		F8D3BE65A55143ACB4C69D37 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 75B7BB72DDE445E9AAA180B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */; };
+		FBE1F0753DB74E39A3541530 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-alloc.c */ = {isa = PBXBuildFile; fileRef = D508984E20204FC19835F35A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-alloc.c */; };
+		FD26E5A12DCE4D34B1319C98 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.h */ = {isa = PBXBuildFile; fileRef = 8A3D494C1C344E9D9C7E637B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		05EC610B881D47DEB6DC0C32 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		20B1F26EC12F468886FA5FA0 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		3CBF68BCC701458BA657B8D4 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		89C5E12401054C4AB7860E59 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		2118FF50506B4AF1A226F446 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9088BB9B340EB70DF2A8EEA7;
+			remoteInfo = "ggml-metal";
+		};
+		22835EB192CD49BEB4DE3935 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8C732A3620C5F61D1E8D3C9;
+			remoteInfo = "ggml-cpu";
+		};
+		27EB10383D474F35894A19A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A8362793A9AE3EEE253DDC1;
+			remoteInfo = ZERO_CHECK;
+		};
+		2BBE6B576E6F4B0EB335F520 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883D9D3A9924841C37B58CB5;
+			remoteInfo = "ggml-base";
+		};
+		371E7680E0F645F7AA907CEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E41DE8F728C210228B953F3B;
+			remoteInfo = ALL_BUILD;
+		};
+		5C42A81EF1C74773B10E1C87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883D9D3A9924841C37B58CB5;
+			remoteInfo = "ggml-base";
+		};
+		62DD06E38CF342EEA87F92DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F34D3FA6834F5569E2802CA4;
+			remoteInfo = ggml;
+		};
+		880FE94CC1734B47B3175115 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883D9D3A9924841C37B58CB5;
+			remoteInfo = "ggml-base";
+		};
+		C4DF80F755BD4E9991C984BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A8C732A3620C5F61D1E8D3C9;
+			remoteInfo = "ggml-cpu";
+		};
+		CDC82C7FE2A44AA0B8781CAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9088BB9B340EB70DF2A8EEA7;
+			remoteInfo = "ggml-metal";
+		};
+		EB2C2A6E68354E2BBC518CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4662CA97AB5D459DB00077AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883D9D3A9924841C37B58CB5;
+			remoteInfo = "ggml-base";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0EC3C94903EA420EA1B9F862 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "ggml-quants.c"; path = "src/ggml-quants.c"; sourceTree = SOURCE_ROOT; };
+		0EDA2559A1F34D09B2D6C13E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = traits.cpp; path = "src/ggml-cpu/traits.cpp"; sourceTree = SOURCE_ROOT; };
+		0F2F605570994B6D854EE49A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = "src/ggml-metal/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+		117E8A2A657E4CAB9E38D1D7 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-backend.cpp"; path = "src/ggml-backend.cpp"; sourceTree = SOURCE_ROOT; };
+		1184B154828B4409B4310446 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ops.cpp; path = "src/ggml-cpu/ops.cpp"; sourceTree = SOURCE_ROOT; };
+		13BB6FDA56E7445BB55234F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/common.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = common.h; path = "src/ggml-cpu/common.h"; sourceTree = SOURCE_ROOT; };
+		1492241EB5E44D7786905489 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-metal-common.cpp"; path = "src/ggml-metal/ggml-metal-common.cpp"; sourceTree = SOURCE_ROOT; };
+		175A304A714A421385C0FA3A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-threading.cpp"; path = "src/ggml-threading.cpp"; sourceTree = SOURCE_ROOT; };
+		1966FAF2D64A4BEAB0CAD373 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = vec.cpp; path = "src/ggml-cpu/vec.cpp"; sourceTree = SOURCE_ROOT; };
+		19D482EA09214C8B89A2497E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-opt.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-opt.h"; path = "include/ggml-opt.h"; sourceTree = SOURCE_ROOT; };
+		1F2A51817C1042418ED90992 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-metal-device.cpp"; path = "src/ggml-metal/ggml-metal-device.cpp"; sourceTree = SOURCE_ROOT; };
+		26D90CBD708946BB8C3BE2F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-context.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = "ggml-metal-context.m"; path = "src/ggml-metal/ggml-metal-context.m"; sourceTree = SOURCE_ROOT; };
+		27223FFB7C8E411AB8A1D296 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = mmq.cpp; path = "src/ggml-cpu/amx/mmq.cpp"; sourceTree = SOURCE_ROOT; };
+		27FD3092BE6F4DBB918F80B3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-base.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-base.dir/Info.plist"; sourceTree = "<absolute>"; };
+		2A443BEAD787438A86F6235A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-backend.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-backend.h"; path = "include/ggml-backend.h"; sourceTree = SOURCE_ROOT; };
+		3193D98674DE4D6CAE570281 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-cpu.cpp"; path = "src/ggml-cpu/ggml-cpu.cpp"; sourceTree = SOURCE_ROOT; };
+		3FFEB297D6934C2CA827BA7B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = mmq.h; path = "src/ggml-cpu/amx/mmq.h"; sourceTree = SOURCE_ROOT; };
+		4181E191E27244CE939AC7C3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = sgemm.h; path = "src/ggml-cpu/llamafile/sgemm.h"; sourceTree = SOURCE_ROOT; };
+		45C5B8B808694F4BADCFA30C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-dl.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-backend-dl.cpp"; path = "src/ggml-backend-dl.cpp"; sourceTree = SOURCE_ROOT; };
+		470EC7257ADD41548D125315 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu-impl.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-cpu-impl.h"; path = "src/ggml-cpu/ggml-cpu-impl.h"; sourceTree = SOURCE_ROOT; };
+		4AE40D28579C4F8E8F5A4093 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = repack.cpp; path = "src/ggml-cpu/arch/arm/repack.cpp"; sourceTree = SOURCE_ROOT; };
+		4CCAF6147D4D4A9B8E25895E /* ggml-cpu */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libggml-cpu.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5381CA3F699E4DE9A31B58BD /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ops.h; path = "src/ggml-cpu/ops.h"; sourceTree = SOURCE_ROOT; };
+		573CFD35340F4F78A3DB6054 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = traits.h; path = "src/ggml-cpu/traits.h"; sourceTree = SOURCE_ROOT; };
+		582D08D30F134850A4C72B1D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = sgemm.cpp; path = "src/ggml-cpu/llamafile/sgemm.cpp"; sourceTree = SOURCE_ROOT; };
+		5BC2219665D144E39E600127 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-quants.h"; path = "src/ggml-quants.h"; sourceTree = SOURCE_ROOT; };
+		5FABA4113AE24880B2A70CEB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/gguf.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = gguf.h; path = include/gguf.h; sourceTree = SOURCE_ROOT; };
+		61B9A4A080114DC2A2704895 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-metal.cpp"; path = "src/ggml-metal/ggml-metal.cpp"; sourceTree = SOURCE_ROOT; };
+		64918D8C125A4152A5C3CF4E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "binary-ops.cpp"; path = "src/ggml-cpu/binary-ops.cpp"; sourceTree = SOURCE_ROOT; };
+		67A50EF0E9934FC196CB1F8F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/quants.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = quants.c; path = "src/ggml-cpu/arch/arm/quants.c"; sourceTree = SOURCE_ROOT; };
+		690361B35283453C8EDF2501 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "unary-ops.h"; path = "src/ggml-cpu/unary-ops.h"; sourceTree = SOURCE_ROOT; };
+		7032416C66204DE1834E9DDA /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = repack.cpp; path = "src/ggml-cpu/repack.cpp"; sourceTree = SOURCE_ROOT; };
+		721FF812BBAF4C68BA339829 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		74557F1FFC4141308C542294 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = amx.h; path = "src/ggml-cpu/amx/amx.h"; sourceTree = SOURCE_ROOT; };
+		75B7BB72DDE445E9AAA180B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		79F91421CE3D4E009A5F4E8E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "binary-ops.h"; path = "src/ggml-cpu/binary-ops.h"; sourceTree = SOURCE_ROOT; };
+		7CEA489553664FB3836393B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-threading.h"; path = "src/ggml-threading.h"; sourceTree = SOURCE_ROOT; };
+		84933E7A5C18407BA425DA72 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = quants.c; path = "src/ggml-cpu/quants.c"; sourceTree = SOURCE_ROOT; };
+		8A3D494C1C344E9D9C7E637B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = vec.h; path = "src/ggml-cpu/vec.h"; sourceTree = SOURCE_ROOT; };
+		8C933E01DB9C4DF48FF75C13 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml.dir/Info.plist"; sourceTree = "<absolute>"; };
+		9319BA63B8184ED4BD298396 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s */ = {isa = PBXFileReference; explicitFileType = sourcecode.asm; fileEncoding = 4; name = "ggml-metal-embed.s"; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s"; sourceTree = "<absolute>"; };
+		960DEAADF9A94F4B9A7E2A35 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		97565378077B4A56A19A930C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-cpu.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-cpu.dir/Info.plist"; sourceTree = "<absolute>"; };
+		9912ACB50A0443CEB9962436 /* ggml-metal */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libggml-metal.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE3D3E3257842539857CF7E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "ggml-cpu.c"; path = "src/ggml-cpu/ggml-cpu.c"; sourceTree = SOURCE_ROOT; };
+		A08EF662D9BA415A85480AA4 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = src/CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		A14060A4FAF24E89A9AF8D0C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = hbm.cpp; path = "src/ggml-cpu/hbm.cpp"; sourceTree = SOURCE_ROOT; };
+		A4DB31C2420449FDB9AB1696 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/simd-mappings.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "simd-mappings.h"; path = "src/ggml-cpu/simd-mappings.h"; sourceTree = SOURCE_ROOT; };
+		ABF0E0F457BB48E597ADEBAF /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = hbm.h; path = "src/ggml-cpu/hbm.h"; sourceTree = SOURCE_ROOT; };
+		AFBAAC30B04C429FB00A8F1A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-metal-ops.cpp"; path = "src/ggml-metal/ggml-metal-ops.cpp"; sourceTree = SOURCE_ROOT; };
+		AFDE5DDD3B4147B5A7923D80 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; name = "ggml-metal-device.m"; path = "src/ggml-metal/ggml-metal-device.m"; sourceTree = SOURCE_ROOT; };
+		B5B32E2F693F4A75ADB2482F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = ggml.c; path = src/ggml.c; sourceTree = SOURCE_ROOT; };
+		BC8D8D073868443EB1D94777 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = amx.cpp; path = "src/ggml-cpu/amx/amx.cpp"; sourceTree = SOURCE_ROOT; };
+		CFCDF52BA40946D28A460006 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = repack.h; path = "src/ggml-cpu/repack.h"; sourceTree = SOURCE_ROOT; };
+		D508984E20204FC19835F35A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-alloc.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.c; fileEncoding = 4; name = "ggml-alloc.c"; path = "src/ggml-alloc.c"; sourceTree = SOURCE_ROOT; };
+		D545FF10C9224F3696814B73 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-reg.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-backend-reg.cpp"; path = "src/ggml-backend-reg.cpp"; sourceTree = SOURCE_ROOT; };
+		D6BA7D87021041658EFE1A70 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = ggml.cpp; path = src/ggml.cpp; sourceTree = SOURCE_ROOT; };
+		DDE71F8A49E347349945E3B5 /* ggml */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libggml.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDEF75138FD84FE78A8128D6 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-meta.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-backend-meta.cpp"; path = "src/ggml-backend-meta.cpp"; sourceTree = SOURCE_ROOT; };
+		E2C92FF8D3174A54BE226BB8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-cpp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-cpp.h"; path = "include/ggml-cpp.h"; sourceTree = SOURCE_ROOT; };
+		E2E1CFE326694535B4809675 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s.rule */ = {isa = PBXFileReference; explicitFileType = default; fileEncoding = 4; name = "ggml-metal-embed.s.rule"; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s.rule"; sourceTree = "<absolute>"; };
+		E896165A9722458C95110893 /* ggml-base */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libggml-base.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED0E51A9C58B4DD096EF597A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "unary-ops.cpp"; path = "src/ggml-cpu/unary-ops.cpp"; sourceTree = SOURCE_ROOT; };
+		F2F15C12DA454E29B26A00AC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = ggml.h; path = include/ggml.h; sourceTree = SOURCE_ROOT; };
+		F43E7E5C2F0444C5AAE2EAA9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = quants.h; path = "src/ggml-cpu/quants.h"; sourceTree = SOURCE_ROOT; };
+		F700E3042BF24E89B0D62328 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/CMakeFiles/ggml-metal.dir/Info.plist */ = {isa = PBXFileReference; explicitFileType = sourcecode.text.plist; fileEncoding = 4; name = Info.plist; path = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/CMakeFiles/ggml-metal.dir/Info.plist"; sourceTree = "<absolute>"; };
+		F7BC36FA4A434C2BB0C3A922 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-opt.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = "ggml-opt.cpp"; path = "src/ggml-opt.cpp"; sourceTree = SOURCE_ROOT; };
+		F8F37BB425CB40BAACA6E133 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/gguf.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = gguf.cpp; path = src/gguf.cpp; sourceTree = SOURCE_ROOT; };
+		FB438A59EABE4EF3B1866F56 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-alloc.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = "ggml-alloc.h"; path = "include/ggml-alloc.h"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3495049DCC3840AE831DCD6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CDBD8B10F1542AF8762CFE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B020F6F2B8054B05AB7D2D58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D353ADD60C904B58BCA741EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02E87B4D416A4C6FB4DE5DBC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		19F03870B0BC437C999AA3BD /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				DD9F8A8A5D6C498281E35789 /* CMake Rules */,
+				960DEAADF9A94F4B9A7E2A35 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		333BE684A333490699B80C57 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				97565378077B4A56A19A930C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-cpu.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		38AC2792F90A4EA3A6624B83 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				1492241EB5E44D7786905489 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp */,
+				26D90CBD708946BB8C3BE2F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-context.m */,
+				1F2A51817C1042418ED90992 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp */,
+				AFDE5DDD3B4147B5A7923D80 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.m */,
+				AFBAAC30B04C429FB00A8F1A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp */,
+				61B9A4A080114DC2A2704895 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		391E6CC6C95A4C6BBB24E7FD /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				D508984E20204FC19835F35A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-alloc.c */,
+				DDEF75138FD84FE78A8128D6 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-meta.cpp */,
+				117E8A2A657E4CAB9E38D1D7 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend.cpp */,
+				F7BC36FA4A434C2BB0C3A922 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-opt.cpp */,
+				0EC3C94903EA420EA1B9F862 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.c */,
+				175A304A714A421385C0FA3A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.cpp */,
+				B5B32E2F693F4A75ADB2482F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.c */,
+				D6BA7D87021041658EFE1A70 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.cpp */,
+				F8F37BB425CB40BAACA6E133 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/gguf.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		4A7B6F9AB4CB46278E1E22B3 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC8D8D073868443EB1D94777 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.cpp */,
+				27223FFB7C8E411AB8A1D296 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.cpp */,
+				67A50EF0E9934FC196CB1F8F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/quants.c */,
+				4AE40D28579C4F8E8F5A4093 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp */,
+				64918D8C125A4152A5C3CF4E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.cpp */,
+				9EE3D3E3257842539857CF7E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.c */,
+				3193D98674DE4D6CAE570281 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp */,
+				A14060A4FAF24E89A9AF8D0C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.cpp */,
+				582D08D30F134850A4C72B1D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp */,
+				1184B154828B4409B4310446 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.cpp */,
+				84933E7A5C18407BA425DA72 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.c */,
+				7032416C66204DE1834E9DDA /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.cpp */,
+				0EDA2559A1F34D09B2D6C13E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.cpp */,
+				ED0E51A9C58B4DD096EF597A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.cpp */,
+				1966FAF2D64A4BEAB0CAD373 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		4D577FA408114FD4A925EDDD = {
+			isa = PBXGroup;
+			children = (
+				19F03870B0BC437C999AA3BD /* ALL_BUILD */,
+				CEE60837E8444E64B278E43C /* ggml */,
+				D7124DFE9B3E4FF1B9B9A8DA /* ggml-base */,
+				F6A5CE85BC6D4B99A27CEB24 /* ggml-cpu */,
+				7153F62D1CE342AE8592FDDC /* ggml-metal */,
+				D1B78226D4D74B458AF51145 /* Products */,
+				C06F39278E7E4DE7BE1C5AA5 /* Frameworks */,
+				02E87B4D416A4C6FB4DE5DBC /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		4FCFDBC84F804D7DB583398B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F700E3042BF24E89B0D62328 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/CMakeFiles/ggml-metal.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5D7C2BCD4C934A89AF8ED88F /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				45C5B8B808694F4BADCFA30C /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-dl.cpp */,
+				D545FF10C9224F3696814B73 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-reg.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		7153F62D1CE342AE8592FDDC /* ggml-metal */ = {
+			isa = PBXGroup;
+			children = (
+				DCC9C950BED7423AA482F52C /* CMake Rules */,
+				4FCFDBC84F804D7DB583398B /* Resources */,
+				38AC2792F90A4EA3A6624B83 /* Source Files */,
+				9319BA63B8184ED4BD298396 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s */,
+				0F2F605570994B6D854EE49A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/CMakeLists.txt */,
+			);
+			name = "ggml-metal";
+			sourceTree = "<group>";
+		};
+		9D88A5F61DA64958AC8796FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				27FD3092BE6F4DBB918F80B3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml-base.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B183A51A375841DA858F1402 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				FB438A59EABE4EF3B1866F56 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-alloc.h */,
+				2A443BEAD787438A86F6235A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-backend.h */,
+				E2C92FF8D3174A54BE226BB8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-cpp.h */,
+				19D482EA09214C8B89A2497E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml-opt.h */,
+				F2F15C12DA454E29B26A00AC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/ggml.h */,
+				5FABA4113AE24880B2A70CEB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/include/gguf.h */,
+				5BC2219665D144E39E600127 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.h */,
+				7CEA489553664FB3836393B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		C06F39278E7E4DE7BE1C5AA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBD164D2820845B6BF41B5A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8C933E01DB9C4DF48FF75C13 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/CMakeFiles/ggml.dir/Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CEE60837E8444E64B278E43C /* ggml */ = {
+			isa = PBXGroup;
+			children = (
+				CBD164D2820845B6BF41B5A6 /* Resources */,
+				5D7C2BCD4C934A89AF8ED88F /* Source Files */,
+				A08EF662D9BA415A85480AA4 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */,
+			);
+			name = ggml;
+			sourceTree = "<group>";
+		};
+		D1B78226D4D74B458AF51145 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDE71F8A49E347349945E3B5 /* ggml */,
+				E896165A9722458C95110893 /* ggml-base */,
+				4CCAF6147D4D4A9B8E25895E /* ggml-cpu */,
+				9912ACB50A0443CEB9962436 /* ggml-metal */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D7124DFE9B3E4FF1B9B9A8DA /* ggml-base */ = {
+			isa = PBXGroup;
+			children = (
+				B183A51A375841DA858F1402 /* Header Files */,
+				9D88A5F61DA64958AC8796FF /* Resources */,
+				391E6CC6C95A4C6BBB24E7FD /* Source Files */,
+				721FF812BBAF4C68BA339829 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */,
+			);
+			name = "ggml-base";
+			sourceTree = "<group>";
+		};
+		DCC9C950BED7423AA482F52C /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+				E2E1CFE326694535B4809675 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s.rule */,
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		DD9F8A8A5D6C498281E35789 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		F4EDEA3A90864A03AE8410B7 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				74557F1FFC4141308C542294 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.h */,
+				3FFEB297D6934C2CA827BA7B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.h */,
+				79F91421CE3D4E009A5F4E8E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.h */,
+				13BB6FDA56E7445BB55234F8 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/common.h */,
+				470EC7257ADD41548D125315 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu-impl.h */,
+				ABF0E0F457BB48E597ADEBAF /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.h */,
+				4181E191E27244CE939AC7C3 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.h */,
+				5381CA3F699E4DE9A31B58BD /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.h */,
+				F43E7E5C2F0444C5AAE2EAA9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.h */,
+				CFCDF52BA40946D28A460006 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.h */,
+				A4DB31C2420449FDB9AB1696 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/simd-mappings.h */,
+				573CFD35340F4F78A3DB6054 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.h */,
+				690361B35283453C8EDF2501 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.h */,
+				8A3D494C1C344E9D9C7E637B /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		F6A5CE85BC6D4B99A27CEB24 /* ggml-cpu */ = {
+			isa = PBXGroup;
+			children = (
+				F4EDEA3A90864A03AE8410B7 /* Header Files */,
+				333BE684A333490699B80C57 /* Resources */,
+				4A7B6F9AB4CB46278E1E22B3 /* Source Files */,
+				75B7BB72DDE445E9AAA180B9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/CMakeLists.txt */,
+			);
+			name = "ggml-cpu";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		883D9D3A9924841C37B58CB5 /* ggml-base */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB8F5B24243E42C2B304C086 /* Build configuration list for PBXNativeTarget "ggml-base" */;
+			buildPhases = (
+				28774E90662240A4A4DA0BB7 /* Sources */,
+				D353ADD60C904B58BCA741EF /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ggml-base";
+			productName = "ggml-base";
+			productReference = E896165A9722458C95110893 /* ggml-base */;
+			productType = "com.apple.product-type.library.static";
+		};
+		9088BB9B340EB70DF2A8EEA7 /* ggml-metal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8A0C4940E524ED89F645028 /* Build configuration list for PBXNativeTarget "ggml-metal" */;
+			buildPhases = (
+				760B0D7CCB0210EA1E47A887 /* Generate src/ggml-metal/autogenerated/ggml-metal-embed.s */,
+				DA46075CEEA64D8CAA3C6AD1 /* Sources */,
+				3495049DCC3840AE831DCD6B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B7AA791558A4CE5AE613452 /* PBXTargetDependency */,
+			);
+			name = "ggml-metal";
+			productName = "ggml-metal";
+			productReference = 9912ACB50A0443CEB9962436 /* ggml-metal */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A8C732A3620C5F61D1E8D3C9 /* ggml-cpu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1674ED1510454D1FB9811914 /* Build configuration list for PBXNativeTarget "ggml-cpu" */;
+			buildPhases = (
+				FE55F5C6DF9746F29C8FDB07 /* Sources */,
+				3CDBD8B10F1542AF8762CFE6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1F4356C5552A440B9B8F146A /* PBXTargetDependency */,
+			);
+			name = "ggml-cpu";
+			productName = "ggml-cpu";
+			productReference = 4CCAF6147D4D4A9B8E25895E /* ggml-cpu */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F34D3FA6834F5569E2802CA4 /* ggml */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA5E811CAD1C4F658C7C4A65 /* Build configuration list for PBXNativeTarget "ggml" */;
+			buildPhases = (
+				2A50274AE08F46138B22138B /* Sources */,
+				B020F6F2B8054B05AB7D2D58 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4C2BDE79449430EAFAE0B91 /* PBXTargetDependency */,
+				EEC5ECD5AD064A98902D8900 /* PBXTargetDependency */,
+				419FFF4020C54C19B4899B1A /* PBXTargetDependency */,
+			);
+			name = ggml;
+			productName = ggml;
+			productReference = DDE71F8A49E347349945E3B5 /* ggml */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4662CA97AB5D459DB00077AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2620;
+			};
+			buildConfigurationList = A06231074AA64E579F4E1D9A /* Build configuration list for PBXProject "ggml" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				3CBF68BCC701458BA657B8D4 /* Debug */,
+				89C5E12401054C4AB7860E59 /* Release */,
+				20B1F26EC12F468886FA5FA0 /* MinSizeRel */,
+				05EC610B881D47DEB6DC0C32 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = 4D577FA408114FD4A925EDDD;
+			projectDirPath = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml";
+			projectRoot = "";
+			targets = (
+				E41DE8F728C210228B953F3B /* ALL_BUILD */,
+				F34D3FA6834F5569E2802CA4 /* ggml */,
+				883D9D3A9924841C37B58CB5 /* ggml-base */,
+				A8C732A3620C5F61D1E8D3C9 /* ggml-cpu */,
+				9088BB9B340EB70DF2A8EEA7 /* ggml-metal */,
+				F719DE38FF36B0616801E09A /* install */,
+				4A8362793A9AE3EEE253DDC1 /* ZERO_CHECK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3C0110FC8322DE7E50886E21 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		760B0D7CCB0210EA1E47A887 /* Generate src/ggml-metal/autogenerated/ggml-metal-embed.s */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-common.h","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-impl.h","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.metal"			);
+			name = "Generate src/ggml-metal/autogenerated/ggml-metal-embed.s";
+			outputPaths = (
+"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal
+  echo \"Embedding Metal library\"
+  sed -e \"/__embed_ggml-common.h__/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/../ggml-common.h\" -e /__embed_ggml-common.h__/d < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.metal > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp
+  sed -e \"/#include \\\"ggml-metal-impl.h\\\"/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-impl.h\" -e \"/#include \\\"ggml-metal-impl.h\\\"/d\" < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal
+  echo \".section __DATA,__ggml_metallib\" > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_start\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_start: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo .incbin \\\"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal\\\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_end\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_end: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal
+  echo \"Embedding Metal library\"
+  sed -e \"/__embed_ggml-common.h__/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/../ggml-common.h\" -e /__embed_ggml-common.h__/d < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.metal > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp
+  sed -e \"/#include \\\"ggml-metal-impl.h\\\"/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-impl.h\" -e \"/#include \\\"ggml-metal-impl.h\\\"/d\" < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal
+  echo \".section __DATA,__ggml_metallib\" > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_start\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_start: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo .incbin \\\"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal\\\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_end\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_end: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal
+  echo \"Embedding Metal library\"
+  sed -e \"/__embed_ggml-common.h__/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/../ggml-common.h\" -e /__embed_ggml-common.h__/d < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.metal > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp
+  sed -e \"/#include \\\"ggml-metal-impl.h\\\"/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-impl.h\" -e \"/#include \\\"ggml-metal-impl.h\\\"/d\" < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal
+  echo \".section __DATA,__ggml_metallib\" > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_start\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_start: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo .incbin \\\"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal\\\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_end\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_end: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal
+  echo \"Embedding Metal library\"
+  sed -e \"/__embed_ggml-common.h__/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/../ggml-common.h\" -e /__embed_ggml-common.h__/d < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.metal > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp
+  sed -e \"/#include \\\"ggml-metal-impl.h\\\"/r /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-impl.h\" -e \"/#include \\\"ggml-metal-impl.h\\\"/d\" < /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal.tmp > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal
+  echo \".section __DATA,__ggml_metallib\" > /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_start\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_start: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo .incbin \\\"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.metal\\\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo \".globl _ggml_metallib_end\" >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+  echo _ggml_metallib_end: >> /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		87AF4882E018677E2624B544 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		93426DA6A4AC2C2AC9CE883C /* CMake PostBuild Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "CMake PostBuild Rules";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  /opt/homebrew/bin/cmake -DBUILD_TYPE=$CONFIGURATION -DEFFECTIVE_PLATFORM_NAME=$EFFECTIVE_PLATFORM_NAME -P cmake_install.cmake
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  /opt/homebrew/bin/cmake -DBUILD_TYPE=$CONFIGURATION -DEFFECTIVE_PLATFORM_NAME=$EFFECTIVE_PLATFORM_NAME -P cmake_install.cmake
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  /opt/homebrew/bin/cmake -DBUILD_TYPE=$CONFIGURATION -DEFFECTIVE_PLATFORM_NAME=$EFFECTIVE_PLATFORM_NAME -P cmake_install.cmake
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  /opt/homebrew/bin/cmake -DBUILD_TYPE=$CONFIGURATION -DEFFECTIVE_PLATFORM_NAME=$EFFECTIVE_PLATFORM_NAME -P cmake_install.cmake
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		9B50530E35CC49C82C2FACCF = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		BC27A64B38AACEB0F2D1496B /* Generate CMakeFiles/ZERO_CHECK */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ZERO_CHECK";
+			outputPaths = (
+"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeFiles/ZERO_CHECK"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  make -f /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  make -f /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  make -f /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeScripts/ReRunCMake.make
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  make -f /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeScripts/ReRunCMake.make
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+		F753288A7B76907815C18FEA /* Generate CMakeFiles/ALL_BUILD */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Generate CMakeFiles/ALL_BUILD";
+			outputPaths = (
+"/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/CMakeFiles/ALL_BUILD"			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e
+if test \"$CONFIGURATION\" = \"Debug\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"Release\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"MinSizeRel\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  echo Build\\ all\\ projects
+fi
+if test \"$CONFIGURATION\" = \"RelWithDebInfo\"; then :
+  cd /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml
+  echo Build\\ all\\ projects
+fi
+";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28774E90662240A4A4DA0BB7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FBE1F0753DB74E39A3541530 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-alloc.c */,
+				22E40E8509D142F5A607CC26 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-meta.cpp */,
+				1A2C61A7EAB24E498419C26D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend.cpp */,
+				038EB248620B4026A0F29DA9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-opt.cpp */,
+				892F81366F5749C4B375C046 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-quants.c */,
+				3A54D35D2F2F49FDA2A5B8D0 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-threading.cpp */,
+				F779C4F2F70249DAAB6FB116 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.c */,
+				7AF411A07A2D4F3683D63F38 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml.cpp */,
+				3A65BD55CA6B4C94B87AB0CF /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/gguf.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A50274AE08F46138B22138B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB2FDAB2EB464188AB3C3877 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-dl.cpp */,
+				69979F7A3B2E428DB8FA4DBB /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-backend-reg.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA46075CEEA64D8CAA3C6AD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				63FF6D841E5049AE8E3442DC /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/autogenerated/ggml-metal-embed.s */,
+				00E385D1F03F4381BF561587 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-common.cpp */,
+				5136E5CF12C7479EA997A491 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-context.m */,
+				13FB18931CFF43779EBB4A2A /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.cpp */,
+				AD0B18C1ABA042298CA0626F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-device.m */,
+				D517299BA7994A3887F71885 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal-ops.cpp */,
+				35E7F48BCC3C4D35B0A34EC9 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/ggml-metal.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE55F5C6DF9746F29C8FDB07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AB9B2A0EF394BDB8BB66783 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/amx.cpp */,
+				A2496C35C2C44DF19DDFF639 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/amx/mmq.cpp */,
+				C434507CAF65414D9CCBB224 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/quants.c */,
+				F39D484ACFE449EB8B4B689E /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/arch/arm/repack.cpp */,
+				BB64467309A6404381839823 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/binary-ops.cpp */,
+				77BE35ADE10D42819F6676D5 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.c */,
+				E738A2D9A4894361B7DA4799 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ggml-cpu.cpp */,
+				0DB07EBF211E4BF799754C29 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/hbm.cpp */,
+				E57162C661A64E5F9A3D08D5 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/llamafile/sgemm.cpp */,
+				02D2A0D1A30D465C82DC3D2D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/ops.cpp */,
+				DD6D63F4F5B547BCBEDCAA2D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/quants.c */,
+				DAB0D6D1C25C41DD98ED616D /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/repack.cpp */,
+				A4900043FBF64D9DBE098905 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/traits.cpp */,
+				2AE662FB72954AFAB6E21228 /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/unary-ops.cpp */,
+				623B04BB1EB34D818111806F /* /Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu/vec.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1F4356C5552A440B9B8F146A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883D9D3A9924841C37B58CB5 /* ggml-base */;
+			targetProxy = 2BBE6B576E6F4B0EB335F520 /* PBXContainerItemProxy */;
+		};
+		3F24A315C1BE4941A3BCEE55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A8362793A9AE3EEE253DDC1 /* ZERO_CHECK */;
+			targetProxy = 27EB10383D474F35894A19A7 /* PBXContainerItemProxy */;
+		};
+		419FFF4020C54C19B4899B1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883D9D3A9924841C37B58CB5 /* ggml-base */;
+			targetProxy = EB2C2A6E68354E2BBC518CD4 /* PBXContainerItemProxy */;
+		};
+		53A24C5E25AF48DDBFBDDFCA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F34D3FA6834F5569E2802CA4 /* ggml */;
+			targetProxy = 62DD06E38CF342EEA87F92DC /* PBXContainerItemProxy */;
+		};
+		7B7AA791558A4CE5AE613452 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883D9D3A9924841C37B58CB5 /* ggml-base */;
+			targetProxy = 880FE94CC1734B47B3175115 /* PBXContainerItemProxy */;
+		};
+		92058FBE9805492783C6FF01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883D9D3A9924841C37B58CB5 /* ggml-base */;
+			targetProxy = 5C42A81EF1C74773B10E1C87 /* PBXContainerItemProxy */;
+		};
+		993550F81B1045F6ACDE2EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8C732A3620C5F61D1E8D3C9 /* ggml-cpu */;
+			targetProxy = 22835EB192CD49BEB4DE3935 /* PBXContainerItemProxy */;
+		};
+		A6BDE28F5D0F495392D7C028 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E41DE8F728C210228B953F3B /* ALL_BUILD */;
+			targetProxy = 371E7680E0F645F7AA907CEC /* PBXContainerItemProxy */;
+		};
+		B4C2BDE79449430EAFAE0B91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9088BB9B340EB70DF2A8EEA7 /* ggml-metal */;
+			targetProxy = 2118FF50506B4AF1A226F446 /* PBXContainerItemProxy */;
+		};
+		CEEC32699B5E43A3B89ECE7E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9088BB9B340EB70DF2A8EEA7 /* ggml-metal */;
+			targetProxy = CDC82C7FE2A44AA0B8781CAA /* PBXContainerItemProxy */;
+		};
+		EEC5ECD5AD064A98902D8900 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A8C732A3620C5F61D1E8D3C9 /* ggml-cpu */;
+			targetProxy = C4DF80F755BD4E9991C984BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		019F4435217F459FBBAD3337 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/RelWithDebInfo${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_ACCELERATE,ACCELERATE_NEW_LAPACK,ACCELERATE_LAPACK_ILP64,GGML_USE_LLAMAFILE,GGML_USE_CPU_REPACK,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("       -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-cpu";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-cpu.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		2238FD7879264FF6A7089A29 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/MinSizeRel${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_CPU,GGML_USE_METAL,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ggml;
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		2524E30B95484B51B509A41C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/Debug${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,GGML_METAL_EMBED_LIBRARY,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("   '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "   '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-metal";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-metal.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		2AEABFD85C7044E99CAAD6A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		2C75BE18EA27421F891F746B /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/RelWithDebInfo${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_VERSION=\"0.15.2\"'","'GGML_COMMIT=\"856d7c1\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("       -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-base";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-base.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		4213B4FC192D40B6A06418FB /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/RelWithDebInfo${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,GGML_METAL_EMBED_LIBRARY,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("       -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-metal";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-metal.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		46463467517647FEBD6F0AF8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Release${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_VERSION=\"0.15.2\"'","'GGML_COMMIT=\"856d7c1\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-base";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-base.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		480E32072CAE423A862EB089 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		4E109E7113D448B183CAD816 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		4F2B7D5C56094AE38FC53E0D /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		538FF04F392C4ABA868170DE /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5A1EDA6DAAD7476DBC8C4F0A /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/MinSizeRel${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_VERSION=\"0.15.2\"'","'GGML_COMMIT=\"856d7c1\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-base";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-base.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5D269987691841F981F423C3 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/MinSizeRel${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,GGML_METAL_EMBED_LIBRARY,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-metal";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-metal.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		5F8FC4D0E3A0427D9FCF2DDE /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/RelWithDebInfo${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_CPU,GGML_USE_METAL,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ggml;
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		6BE665B52695411D83851D86 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/MinSizeRel${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_ACCELERATE,ACCELERATE_NEW_LAPACK,ACCELERATE_LAPACK_ILP64,GGML_USE_LLAMAFILE,GGML_USE_CPU_REPACK,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-cpu";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-cpu.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		7F094456CBDD4582928A63C4 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		83DE051600E34DE2889AAC78 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build";
+			};
+			name = RelWithDebInfo;
+		};
+		8BA0D45A81A44BFC9A5DCA06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SYMROOT = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build";
+			};
+			name = Debug;
+		};
+		8EC73F8FD02A4DF18C15DAB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Debug${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_CPU,GGML_USE_METAL,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "   '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ggml;
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		C6B717E02698493A91DFBE49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Debug${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_ACCELERATE,ACCELERATE_NEW_LAPACK,ACCELERATE_LAPACK_ILP64,GGML_USE_LLAMAFILE,GGML_USE_CPU_REPACK,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("   '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "   '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-cpu";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-cpu.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		CA9696A131CB4576BC7B9342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		CAC3A59EDC424493A6D60CFF /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		CB315BDCBF2848198DD6F622 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build";
+			};
+			name = MinSizeRel;
+		};
+		CF4A75860C9A4AA78070DBE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Release${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_ACCELERATE,ACCELERATE_NEW_LAPACK,ACCELERATE_LAPACK_ILP64,GGML_USE_LLAMAFILE,GGML_USE_CPU_REPACK,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-cpu","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-cpu";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-cpu.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		D0D184DBB5674A90813BC8C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		D2167D248AA842548AB0643B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Release${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'",GGML_USE_CPU,GGML_USE_METAL,"'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ggml;
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		D4D476078F4443AB82EDE949 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		E0C813F524164F2C9DE613D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		E5BBDE0326B34E2BBA372FD7 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = ("","$(inherited)");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = install;
+				SECTORDER_FLAGS = "";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		E9075CAF1EDE44F8B38FD93D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/Debug${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_VERSION=\"0.15.2\"'","'GGML_COMMIT=\"856d7c1\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/.","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("   '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "   '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-base";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-base.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Debug;
+		};
+		F1525A0866984E8FBA29D3CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/ggml/src/ggml-metal/Release${EFFECTIVE_PLATFORM_NAME}";
+				EXECUTABLE_PREFIX = lib;
+				EXECUTABLE_SUFFIX = .a;
+				FRAMEWORK_SEARCH_PATHS = (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk/System/Library/Frameworks,"$(inherited)");
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'","'GGML_SCHED_MAX_COPIES=4'","'_XOPEN_SOURCE=600'",_DARWIN_C_SOURCE,GGML_METAL_EMBED_LIBRARY,"$(inherited)");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = ("/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/ggml-metal/..","/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/transcribe.cpp/ggml/src/../include","$(inherited)");
+				INSTALL_PATH = "";
+				LIBRARY_STYLE = STATIC;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = ("    -DNDEBUG '-std=gnu11' -fvisibility=hidden -Wshadow -Wstrict-prototypes -Wpointer-arith -Wmissing-prototypes '-Werror=implicit-int' '-Werror=implicit-function-declaration' -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wdouble-promotion ","$(inherited)");
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG '-std=c++17' -fvisibility=hidden -fvisibility-inlines-hidden -Wmissing-declarations -Wmissing-noreturn -Wall -Wextra -Wpedantic -Wcast-qual -Wno-unused-function -Wunreachable-code-break -Wunreachable-code-return -Wmissing-prototypes -Wextra-semi ";
+				OTHER_LIBTOOLFLAGS = ("");
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "ggml-metal";
+				SECTORDER_FLAGS = "";
+				TARGET_TEMP_DIR = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build/ggml-metal.build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("$(inherited)");
+			};
+			name = Release;
+		};
+		F4CD06825078423A9B8B424A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SYMROOT = "/Users/harshuljain/work/projects/experiments_and_courses/opensource/handy-ios/build-ios/build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1674ED1510454D1FB9811914 /* Build configuration list for PBXNativeTarget "ggml-cpu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6B717E02698493A91DFBE49 /* Debug */,
+				CF4A75860C9A4AA78070DBE6 /* Release */,
+				6BE665B52695411D83851D86 /* MinSizeRel */,
+				019F4435217F459FBBAD3337 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2F1F87B89E604A169DA2F5C4 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E0C813F524164F2C9DE613D2 /* Debug */,
+				D4D476078F4443AB82EDE949 /* Release */,
+				538FF04F392C4ABA868170DE /* MinSizeRel */,
+				CAC3A59EDC424493A6D60CFF /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		872CA24BD35241539DA2A7B6 /* Build configuration list for PBXAggregateTarget "install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2AEABFD85C7044E99CAAD6A8 /* Debug */,
+				D0D184DBB5674A90813BC8C6 /* Release */,
+				7F094456CBDD4582928A63C4 /* MinSizeRel */,
+				E5BBDE0326B34E2BBA372FD7 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A06231074AA64E579F4E1D9A /* Build configuration list for PBXProject "ggml" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8BA0D45A81A44BFC9A5DCA06 /* Debug */,
+				F4CD06825078423A9B8B424A /* Release */,
+				CB315BDCBF2848198DD6F622 /* MinSizeRel */,
+				83DE051600E34DE2889AAC78 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BB8F5B24243E42C2B304C086 /* Build configuration list for PBXNativeTarget "ggml-base" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9075CAF1EDE44F8B38FD93D /* Debug */,
+				46463467517647FEBD6F0AF8 /* Release */,
+				5A1EDA6DAAD7476DBC8C4F0A /* MinSizeRel */,
+				2C75BE18EA27421F891F746B /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D8A0C4940E524ED89F645028 /* Build configuration list for PBXNativeTarget "ggml-metal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2524E30B95484B51B509A41C /* Debug */,
+				F1525A0866984E8FBA29D3CA /* Release */,
+				5D269987691841F981F423C3 /* MinSizeRel */,
+				4213B4FC192D40B6A06418FB /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F0E7AC9033BE4360A950FD47 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA9696A131CB4576BC7B9342 /* Debug */,
+				4E109E7113D448B183CAD816 /* Release */,
+				4F2B7D5C56094AE38FC53E0D /* MinSizeRel */,
+				480E32072CAE423A862EB089 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FA5E811CAD1C4F658C7C4A65 /* Build configuration list for PBXNativeTarget "ggml" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EC73F8FD02A4DF18C15DAB5 /* Debug */,
+				D2167D248AA842548AB0643B /* Release */,
+				2238FD7879264FF6A7089A29 /* MinSizeRel */,
+				5F8FC4D0E3A0427D9FCF2DDE /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4662CA97AB5D459DB00077AC /* Project object */;
+}

@@ -122,7 +122,10 @@ final class KeyboardViewController: UIInputViewController {
 
         guard submit, let url = audioRecorder?.url else { setStatus("Tap mic to speak"); return }
         guard let audioData = try? Data(contentsOf: url) else { setStatus("Recording error"); return }
-        bridge.writeAudio(audioData)
+
+        // UIPasteboard.general is readable by both the extension and the main app
+        // without any entitlements. We use a named type so we don't clobber the user's clipboard.
+        UIPasteboard.general.setData(audioData, forPasteboardType: "computer.handy.audio")
         submitToApp()
     }
 

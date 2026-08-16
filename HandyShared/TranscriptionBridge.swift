@@ -1,77 +1,70 @@
 import Foundation
+import UIKit
 
-/// Shared IPC contract between HandyKeyboard and HandyApp.
+/// IPC between HandyKeyboard and HandyApp using UIPasteboard.general.
+/// UIPasteboard is accessible from both without App Group entitlement,
+/// provided the keyboard has Full Access enabled (already required for mic).
 ///
-/// Flow:
-///   Keyboard writes audio → App Group /Audio/pending.wav
-///   Keyboard calls openURL(handy://transcribe) → wakes HandyApp
-///   HandyApp reads audio, infers, writes result to UserDefaults
-///   Keyboard polls UserDefaults["transcriptionResult"] every 300ms
+/// Audio:  keyboard  → pasteboard type "computer.handy.audio"  → main app
+/// Result: main app  → pasteboard type "computer.handy.result" → keyboard
 public final class TranscriptionBridge: @unchecked Sendable {
     public static let shared = TranscriptionBridge()
-
-    private let appGroup = "group.computer.handy"
-    private let resultKey = "transcriptionResult"
-    private let resultTimestampKey = "transcriptionResultTimestamp"
-
     private init() {}
 
-    private var defaults: UserDefaults {
-        UserDefaults(suiteName: appGroup) ?? .standard
-    }
+    private let audioType  = "computer.handy.audio"
+    private let resultType = "computer.handy.result"
+    private let resultTsType = "computer.handy.result.ts"
 
-    public var containerURL: URL {
-        FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)
-            ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
+    private var pb: UIPasteboard { .general }
 
-    private let audioDataKey = "pendingAudioData"
-
-    // MARK: - Audio transfer (keyboard writes, app reads)
-    // Uses UserDefaults instead of a file so no file-path sandbox crossing needed.
+    // MARK: - Audio (keyboard writes, app reads)
 
     public func writeAudio(_ data: Data) {
-        defaults.set(data, forKey: audioDataKey)
+        pb.setData(data, forPasteboardType: audioType)
     }
 
     public func readAndClearAudio() -> Data? {
-        guard let data = defaults.data(forKey: audioDataKey) else { return nil }
-        defaults.removeObject(forKey: audioDataKey)
+        guard let data = pb.data(forPasteboardType: audioType) else { return nil }
+        removeItem(type: audioType)
         return data
-    }
-
-    // Kept for legacy callers — returns a temp URL the current process can write to.
-    public func audioDirURL() -> URL {
-        let dir = containerURL.appendingPathComponent("Audio")
-        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        return dir
-    }
-
-    public var pendingAudioURL: URL {
-        containerURL.appendingPathComponent("Audio/pending.wav")
     }
 
     // MARK: - Result (app writes, keyboard reads)
 
     public func writeResult(_ text: String) {
-        defaults.set(text, forKey: resultKey)
-        defaults.set(Date().timeIntervalSince1970, forKey: resultTimestampKey)
+        let ts = String(Date().timeIntervalSince1970)
+        pb.setItems([[resultType: text.data(using: .utf8)!,
+                      resultTsType: ts.data(using: .utf8)!]])
     }
 
     public func readResult(newerThan timestamp: TimeInterval) -> String? {
-        let ts = defaults.double(forKey: resultTimestampKey)
-        guard ts > timestamp, let text = defaults.string(forKey: resultKey) else { return nil }
+        guard let tsData = pb.data(forPasteboardType: resultTsType),
+              let ts = Double(String(data: tsData, encoding: .utf8) ?? ""),
+              ts > timestamp,
+              let data = pb.data(forPasteboardType: resultType),
+              let text = String(data: data, encoding: .utf8) else { return nil }
         return text
     }
 
     public func clearResult() {
-        defaults.removeObject(forKey: resultKey)
-        defaults.removeObject(forKey: resultTimestampKey)
+        removeItem(type: resultType)
+        removeItem(type: resultTsType)
     }
 
-    // MARK: - Active model check (keyboard reads to show error state)
-
     public var hasActiveModel: Bool {
-        defaults.string(forKey: "activeModel") != nil
+        UserDefaults.standard.string(forKey: "activeModel") != nil
+    }
+
+    // MARK: - Helpers
+
+    private func removeItem(type: String) {
+        pb.items = pb.items.map { item in
+            var copy = item; copy.removeValue(forKey: type); return copy
+        }.filter { !$0.isEmpty }
+    }
+
+    // Unused legacy path kept for when App Group is properly set up later
+    public func audioDirURL() -> URL {
+        FileManager.default.temporaryDirectory
     }
 }

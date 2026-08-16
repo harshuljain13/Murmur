@@ -420,7 +420,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe";
+				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
@@ -459,7 +459,7 @@
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe";
+				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;

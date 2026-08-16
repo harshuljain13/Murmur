@@ -34,10 +34,12 @@ cmake --build "$BUILD" \
     --config Release \
     -- -sdk iphoneos
 
-# Merge all .a files into one fat archive
-LIBS=$(find "$BUILD" -name "*.a" -not -name "libtranscribe.a")
+# Merge all built .a files (transcribe + ggml + metal) into one static archive
+LIBS=$(find "$BUILD" -name "*.a" -path "*/Release-iphoneos/*")
 if [ -n "$LIBS" ]; then
     libtool -static -o "$OUT_LIB" $LIBS
+    echo "Merged libs:"
+    echo "$LIBS" | tr ' ' '\n'
 fi
 
 # Copy public headers

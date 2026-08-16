@@ -150,26 +150,31 @@ final class KeyboardViewController: UIInputViewController {
         pollTimer?.invalidate()
         let started = requestTimestamp
         var elapsed = 0.0
+        let bridge = self.bridge
 
         pollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { [weak self] timer in
             guard let self else { timer.invalidate(); return }
 
-            if let result = self.bridge.readResult(newerThan: started) {
+            if let result = bridge.readResult(newerThan: started) {
                 timer.invalidate()
-                if result.hasPrefix("ERROR:") {
-                    self.setStatus(String(result.dropFirst(7)), error: true)
-                } else {
-                    self.textDocumentProxy.insertText(result)
-                    self.setStatus("Tap mic to speak")
+                DispatchQueue.main.async {
+                    if result.hasPrefix("ERROR:") {
+                        self.setStatus(String(result.dropFirst(7)), error: true)
+                    } else {
+                        self.textDocumentProxy.insertText(result)
+                        self.setStatus("Tap mic to speak")
+                    }
+                    bridge.clearResult()
                 }
-                self.bridge.clearResult()
                 return
             }
 
             elapsed += 0.3
             if elapsed >= 30 {
                 timer.invalidate()
-                self.setStatus("Timed out — is Handy app installed?", error: true)
+                DispatchQueue.main.async {
+                    self.setStatus("Timed out — is Handy app installed?", error: true)
+                }
             }
         }
     }

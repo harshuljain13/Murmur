@@ -48,7 +48,7 @@ targets:
         APP_GROUP_IDENTIFIER: group.computer.handy
         SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
         LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
-        OTHER_LDFLAGS: -ltranscribe
+        OTHER_LDFLAGS: -ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
         HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
     entitlements:
       path: HandyApp/HandyApp.entitlements

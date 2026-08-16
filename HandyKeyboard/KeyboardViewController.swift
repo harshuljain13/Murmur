@@ -120,7 +120,9 @@ final class KeyboardViewController: UIInputViewController {
         micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 28)), for: .normal)
         try? AVAudioSession.sharedInstance().setActive(false)
 
-        guard submit else { setStatus("Tap mic to speak"); return }
+        guard submit, let url = audioRecorder?.url else { setStatus("Tap mic to speak"); return }
+        guard let audioData = try? Data(contentsOf: url) else { setStatus("Recording error"); return }
+        bridge.writeAudio(audioData)
         submitToApp()
     }
 

@@ -25,16 +25,30 @@ public final class TranscriptionBridge: @unchecked Sendable {
             ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
-    // MARK: - Audio file (keyboard writes, app reads)
+    private let audioDataKey = "pendingAudioData"
 
-    public var pendingAudioURL: URL {
-        containerURL.appendingPathComponent("Audio/pending.wav")
+    // MARK: - Audio transfer (keyboard writes, app reads)
+    // Uses UserDefaults instead of a file so no file-path sandbox crossing needed.
+
+    public func writeAudio(_ data: Data) {
+        defaults.set(data, forKey: audioDataKey)
     }
 
+    public func readAndClearAudio() -> Data? {
+        guard let data = defaults.data(forKey: audioDataKey) else { return nil }
+        defaults.removeObject(forKey: audioDataKey)
+        return data
+    }
+
+    // Kept for legacy callers — returns a temp URL the current process can write to.
     public func audioDirURL() -> URL {
         let dir = containerURL.appendingPathComponent("Audio")
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
+    }
+
+    public var pendingAudioURL: URL {
+        containerURL.appendingPathComponent("Audio/pending.wav")
     }
 
     // MARK: - Result (app writes, keyboard reads)

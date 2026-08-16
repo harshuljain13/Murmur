@@ -1,8 +1,6 @@
 import Foundation
 import AVFoundation
 
-/// Background actor that owns the TranscribeEngine.
-/// Ensures inference never runs on the main actor and never crosses sendability boundaries.
 private actor InferenceActor {
     private var engine: TranscribeEngine?
 
@@ -18,8 +16,6 @@ private actor InferenceActor {
     }
 }
 
-/// Main-actor service wired into HandyApp. Handles handy://transcribe URL,
-/// runs Parakeet inference via InferenceActor, writes result to App Group.
 @MainActor
 final class TranscribeService: ObservableObject {
     static let shared = TranscribeService()
@@ -48,9 +44,8 @@ final class TranscribeService: ObservableObject {
     }
 
     private func runTranscription() async {
-        let audioURL = bridge.pendingAudioURL
-        guard FileManager.default.fileExists(atPath: audioURL.path) else {
-            bridge.writeResult("ERROR: no audio file found")
+        guard let audioData = bridge.readAndClearAudio() else {
+            bridge.writeResult("ERROR: no audio data found")
             return
         }
 
@@ -60,25 +55,25 @@ final class TranscribeService: ObservableObject {
         if await !inference.isLoaded() { await loadEngine() }
 
         do {
-            let samples = try loadPCM(from: audioURL)
+            let samples = try loadPCM(from: audioData)
             let text = try await inference.transcribe(samples: samples)
             bridge.writeResult(text.isEmpty ? "…" : text)
         } catch {
             bridge.writeResult("ERROR: \(error.localizedDescription)")
         }
-
-        try? FileManager.default.removeItem(at: audioURL)
     }
 
-    private func loadPCM(from url: URL) throws -> [Float] {
-        let file = try AVAudioFile(forReading: url)
+    private func loadPCM(from data: Data) throws -> [Float] {
+        let tmp = FileManager.default.temporaryDirectory.appendingPathComponent("handy_audio.wav")
+        try data.write(to: tmp)
+        let file = try AVAudioFile(forReading: tmp)
         let format = AVAudioFormat(
             commonFormat: .pcmFormatFloat32,
             sampleRate: 16_000, channels: 1, interleaved: false
         )!
         let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: AVAudioFrameCount(file.length))!
         try file.read(into: buffer)
-        guard let data = buffer.floatChannelData?[0] else { return [] }
-        return Array(UnsafeBufferPointer(start: data, count: Int(buffer.frameLength)))
+        guard let channelData = buffer.floatChannelData?[0] else { return [] }
+        return Array(UnsafeBufferPointer(start: channelData, count: Int(buffer.frameLength)))
     }
 }

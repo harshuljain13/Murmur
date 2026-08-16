@@ -16,23 +16,23 @@ public final class TranscriptionBridge: @unchecked Sendable {
 
     private init() {}
 
-    private var defaults: UserDefaults? { UserDefaults(suiteName: appGroup) }
+    private var defaults: UserDefaults {
+        UserDefaults(suiteName: appGroup) ?? .standard
+    }
 
-    public var containerURL: URL? {
+    public var containerURL: URL {
         FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup)
+            ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
     // MARK: - Audio file (keyboard writes, app reads)
 
-    public var pendingAudioURL: (() -> URL?) = {
-        guard let base = FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: "group.computer.handy") else { return nil }
-        return base.appendingPathComponent("Audio/pending.wav")
+    public var pendingAudioURL: URL {
+        containerURL.appendingPathComponent("Audio/pending.wav")
     }
 
-    public func audioDirURL() -> URL? {
-        guard let base = containerURL else { return nil }
-        let dir = base.appendingPathComponent("Audio")
+    public func audioDirURL() -> URL {
+        let dir = containerURL.appendingPathComponent("Audio")
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir
     }
@@ -40,24 +40,24 @@ public final class TranscriptionBridge: @unchecked Sendable {
     // MARK: - Result (app writes, keyboard reads)
 
     public func writeResult(_ text: String) {
-        defaults?.set(text, forKey: resultKey)
-        defaults?.set(Date().timeIntervalSince1970, forKey: resultTimestampKey)
+        defaults.set(text, forKey: resultKey)
+        defaults.set(Date().timeIntervalSince1970, forKey: resultTimestampKey)
     }
 
     public func readResult(newerThan timestamp: TimeInterval) -> String? {
-        guard let ts = defaults?.double(forKey: resultTimestampKey), ts > timestamp,
-              let text = defaults?.string(forKey: resultKey) else { return nil }
+        let ts = defaults.double(forKey: resultTimestampKey)
+        guard ts > timestamp, let text = defaults.string(forKey: resultKey) else { return nil }
         return text
     }
 
     public func clearResult() {
-        defaults?.removeObject(forKey: resultKey)
-        defaults?.removeObject(forKey: resultTimestampKey)
+        defaults.removeObject(forKey: resultKey)
+        defaults.removeObject(forKey: resultTimestampKey)
     }
 
     // MARK: - Active model check (keyboard reads to show error state)
 
     public var hasActiveModel: Bool {
-        defaults?.string(forKey: "activeModel") != nil
+        defaults.string(forKey: "activeModel") != nil
     }
 }

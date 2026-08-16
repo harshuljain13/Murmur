@@ -47,8 +47,8 @@ final class TranscribeService: ObservableObject {
     }
 
     private func runTranscription() async {
-        guard let audioURL = bridge.pendingAudioURL(),
-              FileManager.default.fileExists(atPath: audioURL.path) else {
+        let audioURL = bridge.pendingAudioURL
+        guard FileManager.default.fileExists(atPath: audioURL.path) else {
             bridge.writeResult("ERROR: no audio file found")
             return
         }

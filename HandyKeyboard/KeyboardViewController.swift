@@ -88,8 +88,7 @@ final class KeyboardViewController: UIInputViewController {
     }
 
     private func startRecording() {
-        guard let audioDir = bridge.audioDirURL() else { return }
-        let audioURL = audioDir.appendingPathComponent("pending.wav")
+        let audioURL = bridge.audioDirURL().appendingPathComponent("pending.wav")
 
         let settings: [String: Any] = [
             AVFormatIDKey:            Int(kAudioFormatLinearPCM),

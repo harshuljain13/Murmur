@@ -41,6 +41,9 @@ targets:
       - path: HandyApp
       - path: HandyShared
       - path: TranscribeCpp
+    dependencies:
+      - target: HandyKeyboard
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app
@@ -111,6 +114,3 @@ targets:
             RequestsOpenAccess: true
           NSExtensionPointIdentifier: com.apple.keyboard-input-mode
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).KeyboardViewController
-    dependencies:
-      - target: HandyApp
-        embed: false

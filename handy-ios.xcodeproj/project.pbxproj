@@ -21,19 +21,34 @@
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD853313E2F5286232652686 /* SetupView.swift */; };
 		D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
+		D8E61DA69D489D3C52515192 /* HandyKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1896584561EC3BCA98D38209 /* HandyKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16E4AC4D14593AD71E363D4 /* HandyApp.swift */; };
 		F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C65FB70CC1420D972669F3 /* AudioRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5319A009CE0DCB19C129A7BD /* PBXContainerItemProxy */ = {
+		44FE56A8CE7B3A35C4D27FF4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BF24284E07793627E0CF0C19 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D3A83528C075967BFBDC4D53;
-			remoteInfo = HandyApp;
+			remoteGlobalIDString = EDE81DE8A190B319E6F63B95;
+			remoteInfo = HandyKeyboard;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6D6C5D49FC94FDF4914BC67B /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D8E61DA69D489D3C52515192 /* HandyKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
@@ -161,10 +176,12 @@
 			buildConfigurationList = 909A2A839112C460F92BCDB7 /* Build configuration list for PBXNativeTarget "HandyApp" */;
 			buildPhases = (
 				9AC120D59A630E02E19FF989 /* Sources */,
+				6D6C5D49FC94FDF4914BC67B /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				0867DB484B89D4430E561947 /* PBXTargetDependency */,
 			);
 			name = HandyApp;
 			packageProductDependencies = (
@@ -182,7 +199,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2B5359A9D75FBC6484527A06 /* PBXTargetDependency */,
 			);
 			name = HandyKeyboard;
 			packageProductDependencies = (
@@ -262,10 +278,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2B5359A9D75FBC6484527A06 /* PBXTargetDependency */ = {
+		0867DB484B89D4430E561947 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D3A83528C075967BFBDC4D53 /* HandyApp */;
-			targetProxy = 5319A009CE0DCB19C129A7BD /* PBXContainerItemProxy */;
+			target = EDE81DE8A190B319E6F63B95 /* HandyKeyboard */;
+			targetProxy = 44FE56A8CE7B3A35C4D27FF4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

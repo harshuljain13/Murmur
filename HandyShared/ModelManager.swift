@@ -11,7 +11,6 @@ public final class ModelManager: ObservableObject {
     @Published private var downloadStates: [ModelVariant: ModelDownloadState] = [:]
     @Published public var activeModel: ModelVariant?
 
-    private let appGroup = "group.computer.handy"
 
     public init() {}
 
@@ -81,18 +80,14 @@ public final class ModelManager: ObservableObject {
 
     // MARK: - Storage
 
-    /// Tries App Group container first; falls back to app Documents if not entitled.
+    /// Models live in the app's Documents directory. (No App Group — the
+    /// keyboard extension talks to the app via UIPasteboard, not shared files.)
     private var modelsBaseURL: URL {
-        if let groupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) {
-            return groupURL.appendingPathComponent("Models")
-        }
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("Models")
     }
 
-    private var defaults: UserDefaults {
-        UserDefaults(suiteName: appGroup) ?? .standard
-    }
+    private var defaults: UserDefaults { .standard }
 
     private func fileExists(for variant: ModelVariant) -> Bool {
         modelFileURL(for: variant, mustExist: true) != nil

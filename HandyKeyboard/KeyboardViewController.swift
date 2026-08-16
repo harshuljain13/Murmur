@@ -165,7 +165,23 @@ final class KeyboardViewController: UIInputViewController {
         else { beginRecording() }
     }
 
+    private var peakDB: Float = -160
+
     private func beginRecording() {
+        // DIAGNOSTIC: surface mic permission state directly in the keyboard.
+        let perm = AVAudioApplication.shared.recordPermission
+        let permStr: String
+        switch perm {
+        case .granted:      permStr = "granted"
+        case .denied:       permStr = "DENIED"
+        case .undetermined: permStr = "UNDETERMINED"
+        @unknown default:   permStr = "unknown"
+        }
+        if perm != .granted {
+            setStatus("Mic permission \(permStr) — open Handy app to allow", error: true)
+            return
+        }
+
         let url = FileManager.default.temporaryDirectory.appendingPathComponent("handy_rec.wav")
         let settings: [String: Any] = [
             AVFormatIDKey: Int(kAudioFormatLinearPCM),
@@ -180,9 +196,14 @@ final class KeyboardViewController: UIInputViewController {
             try AVAudioSession.sharedInstance().setActive(true)
             let rec = try AVAudioRecorder(url: url, settings: settings)
             rec.isMeteringEnabled = true
-            rec.record()
+            let started = rec.record()
+            guard started else {
+                setStatus("record() returned false — mic blocked", error: true)
+                return
+            }
             audioRecorder = rec
             isRecording = true
+            peakDB = -160
 
             micButton.backgroundColor = UIColor.systemRed
             micButton.setImage(micImage("stop.fill"), for: .normal)
@@ -194,7 +215,7 @@ final class KeyboardViewController: UIInputViewController {
                 self?.sampleMeter()
             }
         } catch {
-            setStatus("Mic error — enable Full Access", error: true)
+            setStatus("Mic error: \(error.localizedDescription)", error: true)
         }
     }
 
@@ -202,9 +223,11 @@ final class KeyboardViewController: UIInputViewController {
         guard let rec = audioRecorder else { return }
         rec.updateMeters()
         let power = rec.averagePower(forChannel: 0) // -160 (silence) ... 0 (loud)
-        // Map dB to a pleasant 0...1 curve
+        peakDB = max(peakDB, power)
         let normalized = pow(10, power / 40)        // -160 → ~0.0001, 0 → 1
         waveformView.push(CGFloat(min(1, max(0.02, normalized))))
+        // DIAGNOSTIC: show live peak so the user can SEE if signal is captured.
+        setStatus(String(format: "Listening…  peak %.0f dB", peakDB))
     }
 
     private func finishRecording(submit: Bool) {
@@ -227,7 +250,19 @@ final class KeyboardViewController: UIInputViewController {
     // MARK: - Inference (in-process)
 
     private func transcribe(url: URL) {
-        setStatus("Transcribing…")
+        // DIAGNOSTIC: inspect the captured audio before inference.
+        let fileSize = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int) ?? 0
+        let probe = (try? Self.loadPCM(from: url)) ?? []
+        let peakAmp = probe.map { abs($0) }.max() ?? 0
+        setStatus(String(format: "Got %d samples, peak %.3f — transcribing…", probe.count, peakAmp))
+
+        if probe.isEmpty || peakAmp < 0.001 {
+            setStatus(String(format: "Silent audio (%d samples, peak %.4f). Mic not capturing.", probe.count, peakAmp), error: true)
+            micButton.isEnabled = true
+            return
+        }
+        _ = fileSize
+
         micButton.isEnabled = false
 
         inferenceQueue.async { [weak self] in

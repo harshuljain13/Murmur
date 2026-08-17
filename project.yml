@@ -62,6 +62,8 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         NSMicrophoneUsageDescription: "Handy uses the microphone to transcribe your speech to text."
+        UIBackgroundModes:
+          - audio
         CFBundleURLTypes:
           - CFBundleURLSchemes:
               - handy

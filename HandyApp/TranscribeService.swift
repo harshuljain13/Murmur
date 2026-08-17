@@ -41,6 +41,22 @@ final class TranscribeService: ObservableObject {
 
     var hasModel: Bool { modelManager?.activeModelFileURL() != nil }
 
+    /// Transcribe raw 16 kHz mono float samples (from the background recorder),
+    /// publish the result to the pasteboard for the keyboard to insert.
+    func transcribeSamples(_ samples: [Float]) async -> String? {
+        if await !inference.isLoaded() { await loadEngine() }
+        guard await inference.isLoaded() else { return nil }
+        do {
+            let text = try await inference.transcribe(samples: samples)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !text.isEmpty else { return nil }
+            bridge.writeResult(text)
+            return text
+        } catch {
+            return nil
+        }
+    }
+
     /// Diagnostic reason surfaced to the UI when transcription yields no text.
     @Published var lastDiagnostic: String = ""
 

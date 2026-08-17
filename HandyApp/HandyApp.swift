@@ -12,7 +12,12 @@ struct HandyApp: App {
                 .environmentObject(modelManager)
                 .environmentObject(transcribeService)
                 .environmentObject(router)
-                .task { await transcribeService.start(modelManager: modelManager) }
+                .task {
+                    await transcribeService.start(modelManager: modelManager)
+                    // Keep an audio service alive so the keyboard can trigger
+                    // background dictation without opening the app.
+                    BackgroundVoiceService.shared.startService(transcribeService: transcribeService)
+                }
                 .onOpenURL { url in
                     // handy://record — launched by the keyboard's mic button.
                     if url.scheme == "handy" && url.host == "record" {

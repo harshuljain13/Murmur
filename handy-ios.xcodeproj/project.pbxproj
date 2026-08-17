@@ -10,8 +10,10 @@
 		1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
 		1C8B5AD5D3C220B29D7CC019 /* HandyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B5B6B9C9428726E767722 /* HandyColors.swift */; };
 		27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81D2832195FDCA62F53744A /* LandingView.swift */; };
+		2CFFEE88C086840002085F71 /* DarwinSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F46EC4102802E6F5107FB /* DarwinSignal.swift */; };
 		42721359941CB835A56BFEB4 /* AppRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */; };
 		44CA591368D5DC9DA06A46BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D52F2B0008C1A6D7B550B1E /* Assets.xcassets */; };
+		4E5F413526F8673928BF1BF7 /* DarwinSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F46EC4102802E6F5107FB /* DarwinSignal.swift */; };
 		545C8061A65133CE30BEB32D /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438801C5723A2840E5FF006 /* ContentView.swift */; };
 		5FEF54050BD11397749E14E7 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
@@ -25,6 +27,7 @@
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
 		BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */; };
 		C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD853313E2F5286232652686 /* SetupView.swift */; };
+		C5D6FE936797392D8E2B3C0C /* BackgroundVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D25A2571C8525958FB7358B /* BackgroundVoiceService.swift */; };
 		C7A5570F45E4227229190E8D /* HandyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03B58C4182B7EDB383C8789F /* HandyTheme.swift */; };
 		D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		D8E61DA69D489D3C52515192 /* HandyKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1896584561EC3BCA98D38209 /* HandyKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -59,6 +62,7 @@
 /* Begin PBXFileReference section */
 		03B58C4182B7EDB383C8789F /* HandyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyTheme.swift; sourceTree = "<group>"; };
 		0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
+		0D25A2571C8525958FB7358B /* BackgroundVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundVoiceService.swift; sourceTree = "<group>"; };
 		1896584561EC3BCA98D38209 /* HandyKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = HandyKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D5C672294C5E1E47A09B5C3 /* transcribe_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe_bridge.h; sourceTree = "<group>"; };
 		4356584FB56238D0B120CCF6 /* extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extensions.h; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 		B2A36040F3A8C1565A78E853 /* moonshine_streaming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moonshine_streaming.h; sourceTree = "<group>"; };
 		B81D2832195FDCA62F53744A /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		C16E4AC4D14593AD71E363D4 /* HandyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandyApp.swift; sourceTree = "<group>"; };
+		CB2F46EC4102802E6F5107FB /* DarwinSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinSignal.swift; sourceTree = "<group>"; };
 		CD7BB4D351697B4CBB0AB085 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CD853313E2F5286232652686 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				93C65FB70CC1420D972669F3 /* AudioRecorder.swift */,
+				CB2F46EC4102802E6F5107FB /* DarwinSignal.swift */,
 				8C7B5B6B9C9428726E767722 /* HandyColors.swift */,
 				CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */,
 				E079793B8C65B3D871F504C8 /* ModelVariant.swift */,
@@ -145,6 +151,7 @@
 			children = (
 				AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */,
 				9D52F2B0008C1A6D7B550B1E /* Assets.xcassets */,
+				0D25A2571C8525958FB7358B /* BackgroundVoiceService.swift */,
 				4438801C5723A2840E5FF006 /* ContentView.swift */,
 				C16E4AC4D14593AD71E363D4 /* HandyApp.swift */,
 				03B58C4182B7EDB383C8789F /* HandyTheme.swift */,
@@ -276,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6DE6B16EFB02C2A53FE3A39B /* AudioRecorder.swift in Sources */,
+				4E5F413526F8673928BF1BF7 /* DarwinSignal.swift in Sources */,
 				1C8B5AD5D3C220B29D7CC019 /* HandyColors.swift in Sources */,
 				B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */,
 				9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */,
@@ -290,7 +298,9 @@
 			files = (
 				42721359941CB835A56BFEB4 /* AppRecorder.swift in Sources */,
 				F6FA7A2FA89E03BB50880F7F /* AudioRecorder.swift in Sources */,
+				C5D6FE936797392D8E2B3C0C /* BackgroundVoiceService.swift in Sources */,
 				5839729D93BCB087DEF5CD56 /* ContentView.swift in Sources */,
+				2CFFEE88C086840002085F71 /* DarwinSignal.swift in Sources */,
 				DF0FE61BDF22841DB8799225 /* HandyApp.swift in Sources */,
 				7B80F22AD41B92F005CDA881 /* HandyColors.swift in Sources */,
 				C7A5570F45E4227229190E8D /* HandyTheme.swift in Sources */,

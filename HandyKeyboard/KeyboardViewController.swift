@@ -20,6 +20,7 @@ final class KeyboardViewController: UIInputViewController {
     private var gotAck = false
     private var pollTimer: Timer?
     private var ackTimer: Timer?
+    private var watchdog: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,13 @@ final class KeyboardViewController: UIInputViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tryInsertResult()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Keyboard going away mid-capture — tell the app to stop the mic.
+        if state == .listening { signal.post(DarwinSignal.recordStop) }
+        cancelTimers()
     }
 
     // MARK: - UI
@@ -108,6 +116,9 @@ final class KeyboardViewController: UIInputViewController {
             self.fallbackToForeground()
         }
         startPolling()
+        // Overall safety net: never leave the UI stuck. Covers auto-stop with no
+        // speech, a killed app, or a lost result. (Max 30s record + transcribe.)
+        armWatchdog(seconds: 50, message: "No response — tap to try again")
     }
 
     private func stopListening() {
@@ -116,7 +127,8 @@ final class KeyboardViewController: UIInputViewController {
         setMicActive(false)
         hint("Transcribing…")
         waveIcon.stopIdleAnimation()
-        // Result arrives via resultReady signal / poll.
+        // Tighter timeout once we're only waiting on transcription.
+        armWatchdog(seconds: 15, message: "Didn’t catch that — tap to retry")
     }
 
     private func onAck() {
@@ -127,6 +139,7 @@ final class KeyboardViewController: UIInputViewController {
     private func fallbackToForeground() {
         // App isn't alive in the background — launch it so the background voice
         // service starts. Then the user taps mic again for seamless dictation.
+        cancelTimers()
         hint("Starting Handy — tap mic again")
         let url = URL(string: "handy://wake")!
         var r: UIResponder? = self
@@ -139,9 +152,32 @@ final class KeyboardViewController: UIInputViewController {
             }
             r = cur.next
         }
+        resetToIdle(hint: nil)
+    }
+
+    private func armWatchdog(seconds: TimeInterval, message: String) {
+        watchdog?.invalidate()
+        watchdog = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
+            guard let self, self.state != .idle else { return }
+            self.resetToIdle(hint: message)
+        }
+    }
+
+    private func cancelTimers() {
+        pollTimer?.invalidate(); pollTimer = nil
+        ackTimer?.invalidate(); ackTimer = nil
+        watchdog?.invalidate(); watchdog = nil
+    }
+
+    private func resetToIdle(hint text: String?) {
+        cancelTimers()
         state = .idle
         setMicActive(false)
         waveIcon.stopIdleAnimation()
+        if let text { hint(text) }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in
+            if self?.state == .idle { self?.hint("Tap to dictate") }
+        }
     }
 
     // MARK: - Result
@@ -155,7 +191,7 @@ final class KeyboardViewController: UIInputViewController {
 
     private func tryInsertResult() {
         guard let (text, ts) = bridge.latestResult(), ts > requestTime else { return }
-        pollTimer?.invalidate()
+        cancelTimers()
         textDocumentProxy.insertText(text)
         bridge.clearResult()
         state = .idle

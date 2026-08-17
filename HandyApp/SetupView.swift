@@ -58,9 +58,7 @@ struct SetupView: View {
 
                 VStack(spacing: 12) {
                     Button {
-                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                            UIApplication.shared.open(url)
-                        }
+                        openAppSettings()
                     } label: {
                         Text("Open Settings")
                             .font(.system(size: 17, weight: .semibold))
@@ -93,6 +91,12 @@ struct SetupView: View {
         AVAudioApplication.requestRecordPermission { granted in
             DispatchQueue.main.async { micGranted = granted }
         }
+    }
+
+    private func openAppSettings() {
+        guard let url = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(url) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

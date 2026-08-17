@@ -19,8 +19,6 @@ final class KeyboardViewController: UIInputViewController {
     private let confirmButton = UIButton(type: .system)
     private let waveform      = WaveBars()
     private let statusLabel   = UILabel()
-    // Always visible
-    private let globeButton   = UIButton(type: .system)
 
     // IPC
     private let bridge = TranscriptionBridge.shared
@@ -93,13 +91,7 @@ final class KeyboardViewController: UIInputViewController {
         statusLabel.textAlignment = .center
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        // Globe (switch keyboards) — bottom-left, always visible
-        globeButton.setImage(UIImage(systemName: "globe"), for: .normal)
-        globeButton.tintColor = ink.withAlphaComponent(0.55)
-        globeButton.translatesAutoresizingMaskIntoConstraints = false
-        globeButton.addTarget(self, action: #selector(switchKeyboard), for: .touchUpInside)
-
-        [micButton, hintLabel, cancelButton, confirmButton, waveform, statusLabel, globeButton].forEach { view.addSubview($0) }
+        [micButton, hintLabel, cancelButton, confirmButton, waveform, statusLabel].forEach { view.addSubview($0) }
 
         NSLayoutConstraint.activate([
             view.heightAnchor.constraint(equalToConstant: 258),
@@ -128,11 +120,6 @@ final class KeyboardViewController: UIInputViewController {
 
             statusLabel.topAnchor.constraint(equalTo: cancelButton.bottomAnchor, constant: 16),
             statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-
-            globeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-            globeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
-            globeButton.widthAnchor.constraint(equalToConstant: 34),
-            globeButton.heightAnchor.constraint(equalToConstant: 34),
         ])
     }
 
@@ -161,8 +148,6 @@ final class KeyboardViewController: UIInputViewController {
     }
 
     // MARK: - Actions
-
-    @objc private func switchKeyboard() { advanceToNextInputMode() }
 
     @objc private func startListening() {
         requestTime = Date().timeIntervalSince1970

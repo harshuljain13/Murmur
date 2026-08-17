@@ -3,12 +3,27 @@ import AVFoundation
 
 struct SetupView: View {
     @State private var micGranted = AVAudioApplication.shared.recordPermission == .granted
+    var onBack: () -> Void = {}
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 0) {
+
+                HStack {
+                    Button(action: onBack) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "chevron.left")
+                            Text("Back")
+                        }
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(Color.white.opacity(0.7))
+                    }
+                    Spacer()
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 16)
 
                 VStack(alignment: .leading, spacing: 10) {
                     Text("one last step.")
@@ -19,7 +34,7 @@ struct SetupView: View {
                         .foregroundStyle(Color.white.opacity(0.5))
                 }
                 .padding(.horizontal, 28)
-                .padding(.top, 56)
+                .padding(.top, 24)
                 .padding(.bottom, 40)
 
                 VStack(spacing: 12) {

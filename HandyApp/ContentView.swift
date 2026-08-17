@@ -21,29 +21,21 @@ struct ContentView: View {
                 .transition(.move(edge: .leading))
 
             case .modelPicker:
-                ModelPickerView()
-                    .transition(.move(edge: .trailing))
+                ModelPickerView(
+                    onBack: { withAnimation(.easeInOut(duration: 0.3)) { screen = .landing } },
+                    onContinue: { withAnimation(.easeInOut(duration: 0.3)) { screen = .setup } }
+                )
+                .transition(.move(edge: .trailing))
 
             case .setup:
-                SetupView()
-                    .transition(.move(edge: .trailing))
+                SetupView(
+                    onBack: { withAnimation(.easeInOut(duration: 0.3)) { screen = .modelPicker } }
+                )
+                .transition(.move(edge: .trailing))
             }
         }
         .fullScreenCover(isPresented: $router.showRecording) {
             RecordingView()
-        }
-        .onAppear {
-            // If model already downloaded from a previous launch, skip to setup
-            if modelManager.activeModel != nil {
-                screen = .setup
-            }
-        }
-        .onChange(of: modelManager.activeModel) { _, newValue in
-            if newValue != nil && screen == .modelPicker {
-                withAnimation(.easeInOut(duration: 0.35)) {
-                    screen = .setup
-                }
-            }
         }
     }
 }

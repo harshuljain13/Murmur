@@ -10,6 +10,10 @@ public final class TranscribeEngine {
     public init(modelPath: String) throws {
         var loadParams = transcribe_model_load_params()
         transcribe_model_load_params_init(&loadParams)
+        // Force CPU inference: iOS forbids GPU/Metal work while the app is in the
+        // background ("Insufficient Permission to submit GPU work from background").
+        // CPU keeps dictation working when triggered from the keyboard.
+        loadParams.backend = TRANSCRIBE_BACKEND_CPU_ACCEL
 
         var modelPtr: OpaquePointer?
         let status = transcribe_model_load_file(modelPath, &loadParams, &modelPtr)
@@ -20,6 +24,8 @@ public final class TranscribeEngine {
 
         var sessionParams = transcribe_session_params()
         transcribe_session_params_init(&sessionParams)
+        // Use all cores for CPU inference speed.
+        sessionParams.n_threads = Int32(max(2, ProcessInfo.processInfo.activeProcessorCount))
 
         var sessionPtr: OpaquePointer?
         let sStatus = transcribe_session_init(m, &sessionParams, &sessionPtr)

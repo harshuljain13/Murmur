@@ -61,6 +61,11 @@ struct RecordingView: View {
                     Text("Didn't catch that")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundStyle(.white)
+                    Text(transcribeService.lastDiagnostic)
+                        .font(.system(size: 12, design: .monospaced))
+                        .foregroundStyle(Color.white.opacity(0.5))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 24)
                 }
 
                 Spacer()

@@ -37,8 +37,8 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     private let targetFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32,
                                              sampleRate: 16_000, channels: 1, interleaved: false)!
     private let maxSamples = 16_000 * 30
-    private let silenceStopFrames = 22_000     // ~1.4s
-    private let speechThreshold: Float = 0.06
+    private let silenceStopFrames = 44_000     // ~2.75s of trailing silence
+    private let speechThreshold: Float = 0.04  // more forgiving of quiet speech
 
     private override init() { super.init() }
 

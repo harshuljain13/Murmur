@@ -1,10 +1,12 @@
 import SwiftUI
+import AVFoundation
 
 @main
 struct HandyApp: App {
     @StateObject private var modelManager = ModelManager()
     @StateObject private var transcribeService = TranscribeService.shared
     @StateObject private var router = AppRouter()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {
         WindowGroup {
@@ -13,19 +15,24 @@ struct HandyApp: App {
                 .environmentObject(transcribeService)
                 .environmentObject(router)
                 .task { await transcribeService.start(modelManager: modelManager) }
-                .onOpenURL { url in
-                    // Keyboard mic → handy://record: pop up the recording screen.
-                    // GPU transcription needs the foreground, so recording +
-                    // inference happen here, then the keyboard inserts on return.
-                    if url.scheme == "handy" && (url.host == "record" || url.host == "wake") {
-                        router.showRecording = true
-                    }
-                }
+                .onOpenURL { _ in startBackgroundServiceIfReady() }   // handy://wake
         }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active || phase == .background { startBackgroundServiceIfReady() }
+        }
+    }
+
+    /// Start the background dictation service only when a model is downloaded and
+    /// mic permission is granted. Keeps the mic warm so the keyboard can trigger
+    /// CPU transcription in the background — no app-switch.
+    private func startBackgroundServiceIfReady() {
+        guard transcribeService.hasModel,
+              AVAudioApplication.shared.recordPermission == .granted else { return }
+        BackgroundVoiceService.shared.startService(transcribeService: transcribeService)
     }
 }
 
-/// Drives full-screen presentation of the recording flow triggered by the keyboard.
+/// Retained for the recording screen (unused in the background flow).
 final class AppRouter: ObservableObject {
     @Published var showRecording = false
 }

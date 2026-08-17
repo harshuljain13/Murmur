@@ -10,10 +10,10 @@ public final class TranscribeEngine {
     public init(modelPath: String) throws {
         var loadParams = transcribe_model_load_params()
         transcribe_model_load_params_init(&loadParams)
-        // GPU (Metal): fastest. Requires the app to be in the FOREGROUND — iOS
-        // forbids GPU work from the background — so transcription runs in the app
-        // (the keyboard brings it forward). AUTO picks Metal on device.
-        loadParams.backend = TRANSCRIBE_BACKEND_AUTO
+        // CPU (with on-die accelerators, no GPU): works in the background, where
+        // the keyboard triggers dictation. iOS blocks GPU/Metal from background,
+        // and background GPU (BGContinuedProcessingTask .gpu) is iPad-M3-only.
+        loadParams.backend = TRANSCRIBE_BACKEND_CPU_ACCEL
 
         var modelPtr: OpaquePointer?
         let status = transcribe_model_load_file(modelPath, &loadParams, &modelPtr)

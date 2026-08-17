@@ -1,121 +1,158 @@
 import UIKit
 
-/// Thin client. iOS forbids microphone access inside keyboard extensions, so the
-/// mic button hands off to the Handy app (handy://record), which records +
-/// transcribes. When the user returns here, we insert the transcript.
+/// Compact Handy dictation bar. iOS forbids mic access inside keyboard
+/// extensions, so the mic button hands off to the Handy app to record +
+/// transcribe; the transcript is inserted here when the user returns.
 final class KeyboardViewController: UIInputViewController {
 
     private let globeButton = UIButton(type: .system)
     private let micButton   = UIButton(type: .system)
-    private let statusLabel = UILabel()
+    private let hintLabel   = UILabel()
+    private let waveIcon    = WaveGlyph()
 
     private let bridge = TranscriptionBridge.shared
-    private var pollTimer: Timer?
-    private var awaitingResult = false
-    private var requestTime: TimeInterval = 0
+    private let lastInsertedKey = "handy.lastInsertedTS"
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        insertPendingResultIfAny()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Returning from the Handy app — insert any fresh transcript.
         insertPendingResultIfAny()
     }
 
     override func textDidChange(_ textInput: UITextInput?) {
-        // Also catch the case where the keyboard re-activates in the host app.
         insertPendingResultIfAny()
     }
 
-    // MARK: - UI
+    // MARK: - UI  (compact bar, not a full grid)
 
     private func setupUI() {
-        view.backgroundColor = UIColor(red: 0.05, green: 0.05, blue: 0.06, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.10, green: 0.10, blue: 0.11, alpha: 1)
 
         globeButton.setImage(UIImage(systemName: "globe"), for: .normal)
-        globeButton.tintColor = UIColor.white.withAlphaComponent(0.5)
+        globeButton.tintColor = UIColor.white.withAlphaComponent(0.55)
         globeButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         globeButton.translatesAutoresizingMaskIntoConstraints = false
 
-        micButton.setImage(UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 26)), for: .normal)
-        micButton.tintColor = .white
-        micButton.backgroundColor = UIColor.white.withAlphaComponent(0.12)
-        micButton.layer.cornerRadius = 34
-        micButton.clipsToBounds = true
+        hintLabel.text = "Tap to dictate"
+        hintLabel.font = .systemFont(ofSize: 15, weight: .medium)
+        hintLabel.textColor = UIColor.white.withAlphaComponent(0.5)
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        waveIcon.translatesAutoresizingMaskIntoConstraints = false
+
+        // Prominent mic pill, top-right
+        var cfg = UIButton.Configuration.filled()
+        cfg.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold))
+        cfg.baseBackgroundColor = UIColor(red: 0.35, green: 0.5, blue: 1.0, alpha: 1)
+        cfg.baseForegroundColor = .white
+        cfg.cornerStyle = .capsule
+        cfg.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20)
+        micButton.configuration = cfg
         micButton.translatesAutoresizingMaskIntoConstraints = false
         micButton.addTarget(self, action: #selector(micTapped), for: .touchUpInside)
 
-        statusLabel.text = "Tap mic to dictate"
-        statusLabel.textAlignment = .center
-        statusLabel.font = .systemFont(ofSize: 13, weight: .medium)
-        statusLabel.textColor = UIColor.white.withAlphaComponent(0.45)
-        statusLabel.numberOfLines = 2
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        [globeButton, micButton, statusLabel].forEach { view.addSubview($0) }
+        [globeButton, waveIcon, hintLabel, micButton].forEach { view.addSubview($0) }
 
         NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 180),
+            view.heightAnchor.constraint(equalToConstant: 66),
 
-            globeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-            globeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            globeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 14),
+            globeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            globeButton.widthAnchor.constraint(equalToConstant: 30),
 
-            micButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            micButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -8),
-            micButton.widthAnchor.constraint(equalToConstant: 68),
-            micButton.heightAnchor.constraint(equalToConstant: 68),
+            hintLabel.leadingAnchor.constraint(equalTo: globeButton.trailingAnchor, constant: 10),
+            hintLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            statusLabel.topAnchor.constraint(equalTo: micButton.bottomAnchor, constant: 12),
-            statusLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            statusLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            statusLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            waveIcon.leadingAnchor.constraint(equalTo: hintLabel.trailingAnchor, constant: 12),
+            waveIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            waveIcon.heightAnchor.constraint(equalToConstant: 22),
+            waveIcon.widthAnchor.constraint(equalToConstant: 46),
+
+            micButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -14),
+            micButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 
     // MARK: - Actions
 
     @objc private func micTapped() {
-        bridge.clearResult()
-        requestTime = Date().timeIntervalSince1970
-        awaitingResult = true
-        setStatus("Opening Handy…")
+        hintLabel.text = "Opening Handy…"
+        waveIcon.startIdleAnimation()
 
-        // Open the main app to record (only the app can use the mic on iOS).
-        // Requires Full Access. Walk the responder chain to UIApplication and
-        // use the modern open(_:options:completionHandler:).
         let url = URL(string: "handy://record")!
         var responder: UIResponder? = self
         while let r = responder {
             if let app = r as? UIApplication {
-                app.open(url, options: [:]) { [weak self] success in
-                    if !success {
-                        self?.setStatus("Enable 'Allow Full Access' for Handy")
-                    }
+                app.open(url, options: [:]) { [weak self] ok in
+                    if !ok { self?.hintLabel.text = "Enable ‘Allow Full Access’" }
                 }
                 return
             }
             responder = r.next
         }
-        setStatus("Couldn't open Handy — enable Full Access")
+        hintLabel.text = "Enable ‘Allow Full Access’"
     }
 
+    /// Insert a fresh transcript. Uses a persisted timestamp so it works even
+    /// after the extension was terminated while the Handy app was open.
     private func insertPendingResultIfAny() {
-        guard awaitingResult else { return }
-        if let text = bridge.readResult(newerThan: requestTime) {
-            awaitingResult = false
-            textDocumentProxy.insertText(text)
-            bridge.clearResult()
-            setStatus("Inserted ✓")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
-                self?.setStatus("Tap mic to dictate")
-            }
+        guard let (text, ts) = bridge.latestResult() else { return }
+        let last = UserDefaults.standard.double(forKey: lastInsertedKey)
+        guard ts > last else { return }
+
+        textDocumentProxy.insertText(text)
+        UserDefaults.standard.set(ts, forKey: lastInsertedKey)
+        bridge.clearResult()
+
+        waveIcon.stopIdleAnimation()
+        hintLabel.text = "Inserted ✓"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [weak self] in
+            self?.hintLabel.text = "Tap to dictate"
+        }
+    }
+}
+
+/// A small static/animated waveform glyph shown in the bar (decorative — the
+/// live waveform appears in the Handy app during actual recording).
+final class WaveGlyph: UIView {
+    private let bars: [CALayer] = (0..<7).map { _ in CALayer() }
+    private let heights: [CGFloat] = [0.4, 0.75, 1.0, 0.55, 0.9, 0.5, 0.7]
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        bars.forEach {
+            $0.backgroundColor = UIColor.white.withAlphaComponent(0.35).cgColor
+            $0.cornerRadius = 1.5
+            layer.addSublayer($0)
+        }
+    }
+    required init?(coder: NSCoder) { fatalError() }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let w: CGFloat = 3, gap: CGFloat = 4
+        for (i, bar) in bars.enumerated() {
+            let h = bounds.height * heights[i]
+            bar.frame = CGRect(x: CGFloat(i) * (w + gap), y: (bounds.height - h) / 2, width: w, height: h)
         }
     }
 
-    private func setStatus(_ text: String) {
-        statusLabel.text = text
+    func startIdleAnimation() {
+        for (i, bar) in bars.enumerated() {
+            let a = CABasicAnimation(keyPath: "transform.scale.y")
+            a.fromValue = 0.5; a.toValue = 1.0
+            a.duration = 0.4 + Double(i) * 0.05
+            a.autoreverses = true
+            a.repeatCount = .infinity
+            bar.add(a, forKey: "pulse")
+        }
     }
+    func stopIdleAnimation() { bars.forEach { $0.removeAllAnimations() } }
 }

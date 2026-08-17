@@ -38,12 +38,17 @@ public final class TranscriptionBridge: @unchecked Sendable {
     }
 
     public func readResult(newerThan timestamp: TimeInterval) -> String? {
+        latestResult().flatMap { $0.ts > timestamp ? $0.text : nil }
+    }
+
+    /// The latest transcript on the pasteboard, with its timestamp. Survives
+    /// keyboard-extension termination (unlike any in-memory flag).
+    public func latestResult() -> (text: String, ts: TimeInterval)? {
         guard let tsData = pb.data(forPasteboardType: resultTsType),
               let ts = Double(String(data: tsData, encoding: .utf8) ?? ""),
-              ts > timestamp,
               let data = pb.data(forPasteboardType: resultType),
               let text = String(data: data, encoding: .utf8) else { return nil }
-        return text
+        return (text, ts)
     }
 
     public func clearResult() {

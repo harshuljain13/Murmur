@@ -3,6 +3,7 @@ import AVFoundation
 
 struct SetupView: View {
     @State private var micGranted = AVAudioApplication.shared.recordPermission == .granted
+    @ObservedObject private var diag = VoiceDiagnostics.shared
     var onBack: () -> Void = {}
 
     var body: some View {
@@ -53,6 +54,44 @@ struct SetupView: View {
                     StepRow(number: "4", text: "Tap **Handy** again → turn on **Allow Full Access**")
                 }
                 .padding(.horizontal, 24)
+
+                // Diagnostics + self-test
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Circle()
+                            .fill(diag.keepAlive ? Color.green : Color.orange)
+                            .frame(width: 8, height: 8)
+                        Text(diag.keepAlive ? "Background service running" : "Background service off")
+                            .font(.system(size: 13, weight: .medium))
+                            .foregroundStyle(Handy.text(0.7))
+                        Spacer()
+                        Button("Test Mic") {
+                            VoiceDiagnostics.shared.lastTranscript = ""
+                            BackgroundVoiceService.shared.testCapture()
+                        }
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(Handy.pink)
+                    }
+                    Text("Status: \(diag.status)")
+                        .font(.system(size: 12, design: .monospaced))
+                        .foregroundStyle(Handy.text(0.5))
+                    if !diag.lastTranscript.isEmpty {
+                        Text("Heard: \(diag.lastTranscript)")
+                            .font(.system(size: 12, design: .monospaced))
+                            .foregroundStyle(Handy.pink)
+                    }
+                    if !diag.lastError.isEmpty {
+                        Text(diag.lastError)
+                            .font(.system(size: 11, design: .monospaced))
+                            .foregroundStyle(.orange)
+                    }
+                }
+                .padding(14)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Handy.surface.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
 
                 Spacer()
 

@@ -22,6 +22,7 @@
 		7B80F22AD41B92F005CDA881 /* HandyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B5B6B9C9428726E767722 /* HandyColors.swift */; };
 		7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */; };
 		8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E048FE98BB7A92378930E /* TranscribeService.swift */; };
+		911B1C4CA65631D6BBF908AD /* VoiceDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCCF014D0155C5966051806 /* VoiceDiagnostics.swift */; };
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		AE0862F40B111665AAAF8475 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */; };
 		B2E098F2EDF26AE642967A53 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */; };
@@ -69,6 +70,7 @@
 		4438801C5723A2840E5FF006 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4C4A1705D73B30EBE46C27C1 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		53964BDF36E1682520B9BD98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5DCCF014D0155C5966051806 /* VoiceDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDiagnostics.swift; sourceTree = "<group>"; };
 		6A1E048FE98BB7A92378930E /* TranscribeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeService.swift; sourceTree = "<group>"; };
 		6ABAF8E560540ECEA15BDEE1 /* voxtral_realtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voxtral_realtime.h; sourceTree = "<group>"; };
 		74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */,
 				CD853313E2F5286232652686 /* SetupView.swift */,
 				6A1E048FE98BB7A92378930E /* TranscribeService.swift */,
+				5DCCF014D0155C5966051806 /* VoiceDiagnostics.swift */,
 			);
 			path = HandyApp;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				74ABBA80D7CAE01EF5687BC8 /* TranscribeEngine.swift in Sources */,
 				8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */,
 				BE176F5F78B206CCF2B3F6EF /* TranscriptionBridge.swift in Sources */,
+				911B1C4CA65631D6BBF908AD /* VoiceDiagnostics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

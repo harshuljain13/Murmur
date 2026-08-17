@@ -1,9 +1,8 @@
 import UIKit
 
-/// Handy dictation bar. Recording happens in the Handy app running in the
-/// BACKGROUND (iOS forbids mic in keyboards). We trigger it via Darwin signals
-/// and insert the transcript in place — no app switch. If the app isn't running
-/// in the background, we fall back to launching it once.
+/// Handy dictation bar. GPU transcription requires the foreground, so the mic
+/// button opens the Handy app (which records + transcribes with a waveform),
+/// then the transcript is inserted here when the user returns.
 final class KeyboardViewController: UIInputViewController {
 
     private let globeButton = UIButton(type: .system)
@@ -12,35 +11,21 @@ final class KeyboardViewController: UIInputViewController {
     private let waveIcon    = WaveGlyph()
 
     private let bridge = TranscriptionBridge.shared
-    private let signal = DarwinSignal.shared
-
-    private enum State { case idle, listening, transcribing }
-    private var state: State = .idle
-    private var requestTime: TimeInterval = 0
-    private var gotAck = false
-    private var pollTimer: Timer?
-    private var ackTimer: Timer?
-    private var watchdog: Timer?
+    private let lastInsertedKey = "handy.lastInsertedTS"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // App → keyboard signals
-        signal.observe(DarwinSignal.recordAck)   { [weak self] in self?.onAck() }
-        signal.observe(DarwinSignal.resultReady) { [weak self] in self?.tryInsertResult() }
-        tryInsertResult() // pick up any result produced while we were away
+        insertPendingResultIfAny()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tryInsertResult()
+        insertPendingResultIfAny()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        // Keyboard going away mid-capture — tell the app to stop the mic.
-        if state == .listening { signal.post(DarwinSignal.recordStop) }
-        cancelTimers()
+    override func textDidChange(_ textInput: UITextInput?) {
+        insertPendingResultIfAny()
     }
 
     // MARK: - UI
@@ -88,138 +73,46 @@ final class KeyboardViewController: UIInputViewController {
         ])
     }
 
-    // MARK: - Mic
+    // MARK: - Actions
 
     @objc private func micTapped() {
-        switch state {
-        case .idle:       startListening()
-        case .listening:  stopListening()
-        case .transcribing: break
-        }
-    }
-
-    private func startListening() {
-        requestTime = Date().timeIntervalSince1970
-        gotAck = false
-        bridge.clearResult()
-        signal.post(DarwinSignal.recordStart)
-
-        state = .listening
-        setMicActive(true)
-        hint("Listening…")
+        hintLabel.text = "Opening Handy…"
         waveIcon.startIdleAnimation()
 
-        // If the background app doesn't ack, it's asleep. Give it a moment, then
-        // show a message — do NOT auto-launch the app (that jarring redirect is
-        // what the user hates). They open Handy once and it stays alive.
-        ackTimer?.invalidate()
-        ackTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] _ in
-            guard let self, !self.gotAck else { return }
-            self.resetToIdle(hint: "Open the Handy app once, then try again")
-        }
-        startPolling()
-        // Overall safety net: never leave the UI stuck. Covers auto-stop with no
-        // speech, a killed app, or a lost result. (Max 30s record + transcribe.)
-        armWatchdog(seconds: 50, message: "No response — tap to try again")
-    }
-
-    private func stopListening() {
-        signal.post(DarwinSignal.recordStop)
-        state = .transcribing
-        setMicActive(false)
-        hint("Transcribing…")
-        waveIcon.stopIdleAnimation()
-        // Tighter timeout once we're only waiting on transcription.
-        armWatchdog(seconds: 15, message: "Didn’t catch that — tap to retry")
-    }
-
-    private func onAck() {
-        gotAck = true
-        ackTimer?.invalidate()
-    }
-
-    private func fallbackToForeground() {
-        // App isn't alive in the background — launch it so the background voice
-        // service starts. Then the user taps mic again for seamless dictation.
-        cancelTimers()
-        hint("Starting Handy — tap mic again")
-        let url = URL(string: "handy://wake")!
-        var r: UIResponder? = self
-        while let cur = r {
-            if let app = cur as? UIApplication {
+        let url = URL(string: "handy://record")!
+        var responder: UIResponder? = self
+        while let r = responder {
+            if let app = r as? UIApplication {
                 app.open(url, options: [:]) { [weak self] ok in
-                    if !ok { self?.hint("Enable ‘Allow Full Access’") }
+                    if !ok { self?.hintLabel.text = "Enable ‘Allow Full Access’" }
                 }
-                break
+                return
             }
-            r = cur.next
+            responder = r.next
         }
-        resetToIdle(hint: nil)
+        hintLabel.text = "Enable ‘Allow Full Access’"
     }
 
-    private func armWatchdog(seconds: TimeInterval, message: String) {
-        watchdog?.invalidate()
-        watchdog = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) { [weak self] _ in
-            guard let self, self.state != .idle else { return }
-            self.resetToIdle(hint: message)
-        }
-    }
+    /// Insert a fresh transcript on return. Uses a persisted timestamp so it
+    /// survives the keyboard extension being terminated while Handy was open.
+    private func insertPendingResultIfAny() {
+        guard let (text, ts) = bridge.latestResult() else { return }
+        let last = UserDefaults.standard.double(forKey: lastInsertedKey)
+        guard ts > last else { return }
 
-    private func cancelTimers() {
-        pollTimer?.invalidate(); pollTimer = nil
-        ackTimer?.invalidate(); ackTimer = nil
-        watchdog?.invalidate(); watchdog = nil
-    }
-
-    private func resetToIdle(hint text: String?) {
-        cancelTimers()
-        state = .idle
-        setMicActive(false)
-        waveIcon.stopIdleAnimation()
-        if let text { hint(text) }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in
-            if self?.state == .idle { self?.hint("Tap to dictate") }
-        }
-    }
-
-    // MARK: - Result
-
-    private func startPolling() {
-        pollTimer?.invalidate()
-        pollTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
-            self?.tryInsertResult()
-        }
-    }
-
-    private func tryInsertResult() {
-        guard let (text, ts) = bridge.latestResult(), ts > requestTime else { return }
-        cancelTimers()
         textDocumentProxy.insertText(text)
+        UserDefaults.standard.set(ts, forKey: lastInsertedKey)
         bridge.clearResult()
-        state = .idle
-        setMicActive(false)
+
         waveIcon.stopIdleAnimation()
-        hint("Inserted ✓")
+        hintLabel.text = "Inserted ✓"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [weak self] in
-            if self?.state == .idle { self?.hint("Tap to dictate") }
+            self?.hintLabel.text = "Tap to dictate"
         }
     }
-
-    // MARK: - Helpers
-
-    private func setMicActive(_ active: Bool) {
-        var cfg = micButton.configuration
-        cfg?.image = UIImage(systemName: active ? "stop.fill" : "mic.fill",
-                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold))
-        cfg?.baseBackgroundColor = active ? .systemRed : .handyPinkDeep
-        micButton.configuration = cfg
-    }
-
-    private func hint(_ t: String) { hintLabel.text = t }
 }
 
-/// Small decorative waveform glyph (live levels live in the app; the keyboard
-/// has no mic). Animates while listening.
+/// Small decorative waveform glyph shown in the bar; animates while waiting.
 final class WaveGlyph: UIView {
     private let bars: [CALayer] = (0..<7).map { _ in CALayer() }
     private let heights: [CGFloat] = [0.4, 0.75, 1.0, 0.55, 0.9, 0.5, 0.7]

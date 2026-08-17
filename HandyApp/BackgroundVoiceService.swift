@@ -44,6 +44,8 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
                 self.observing = true
                 self.registerNotifications()
                 DarwinSignal.shared.observe(DarwinSignal.recordStart) { [weak self] in
+                    // Evidence: did we (in the background) even receive the signal?
+                    VoiceDiagnostics.shared.set(status: "signal recordStart received")
                     self?.queue.async { self?.beginCapture() }
                 }
                 DarwinSignal.shared.observe(DarwinSignal.recordStop) { [weak self] in

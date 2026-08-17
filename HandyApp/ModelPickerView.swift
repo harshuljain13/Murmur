@@ -7,7 +7,7 @@ struct ModelPickerView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Handy.background.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 0) {
                 // Top bar with back button
@@ -57,10 +57,10 @@ struct ModelPickerView: View {
                             Image(systemName: "arrow.right")
                         }
                         .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .background(Color.white)
+                        .background(Handy.pinkDeep)
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                     }
                     .padding(.horizontal, 28)
@@ -94,10 +94,10 @@ struct ModelCard: View {
                         if variant.isRecommended {
                             Text("recommended")
                                 .font(.system(size: 11, weight: .medium))
-                                .foregroundStyle(Color.black)
+                                .foregroundStyle(.white)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 3)
-                                .background(Color.white)
+                                .background(Handy.pinkDeep)
                                 .clipShape(Capsule())
                         }
                     }
@@ -117,7 +117,7 @@ struct ModelCard: View {
                                 .fill(Color.white.opacity(0.1))
                                 .frame(height: 4)
                             Capsule()
-                                .fill(Color.white)
+                                .fill(Handy.pink)
                                 .frame(width: geo.size.width * progress, height: 4)
                         }
                     }
@@ -148,10 +148,10 @@ struct ModelCard: View {
             } label: {
                 Text("Download")
                     .font(.system(size: 14, weight: .medium))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.white)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
-                    .background(Color.white)
+                    .background(Handy.pinkDeep)
                     .clipShape(Capsule())
             }
 
@@ -167,10 +167,10 @@ struct ModelCard: View {
             if isActive {
                 HStack(spacing: 6) {
                     Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Handy.pink)
                     Text("Active")
                         .font(.system(size: 14, weight: .medium))
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Handy.pink)
                 }
             } else {
                 Button {

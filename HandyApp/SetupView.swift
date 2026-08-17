@@ -7,7 +7,7 @@ struct SetupView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Handy.background.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 0) {
 
@@ -64,10 +64,10 @@ struct SetupView: View {
                     } label: {
                         Text("Open Settings")
                             .font(.system(size: 17, weight: .semibold))
-                            .foregroundStyle(.black)
+                            .foregroundStyle(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 18)
-                            .background(Color.white)
+                            .background(Handy.pinkDeep)
                             .clipShape(RoundedRectangle(cornerRadius: 14))
                     }
 
@@ -105,9 +105,9 @@ private struct StepRow: View {
         HStack(alignment: .top, spacing: 16) {
             Text(number)
                 .font(.system(size: 14, weight: .bold))
-                .foregroundStyle(.black)
+                .foregroundStyle(.white)
                 .frame(width: 28, height: 28)
-                .background(Color.white)
+                .background(Handy.pinkDeep)
                 .clipShape(Circle())
 
             Text(.init(text))

@@ -33,16 +33,16 @@ final class KeyboardViewController: UIInputViewController {
     // MARK: - UI  (compact bar, not a full grid)
 
     private func setupUI() {
-        view.backgroundColor = UIColor(red: 0.10, green: 0.10, blue: 0.11, alpha: 1)
+        view.backgroundColor = .handyBackground
 
         globeButton.setImage(UIImage(systemName: "globe"), for: .normal)
-        globeButton.tintColor = UIColor.white.withAlphaComponent(0.55)
+        globeButton.tintColor = UIColor.handyCream.withAlphaComponent(0.55)
         globeButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         globeButton.translatesAutoresizingMaskIntoConstraints = false
 
         hintLabel.text = "Tap to dictate"
         hintLabel.font = .systemFont(ofSize: 15, weight: .medium)
-        hintLabel.textColor = UIColor.white.withAlphaComponent(0.5)
+        hintLabel.textColor = UIColor.handyCream.withAlphaComponent(0.55)
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
 
         waveIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ final class KeyboardViewController: UIInputViewController {
         // Prominent mic pill, top-right
         var cfg = UIButton.Configuration.filled()
         cfg.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold))
-        cfg.baseBackgroundColor = UIColor(red: 0.35, green: 0.5, blue: 1.0, alpha: 1)
+        cfg.baseBackgroundColor = .handyPinkDeep
         cfg.baseForegroundColor = .white
         cfg.cornerStyle = .capsule
         cfg.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20)
@@ -128,7 +128,7 @@ final class WaveGlyph: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         bars.forEach {
-            $0.backgroundColor = UIColor.white.withAlphaComponent(0.35).cgColor
+            $0.backgroundColor = UIColor.handyPink.withAlphaComponent(0.6).cgColor
             $0.cornerRadius = 1.5
             layer.addSublayer($0)
         }

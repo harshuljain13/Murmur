@@ -53,6 +53,7 @@ targets:
         LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
         OTHER_LDFLAGS: -ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
         HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
       path: HandyApp/Info.plist
       properties:

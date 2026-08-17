@@ -11,7 +11,7 @@ struct RecordingView: View {
 
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
+            Handy.background.ignoresSafeArea()
 
             VStack(spacing: 32) {
                 Spacer()
@@ -33,7 +33,7 @@ struct RecordingView: View {
 
                 case .done:
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 52)).foregroundStyle(.green)
+                        .font(.system(size: 52)).foregroundStyle(Handy.pink)
                     Text(resultText)
                         .font(.system(size: 18))
                         .foregroundStyle(.white)
@@ -74,10 +74,10 @@ struct RecordingView: View {
                 Button(action: primaryAction) {
                     Text(primaryTitle)
                         .font(.system(size: 17, weight: .semibold))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
-                        .background(Color.white)
+                        .background(Handy.pinkDeep)
                         .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
                 .padding(.horizontal, 28)
@@ -139,7 +139,7 @@ private struct WaveBars: View {
             HStack(alignment: .center, spacing: 4) {
                 ForEach(Array(levels.enumerated()), id: \.offset) { _, level in
                     Capsule()
-                        .fill(Color.white)
+                        .fill(Handy.pink)
                         .frame(width: 4, height: max(4, level * geo.size.height))
                 }
             }

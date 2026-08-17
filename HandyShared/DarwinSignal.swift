@@ -9,10 +9,11 @@ public final class DarwinSignal: @unchecked Sendable {
     private init() {}
 
     // Signal names
-    public static let recordStart = "computer.handy.rec.start"
-    public static let recordStop  = "computer.handy.rec.stop"
-    public static let resultReady = "computer.handy.rec.done"
-    public static let recordAck   = "computer.handy.rec.ack"   // app → keyboard: "I'm alive & recording"
+    public static let recordStart  = "computer.handy.rec.start"
+    public static let recordStop   = "computer.handy.rec.stop"
+    public static let recordCancel = "computer.handy.rec.cancel" // stop + discard
+    public static let resultReady  = "computer.handy.rec.done"
+    public static let recordAck    = "computer.handy.rec.ack"   // app → keyboard: "I'm alive & recording"
 
     public func post(_ name: String) {
         CFNotificationCenterPostNotification(

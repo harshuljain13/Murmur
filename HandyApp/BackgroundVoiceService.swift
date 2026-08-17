@@ -61,6 +61,9 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
                 DarwinSignal.shared.observe(DarwinSignal.recordStop) { [weak self] in
                     self?.queue.async { self?.finish(transcribe: true) }
                 }
+                DarwinSignal.shared.observe(DarwinSignal.recordCancel) { [weak self] in
+                    self?.queue.async { self?.finish(transcribe: false) }   // discard
+                }
             }
             self.startEngine()
         }

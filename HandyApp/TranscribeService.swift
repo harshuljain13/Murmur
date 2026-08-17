@@ -98,8 +98,7 @@ final class TranscribeService: ObservableObject {
                                         samples.count, seconds, peak, raw)
                 return nil
             }
-            bridge.writeResult(text)
-            UIPasteboard.general.string = text
+            bridge.writeResult(text) // writes custom markers + plain text in one item
             return text
         } catch {
             lastDiagnostic = String(format: "Inference error: %@ (%d samples, %.1fs, peak %.3f)",

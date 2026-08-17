@@ -33,8 +33,15 @@ public final class TranscriptionBridge: @unchecked Sendable {
 
     public func writeResult(_ text: String) {
         let ts = String(Date().timeIntervalSince1970)
-        pb.setItems([[resultType: text.data(using: .utf8)!,
-                      resultTsType: ts.data(using: .utf8)!]])
+        // Put the custom markers AND a plain-text representation in a SINGLE
+        // pasteboard item so the keyboard can auto-insert (custom types) while
+        // manual paste still works (plain text). Setting .string separately
+        // would wipe the custom types — that was the auto-paste bug.
+        pb.setItems([[
+            resultType:   text.data(using: .utf8)!,
+            resultTsType: ts.data(using: .utf8)!,
+            "public.utf8-plain-text": text.data(using: .utf8)!,
+        ]])
     }
 
     public func readResult(newerThan timestamp: TimeInterval) -> String? {

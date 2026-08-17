@@ -179,12 +179,23 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
             VoiceDiagnostics.shared.set(status: "ready (idle)")
             return
         }
-        VoiceDiagnostics.shared.set(status: "transcribing…")
+        let fileSize = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int) ?? 0
+        let samples = Self.loadPCM(url)
+        let peak = samples.map { abs($0) }.max() ?? 0
+        let secs = Double(samples.count) / 16_000.0
+        VoiceDiagnostics.shared.set(status: String(format: "transcribing %d smp (%.1fs) peak %.3f, file %d B",
+                                                    samples.count, secs, peak, fileSize ?? 0))
         let svc = transcribeService
         Task { @MainActor in
-            let text = await svc?.transcribeSamples(Self.loadPCM(url)) ?? nil
+            guard let svc else {
+                VoiceDiagnostics.shared.status = "no transcribe service"
+                DarwinSignal.shared.post(DarwinSignal.resultReady); return
+            }
+            let text = await svc.transcribeSamples(samples)
             VoiceDiagnostics.shared.status = "ready (idle)"
-            VoiceDiagnostics.shared.lastTranscript = text ?? "(no speech detected)"
+            VoiceDiagnostics.shared.lastTranscript = (text?.isEmpty == false)
+                ? text!
+                : String(format: "(empty — %d smp, peak %.3f, %d B)", samples.count, peak, fileSize ?? 0)
             DarwinSignal.shared.post(DarwinSignal.resultReady)
         }
     }

@@ -24,6 +24,9 @@ struct RecordingView: View {
                     WaveBars(levels: recorder.levels)
                         .frame(height: 80)
                         .padding(.horizontal, 40)
+                    Text("Just speak — stops automatically when you pause.")
+                        .font(.system(size: 13))
+                        .foregroundStyle(Handy.text(0.45))
 
                 case .transcribing:
                     ProgressView().tint(.white).scaleEffect(1.4)
@@ -102,17 +105,7 @@ struct RecordingView: View {
     private func primaryAction() {
         switch phase {
         case .recording:
-            let url = recorder.stop()
-            phase = .transcribing
-            Task {
-                guard transcribeService.hasModel else { phase = .noModel; return }
-                if let text = await transcribeService.transcribeRecording(url: url) {
-                    resultText = text
-                    phase = .done
-                } else {
-                    phase = .failed
-                }
-            }
+            finishAndTranscribe()
         case .done, .noModel:
             router.showRecording = false
         case .failed:
@@ -123,9 +116,25 @@ struct RecordingView: View {
         }
     }
 
+    private func finishAndTranscribe() {
+        guard phase == .recording else { return }  // guard against double auto-stop
+        let url = recorder.stop()
+        phase = .transcribing
+        Task {
+            guard transcribeService.hasModel else { phase = .noModel; return }
+            if let text = await transcribeService.transcribeRecording(url: url) {
+                resultText = text
+                phase = .done
+            } else {
+                phase = .failed
+            }
+        }
+    }
+
     private func begin() {
         guard transcribeService.hasModel else { phase = .noModel; return }
         phase = .recording
+        recorder.onAutoStop = { finishAndTranscribe() }  // auto-stop on a speech pause
         recorder.start()
     }
 }

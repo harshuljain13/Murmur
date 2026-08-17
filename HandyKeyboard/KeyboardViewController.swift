@@ -125,9 +125,10 @@ final class KeyboardViewController: UIInputViewController {
     }
 
     private func fallbackToForeground() {
-        // App isn't alive in the background — launch it once to record this time.
-        hint("Opening Handy…")
-        let url = URL(string: "handy://record")!
+        // App isn't alive in the background — launch it so the background voice
+        // service starts. Then the user taps mic again for seamless dictation.
+        hint("Starting Handy — tap mic again")
+        let url = URL(string: "handy://wake")!
         var r: UIResponder? = self
         while let cur = r {
             if let app = cur as? UIApplication {

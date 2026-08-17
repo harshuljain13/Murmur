@@ -65,13 +65,13 @@ struct SetupView: View {
                             .font(.system(size: 13, weight: .medium))
                             .foregroundStyle(Handy.text(0.7))
                         Spacer()
-                        Button("Test Mic") {
-                            VoiceDiagnostics.shared.lastTranscript = ""
-                            BackgroundVoiceService.shared.testCapture()
-                        }
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(Handy.pink)
+                        Button("Test Mic") { runMicTest() }
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundStyle(Handy.pink)
                     }
+                    Text("Mic permission: \(micPermissionString)")
+                        .font(.system(size: 12, design: .monospaced))
+                        .foregroundStyle(micGranted ? Handy.text(0.5) : .orange)
                     Text("Status: \(diag.status)")
                         .font(.system(size: 12, design: .monospaced))
                         .foregroundStyle(Handy.text(0.5))
@@ -129,6 +129,36 @@ struct SetupView: View {
     private func requestMic() {
         AVAudioApplication.requestRecordPermission { granted in
             DispatchQueue.main.async { micGranted = granted }
+        }
+    }
+
+    private var micPermissionString: String {
+        switch AVAudioApplication.shared.recordPermission {
+        case .granted: return "granted ✓"
+        case .denied: return "DENIED — Open Settings → Microphone"
+        case .undetermined: return "not asked yet"
+        @unknown default: return "unknown"
+        }
+    }
+
+    /// Ensures permission first, then runs the foreground capture test.
+    private func runMicTest() {
+        VoiceDiagnostics.shared.lastTranscript = ""
+        switch AVAudioApplication.shared.recordPermission {
+        case .granted:
+            BackgroundVoiceService.shared.testCapture()
+        case .undetermined:
+            AVAudioApplication.requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    micGranted = granted
+                    if granted { BackgroundVoiceService.shared.testCapture() }
+                    else { VoiceDiagnostics.shared.status = "mic denied" }
+                }
+            }
+        case .denied:
+            VoiceDiagnostics.shared.status = "mic DENIED — Open Settings"
+        @unknown default:
+            break
         }
     }
 

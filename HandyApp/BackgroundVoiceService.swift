@@ -55,7 +55,10 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     }
 
     /// Foreground self-test used by the in-app "Test Microphone" button.
-    func testCapture() { queue.async { [weak self] in self?.beginCapture() } }
+    func testCapture() {
+        VoiceDiagnostics.shared.set(status: "test: starting…")   // proves the UI updates
+        queue.async { [weak self] in self?.beginCapture() }
+    }
 
     // MARK: - Keep-alive (silent playback)
 
@@ -102,6 +105,16 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
 
     private func beginCapture() {
         guard !isRecording else { return }
+
+        // Hard requirement: microphone permission. Without it record() silently
+        // fails and the whole flow looks "dead".
+        let perm = AVAudioApplication.shared.recordPermission
+        guard perm == .granted else {
+            let p = (perm == .denied) ? "DENIED — enable in Settings" : "not granted yet"
+            VoiceDiagnostics.shared.set(status: "mic permission \(p)", error: "Microphone permission \(p)")
+            return
+        }
+
         do {
             try activateSession()   // ensure session live even if keep-alive lapsed
             try? FileManager.default.removeItem(at: recURL)

@@ -1,14 +1,18 @@
 import Foundation
 import AVFoundation
 
-/// Handles the microphone DYNAMICALLY and defensively:
-/// - Mic is OFF whenever idle (no engine, no session) — no battery drain, no
-///   permanent recording indicator.
-/// - The keyboard's voice button (recordStart signal) turns the mic ON.
-/// - Stop (recordStop signal), a speech pause, a 30s cap, an interruption, or a
-///   route change turns it OFF and transcribes what was captured.
-/// - Every AVAudioSession/engine failure is caught; the service never crashes
-///   the app — worst case it aborts the capture and lets the keyboard time out.
+/// Keeps the app alive in the background with a SILENT audio stream so the
+/// keyboard's mic button responds instantly (no app relaunch), while the
+/// MICROPHONE is only turned on during an actual dictation.
+///
+/// - Keep-alive: an AVAudioEngine plays a looping silent buffer (background
+///   audio) so iOS never suspends the app. No mic involved → no recording
+///   indicator when idle.
+/// - Dictation: on the keyboard's start signal we install an input tap (mic ON,
+///   indicator shows); on stop / pause / 30s cap / interruption / route change
+///   we remove the tap (mic OFF) and transcribe. The keep-alive keeps running.
+/// - Every audio failure is caught and the engine is rebuilt; the service never
+///   crashes the app.
 final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     static let shared = BackgroundVoiceService()
 
@@ -16,67 +20,128 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     private let lock = NSLock()
 
     private var engine: AVAudioEngine?
+    private var player: AVAudioPlayerNode?
     private var converter: AVAudioConverter?
-    private let targetFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32,
-                                             sampleRate: 16_000, channels: 1, interleaved: false)!
 
-    // Guarded by `lock` (touched from the audio render thread + control queue).
+    // Guarded by `lock` (audio render thread + control queue).
     private var captured: [Float] = []
     private var isCapturing = false
     private var heardSpeech = false
     private var silentFrames = 0
 
     private var observing = false
+    private var keepAliveRunning = false
     private weak var transcribeService: TranscribeService?
 
+    private let targetFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32,
+                                             sampleRate: 16_000, channels: 1, interleaved: false)!
     private let maxSamples = 16_000 * 30       // 30s hard cap
-    private let silenceStopFrames = 22_000     // ~1.4s of trailing silence
+    private let silenceStopFrames = 22_000     // ~1.4s trailing silence
     private let speechThreshold: Float = 0.06
 
     private override init() { super.init() }
 
     // MARK: - Service lifecycle
 
-    /// Registers signal + audio-event observers. Does NOT touch the mic.
     func startService(transcribeService: TranscribeService) {
         self.transcribeService = transcribeService
         queue.async { [weak self] in
-            guard let self, !self.observing else { return }
-            self.observing = true
-            self.registerAudioNotifications()
-            DarwinSignal.shared.observe(DarwinSignal.recordStart) { [weak self] in
-                self?.queue.async { self?.beginCapture() }
+            guard let self else { return }
+            if !self.observing {
+                self.observing = true
+                self.registerAudioNotifications()
+                DarwinSignal.shared.observe(DarwinSignal.recordStart) { [weak self] in
+                    self?.queue.async { self?.beginCapture() }
+                }
+                DarwinSignal.shared.observe(DarwinSignal.recordStop) { [weak self] in
+                    self?.queue.async { self?.finish(transcribe: true) }
+                }
             }
-            DarwinSignal.shared.observe(DarwinSignal.recordStop) { [weak self] in
-                self?.queue.async { self?.finish(transcribe: true) }
-            }
+            self.startKeepAlive()
         }
     }
 
-    // MARK: - Capture control (all on `queue`)
+    // MARK: - Keep-alive (silent playback; on `queue`)
+
+    private func startKeepAlive() {
+        guard !keepAliveRunning else { return }
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playAndRecord, mode: .default,
+                                    options: [.mixWithOthers, .defaultToSpeaker, .allowBluetooth])
+            try session.setActive(true, options: [])
+
+            let engine = AVAudioEngine()
+            let player = AVAudioPlayerNode()
+            engine.attach(player)
+
+            let fmt = engine.mainMixerNode.outputFormat(forBus: 0)
+            guard fmt.sampleRate > 0,
+                  let silent = AVAudioPCMBuffer(pcmFormat: fmt,
+                                                frameCapacity: AVAudioFrameCount(fmt.sampleRate * 0.5)) else {
+                throw NSError(domain: "handy.voice", code: -10)
+            }
+            silent.frameLength = silent.frameCapacity   // zero-filled = silence
+            engine.connect(player, to: engine.mainMixerNode, format: fmt)
+            engine.prepare()
+            try engine.start()
+            player.scheduleBuffer(silent, at: nil, options: [.loops], completionHandler: nil)
+            player.play()
+
+            self.engine = engine
+            self.player = player
+            self.keepAliveRunning = true
+        } catch {
+            keepAliveRunning = false
+            teardownEngine()
+        }
+    }
+
+    private func restartKeepAlive() {
+        finish(transcribe: false)   // abort any in-flight capture safely
+        teardownEngine()
+        startKeepAlive()
+    }
+
+    private func teardownEngine() {
+        if let engine {
+            engine.inputNode.removeTap(onBus: 0)
+            if engine.isRunning { engine.stop() }
+        }
+        player = nil
+        engine = nil
+        converter = nil
+        keepAliveRunning = false
+    }
+
+    // MARK: - Capture (mic on-demand; on `queue`)
 
     private func beginCapture() {
+        if !keepAliveRunning { startKeepAlive() }
+        guard keepAliveRunning, let engine else { return } // no ack → keyboard falls back
+
         lock.lock(); let already = isCapturing; lock.unlock()
         guard !already else { return }
 
-        do {
-            try startEngine()
-        } catch {
-            teardownEngine()          // leave mic fully off; keyboard will time out
+        let input = engine.inputNode
+        let inFormat = input.inputFormat(forBus: 0)
+        guard inFormat.sampleRate > 0, inFormat.channelCount > 0,
+              let conv = AVAudioConverter(from: inFormat, to: targetFormat) else {
             return
         }
+        converter = conv
 
         lock.lock()
         captured.removeAll(keepingCapacity: true)
-        heardSpeech = false
-        silentFrames = 0
-        isCapturing = true
+        heardSpeech = false; silentFrames = 0; isCapturing = true
         lock.unlock()
 
-        DarwinSignal.shared.post(DarwinSignal.recordAck) // "I'm live"
+        input.installTap(onBus: 0, bufferSize: 4096, format: inFormat) { [weak self] buffer, _ in
+            self?.consume(buffer, inFormat: inFormat)
+        }
+        DarwinSignal.shared.post(DarwinSignal.recordAck)
     }
 
-    /// Stop the mic and optionally transcribe. Safe to call repeatedly.
     private func finish(transcribe: Bool) {
         lock.lock()
         guard isCapturing else { lock.unlock(); return }
@@ -85,9 +150,10 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
         captured.removeAll(keepingCapacity: false)
         lock.unlock()
 
-        teardownEngine()               // mic OFF, session released to other apps
+        engine?.inputNode.removeTap(onBus: 0)   // mic OFF; keep-alive keeps running
+        converter = nil
 
-        guard transcribe, samples.count > 1_600 else { return }  // ignore < 0.1s
+        guard transcribe, samples.count > 1_600 else { return }
         let svc = transcribeService
         Task { @MainActor in
             _ = await svc?.transcribeSamples(samples)
@@ -95,48 +161,7 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
         }
     }
 
-    // MARK: - Engine (on `queue`)
-
-    private func startEngine() throws {
-        let session = AVAudioSession.sharedInstance()
-        try session.setCategory(.playAndRecord, mode: .measurement,
-                                options: [.duckOthers, .defaultToSpeaker, .allowBluetooth])
-        try session.setActive(true, options: [])
-
-        let engine = AVAudioEngine()
-        let input = engine.inputNode
-        let inFormat = input.inputFormat(forBus: 0)
-
-        // Guard against an invalid/zero hardware format — installing a tap with
-        // it would crash. Bail cleanly instead.
-        guard inFormat.sampleRate > 0, inFormat.channelCount > 0 else {
-            throw NSError(domain: "handy.voice", code: -1)
-        }
-        guard let converter = AVAudioConverter(from: inFormat, to: targetFormat) else {
-            throw NSError(domain: "handy.voice", code: -2)
-        }
-        self.converter = converter
-
-        input.installTap(onBus: 0, bufferSize: 4096, format: inFormat) { [weak self] buffer, _ in
-            self?.consume(buffer, inFormat: inFormat)
-        }
-        engine.prepare()
-        try engine.start()
-        self.engine = engine
-    }
-
-    private func teardownEngine() {
-        if let engine {
-            engine.inputNode.removeTap(onBus: 0)
-            if engine.isRunning { engine.stop() }
-        }
-        engine = nil
-        converter = nil
-        // Release the session so other apps regain audio and the mic light goes off.
-        try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
-    }
-
-    // MARK: - Audio tap (real-time thread — must be fast + never crash)
+    // MARK: - Audio tap (render thread — fast, never crashes)
 
     private func consume(_ buffer: AVAudioPCMBuffer, inFormat: AVAudioFormat) {
         guard let converter else { return }
@@ -172,34 +197,52 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
         if shouldStop { queue.async { [weak self] in self?.finish(transcribe: true) } }
     }
 
-    // MARK: - Audio session events (defensive)
+    // MARK: - Audio session / engine events (defensive)
 
     private func registerAudioNotifications() {
         let nc = NotificationCenter.default
-        nc.addObserver(self, selector: #selector(handleInterruption(_:)),
+        nc.addObserver(self, selector: #selector(onInterruption(_:)),
                        name: AVAudioSession.interruptionNotification, object: nil)
-        nc.addObserver(self, selector: #selector(handleRouteChange(_:)),
+        nc.addObserver(self, selector: #selector(onRouteChange(_:)),
                        name: AVAudioSession.routeChangeNotification, object: nil)
-        nc.addObserver(self, selector: #selector(handleMediaReset(_:)),
+        nc.addObserver(self, selector: #selector(onMediaReset(_:)),
                        name: AVAudioSession.mediaServicesWereResetNotification, object: nil)
+        nc.addObserver(self, selector: #selector(onConfigChange(_:)),
+                       name: .AVAudioEngineConfigurationChange, object: nil)
     }
 
-    /// Any disruption during capture → stop safely and transcribe what we have,
-    /// rather than risk the engine crashing on a changed route/format.
-    @objc private func handleInterruption(_ n: Notification) {
-        queue.async { [weak self] in self?.finish(transcribe: true) }
-    }
-
-    @objc private func handleRouteChange(_ n: Notification) {
+    @objc private func onInterruption(_ n: Notification) {
+        guard let info = n.userInfo,
+              let raw = info[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let type = AVAudioSession.InterruptionType(rawValue: raw) else { return }
         queue.async { [weak self] in
             guard let self else { return }
-            self.lock.lock(); let capturing = self.isCapturing; self.lock.unlock()
-            if capturing { self.finish(transcribe: true) }
+            switch type {
+            case .began:
+                self.finish(transcribe: true)   // stop mic; iOS is taking audio
+            case .ended:
+                self.restartKeepAlive()          // rebuild keep-alive after the call/Siri
+            @unknown default:
+                self.restartKeepAlive()
+            }
         }
     }
 
-    @objc private func handleMediaReset(_ n: Notification) {
-        queue.async { [weak self] in self?.finish(transcribe: false) }
+    @objc private func onRouteChange(_ n: Notification) {
+        queue.async { [weak self] in
+            guard let self else { return }
+            self.lock.lock(); let capturing = self.isCapturing; self.lock.unlock()
+            if capturing { self.finish(transcribe: true) }  // format changed → finalize
+            self.restartKeepAlive()
+        }
+    }
+
+    @objc private func onConfigChange(_ n: Notification) {
+        queue.async { [weak self] in self?.restartKeepAlive() }
+    }
+
+    @objc private func onMediaReset(_ n: Notification) {
+        queue.async { [weak self] in self?.restartKeepAlive() }
     }
 
     deinit { NotificationCenter.default.removeObserver(self) }

@@ -109,11 +109,13 @@ final class KeyboardViewController: UIInputViewController {
         hint("Listening…")
         waveIcon.startIdleAnimation()
 
-        // If the background app doesn't ack quickly, it isn't running → fall back.
+        // If the background app doesn't ack, it's asleep. Give it a moment, then
+        // show a message — do NOT auto-launch the app (that jarring redirect is
+        // what the user hates). They open Handy once and it stays alive.
         ackTimer?.invalidate()
-        ackTimer = Timer.scheduledTimer(withTimeInterval: 1.3, repeats: false) { [weak self] _ in
+        ackTimer = Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] _ in
             guard let self, !self.gotAck else { return }
-            self.fallbackToForeground()
+            self.resetToIdle(hint: "Open the Handy app once, then try again")
         }
         startPolling()
         // Overall safety net: never leave the UI stuck. Covers auto-stop with no

@@ -1,42 +1,36 @@
 import Foundation
 import AVFoundation
 
-/// Background dictation service.
+/// Background voice service built on PROVEN high-level APIs:
+/// - Keep-alive: an `AVAudioPlayer` loops a silent file so iOS keeps the app
+///   alive in the background (no mic → no recording indicator when idle).
+/// - Dictation: an `AVAudioRecorder` (the same path that works in the foreground)
+///   records 16 kHz mono on the keyboard's signal; the mic light shows only while
+///   recording. Silence / 30s cap auto-stops it, then we transcribe.
 ///
-/// iOS forbids an app from STARTING microphone capture while backgrounded — it
-/// only lets a mic session that's already running continue. So to let the
-/// keyboard trigger dictation in the background (no app relaunch), we keep a
-/// persistent mic engine running the whole time Handy is alive (mic indicator
-/// stays on — same as Wispr Flow). We only *accumulate* audio while actually
-/// dictating; the rest of the time the tapped buffers are discarded.
-///
-/// The tap is installed ONCE (never per-capture), so nothing fires
-/// AVAudioEngineConfigurationChange mid-dictation. Correct input format is used.
-/// Interruptions / route changes / media resets rebuild the engine safely.
+/// No AVAudioEngine → no configuration-change self-destruction, no format traps.
+/// Every failure is caught and reported to `VoiceDiagnostics`; never crashes.
 final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     static let shared = BackgroundVoiceService()
 
     private let queue = DispatchQueue(label: "computer.handy.voice")
-    private let lock = NSLock()
 
-    private var engine: AVAudioEngine?
-    private var converter: AVAudioConverter?
-
-    // Guarded by `lock`.
-    private var captured: [Float] = []
-    private var isCapturing = false
-    private var heardSpeech = false
-    private var silentFrames = 0
+    private var keepAlivePlayer: AVAudioPlayer?
+    private var recorder: AVAudioRecorder?
+    private var meterTimer: DispatchSourceTimer?
 
     private var observing = false
-    private var running = false          // engine started + tap installed
+    private var isRecording = false
+    private var heardSpeech = false
+    private var silentTicks = 0
+    private var totalTicks = 0
+
     private weak var transcribeService: TranscribeService?
 
-    private let targetFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32,
-                                             sampleRate: 16_000, channels: 1, interleaved: false)!
-    private let maxSamples = 16_000 * 30
-    private let silenceStopFrames = 22_000
-    private let speechThreshold: Float = 0.06
+    private let recURL = FileManager.default.temporaryDirectory.appendingPathComponent("handy_bg_rec.wav")
+    private let speechLevel: CGFloat = 0.14
+    private let silenceTicksToStop = 28   // ~1.4s at 0.05s ticks
+    private let maxTicks = 600            // 30s hard cap
 
     private override init() { super.init() }
 
@@ -56,168 +50,188 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
                     self?.queue.async { self?.finish(transcribe: true) }
                 }
             }
-            self.startEngine()
+            self.startKeepAlive()
         }
     }
 
-    /// In-app self-test (foreground). Reuses the same capture path.
+    /// Foreground self-test used by the in-app "Test Microphone" button.
     func testCapture() {
-        VoiceDiagnostics.shared.set(status: "test: starting…")
+        VoiceDiagnostics.shared.set(status: "test: starting…")   // proves the UI updates
         queue.async { [weak self] in self?.beginCapture() }
     }
 
-    // MARK: - Persistent mic engine (on `queue`)
+    // MARK: - Keep-alive (silent playback)
 
-    private func startEngine() {
-        guard !running else { return }
+    private func startKeepAlive() {
+        do {
+            try activateSession()
+            if keepAlivePlayer == nil {
+                guard let url = silentFileURL() else { throw NSError(domain: "handy.voice", code: -20) }
+                let player = try AVAudioPlayer(contentsOf: url)
+                player.numberOfLoops = -1
+                player.volume = 1        // content is inaudibly quiet; must NOT be 0
+                player.prepareToPlay()   // else iOS sees no output and suspends us
+                keepAlivePlayer = player
+            }
+            if keepAlivePlayer?.isPlaying == false { keepAlivePlayer?.play() }
+            VoiceDiagnostics.shared.set(status: "ready (idle)", keepAlive: keepAlivePlayer?.isPlaying == true, error: "")
+        } catch {
+            VoiceDiagnostics.shared.set(status: "keep-alive failed", keepAlive: false,
+                                        error: "keepAlive: \(error.localizedDescription)")
+        }
+    }
 
+    private func activateSession() throws {
+        let s = AVAudioSession.sharedInstance()
+        try s.setCategory(.playAndRecord, mode: .default,
+                          options: [.mixWithOthers, .defaultToSpeaker, .allowBluetooth])
+        try s.setActive(true, options: [])
+    }
+
+    private func silentFileURL() -> URL? {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("handy_keepalive_v2.wav")
+        if FileManager.default.fileExists(atPath: url.path) { return url }
+        guard let fmt = AVAudioFormat(standardFormatWithSampleRate: 44_100, channels: 1) else { return nil }
+        do {
+            let file = try AVAudioFile(forWriting: url, settings: fmt.settings)
+            guard let buf = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: 44_100) else { return nil }
+            buf.frameLength = buf.frameCapacity
+            // Inaudibly quiet tone (NOT pure zeros) so iOS treats this as real
+            // background playback and keeps the app alive to receive signals.
+            if let ch = buf.floatChannelData?[0] {
+                let n = Int(buf.frameLength)
+                for i in 0..<n {
+                    ch[i] = 0.0004 * sinf(2 * .pi * 440 * Float(i) / 44_100)
+                }
+            }
+            try file.write(from: buf)
+            return url
+        } catch { return nil }
+    }
+
+    // MARK: - Dictation (AVAudioRecorder)
+
+    private func beginCapture() {
+        guard !isRecording else { return }
+
+        // Hard requirement: microphone permission. Without it record() silently
+        // fails and the whole flow looks "dead".
         let perm = AVAudioApplication.shared.recordPermission
         guard perm == .granted else {
-            VoiceDiagnostics.shared.set(status: "mic permission not granted", keepAlive: false,
-                                        error: "Grant microphone access to enable dictation")
+            let p = (perm == .denied) ? "DENIED — enable in Settings" : "not granted yet"
+            VoiceDiagnostics.shared.set(status: "mic permission \(p)", error: "Microphone permission \(p)")
             return
         }
 
         do {
-            let session = AVAudioSession.sharedInstance()
-            try session.setCategory(.playAndRecord, mode: .measurement,
-                                    options: [.mixWithOthers, .defaultToSpeaker, .allowBluetooth])
-            try session.setActive(true, options: [])
-
-            let engine = AVAudioEngine()
-            let input = engine.inputNode
-            let fmt = input.outputFormat(forBus: 0)              // CORRECT tap format
-            guard fmt.sampleRate > 0, fmt.channelCount > 0,
-                  let conv = AVAudioConverter(from: fmt, to: targetFormat) else {
-                throw NSError(domain: "handy.voice", code: -1)
+            try activateSession()   // ensure session live even if keep-alive lapsed
+            try? FileManager.default.removeItem(at: recURL)
+            let settings: [String: Any] = [
+                AVFormatIDKey: Int(kAudioFormatLinearPCM),
+                AVSampleRateKey: 16_000,
+                AVNumberOfChannelsKey: 1,
+                AVLinearPCMBitDepthKey: 16,
+                AVLinearPCMIsFloatKey: false,
+                AVLinearPCMIsBigEndianKey: false,
+            ]
+            let rec = try AVAudioRecorder(url: recURL, settings: settings)
+            rec.isMeteringEnabled = true
+            guard rec.record() else {
+                VoiceDiagnostics.shared.set(status: "record() refused", error: "AVAudioRecorder.record() returned false")
+                return   // no ack → keyboard falls back
             }
-            converter = conv
-            input.installTap(onBus: 0, bufferSize: 4096, format: fmt) { [weak self] buffer, _ in
-                self?.consume(buffer, inFormat: fmt)
-            }
-            engine.prepare()
-            try engine.start()
-            self.engine = engine
-            running = true
-            VoiceDiagnostics.shared.set(status: "ready (mic warm)", keepAlive: true, error: "")
+            recorder = rec
+            isRecording = true
+            heardSpeech = false; silentTicks = 0; totalTicks = 0
+            startMeterTimer()
+            DarwinSignal.shared.post(DarwinSignal.recordAck)   // "mic is live"
+            VoiceDiagnostics.shared.set(status: "recording…", error: "")
         } catch {
-            running = false
-            teardownEngine()
-            VoiceDiagnostics.shared.set(status: "engine failed", keepAlive: false,
-                                        error: "startEngine: \(error.localizedDescription)")
+            VoiceDiagnostics.shared.set(status: "record failed", error: "beginCapture: \(error.localizedDescription)")
+            cleanupRecorder()
         }
     }
 
-    private func teardownEngine() {
-        if let engine {
-            engine.inputNode.removeTap(onBus: 0)
-            if engine.isRunning { engine.stop() }
+    private func startMeterTimer() {
+        meterTimer?.cancel()
+        let t = DispatchSource.makeTimerSource(queue: queue)
+        t.schedule(deadline: .now() + 0.05, repeating: 0.05)
+        t.setEventHandler { [weak self] in self?.sampleMeter() }
+        meterTimer = t
+        t.resume()
+    }
+
+    private func sampleMeter() {
+        guard isRecording, let rec = recorder else { return }
+        rec.updateMeters()
+        let power = rec.averagePower(forChannel: 0)      // -160…0 dB
+        let level = CGFloat(pow(10, power / 40))
+        totalTicks += 1
+        if level > speechLevel { heardSpeech = true; silentTicks = 0 }
+        else if heardSpeech { silentTicks += 1 }
+        if (heardSpeech && silentTicks >= silenceTicksToStop) || totalTicks >= maxTicks {
+            finish(transcribe: true)
         }
-        engine = nil
-        converter = nil
-        running = false
-    }
-
-    private func restartEngine() {
-        lock.lock(); let capturing = isCapturing; lock.unlock()
-        if capturing { finish(transcribe: true) }
-        teardownEngine()
-        startEngine()
-    }
-
-    // MARK: - Capture control
-
-    private func beginCapture() {
-        if !running { startEngine() }
-        guard running else { return }   // no ack → keyboard falls back
-
-        lock.lock()
-        guard !isCapturing else { lock.unlock(); return }
-        captured.removeAll(keepingCapacity: true)
-        heardSpeech = false; silentFrames = 0; isCapturing = true
-        lock.unlock()
-
-        DarwinSignal.shared.post(DarwinSignal.recordAck)
-        VoiceDiagnostics.shared.set(status: "recording…", error: "")
     }
 
     private func finish(transcribe: Bool) {
-        lock.lock()
-        guard isCapturing else { lock.unlock(); return }
-        isCapturing = false
-        let samples = captured
-        captured.removeAll(keepingCapacity: false)
-        lock.unlock()
-        // NOTE: engine keeps running (mic stays warm) — do NOT stop it.
+        guard isRecording else { return }
+        isRecording = false
+        meterTimer?.cancel(); meterTimer = nil
+        recorder?.stop()
+        let url = recorder?.url
+        recorder = nil                          // mic OFF; keep-alive player continues
 
-        guard transcribe, samples.count > 1_600 else {
-            VoiceDiagnostics.shared.set(status: "ready (mic warm)")
+        guard transcribe, let url,
+              FileManager.default.fileExists(atPath: url.path) else {
+            VoiceDiagnostics.shared.set(status: "ready (idle)")
             return
         }
+        let fileSize = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int) ?? 0
+        let samples = Self.loadPCM(url)
         let peak = samples.map { abs($0) }.max() ?? 0
-        VoiceDiagnostics.shared.set(status: String(format: "transcribing %d smp peak %.3f", samples.count, peak))
+        let secs = Double(samples.count) / 16_000.0
+        VoiceDiagnostics.shared.set(status: String(format: "transcribing %d smp (%.1fs) peak %.3f, file %d B",
+                                                    samples.count, secs, peak, fileSize ?? 0))
         let svc = transcribeService
         Task { @MainActor in
-            let text = await svc?.transcribeSamples(samples) ?? nil
-            VoiceDiagnostics.shared.status = "ready (mic warm)"
+            guard let svc else {
+                VoiceDiagnostics.shared.status = "no transcribe service"
+                DarwinSignal.shared.post(DarwinSignal.resultReady); return
+            }
+            let text = await svc.transcribeSamples(samples)
+            VoiceDiagnostics.shared.status = "ready (idle)"
             VoiceDiagnostics.shared.lastTranscript = (text?.isEmpty == false)
-                ? text! : String(format: "(empty — %d smp, peak %.3f)", samples.count, peak)
+                ? text!
+                : String(format: "(empty — %d smp, peak %.3f, %d B)", samples.count, peak, fileSize ?? 0)
             DarwinSignal.shared.post(DarwinSignal.resultReady)
         }
     }
 
-    // MARK: - Audio tap (render thread)
-
-    private func consume(_ buffer: AVAudioPCMBuffer, inFormat: AVAudioFormat) {
-        // Cheap early-out when idle: the mic is always warm, but we only spend
-        // cycles converting/accumulating while actually dictating.
-        lock.lock(); let capturing = isCapturing; lock.unlock()
-        guard capturing, let converter else { return }
-
-        let ratio = targetFormat.sampleRate / inFormat.sampleRate
-        let cap = AVAudioFrameCount(Double(buffer.frameLength) * ratio) + 32
-        guard cap > 0, let out = AVAudioPCMBuffer(pcmFormat: targetFormat, frameCapacity: cap) else { return }
-
-        var err: NSError?
-        var supplied = false
-        let status = converter.convert(to: out, error: &err) { _, inStatus in
-            if supplied { inStatus.pointee = .noDataNow; return nil }
-            supplied = true; inStatus.pointee = .haveData; return buffer
-        }
-        guard status != .error, err == nil, let ch = out.floatChannelData?[0] else { return }
-        let frames = Int(out.frameLength)
-        guard frames > 0 else { return }
-
-        var peak: Float = 0
-        for i in 0..<frames { peak = max(peak, abs(ch[i])) }
-
-        var shouldStop = false
-        lock.lock()
-        if isCapturing {
-            captured.append(contentsOf: UnsafeBufferPointer(start: ch, count: frames))
-            if peak > speechThreshold { heardSpeech = true; silentFrames = 0 }
-            else if heardSpeech { silentFrames += frames }
-            if (heardSpeech && silentFrames > silenceStopFrames) || captured.count >= maxSamples {
-                shouldStop = true
-            }
-        }
-        lock.unlock()
-
-        if shouldStop { queue.async { [weak self] in self?.finish(transcribe: true) } }
+    private func cleanupRecorder() {
+        meterTimer?.cancel(); meterTimer = nil
+        recorder?.stop(); recorder = nil
+        isRecording = false
     }
 
-    // MARK: - Audio session / engine events
+    private static func loadPCM(_ url: URL) -> [Float] {
+        guard let file = try? AVAudioFile(forReading: url),
+              let fmt = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16_000, channels: 1, interleaved: false),
+              let buf = AVAudioPCMBuffer(pcmFormat: fmt, frameCapacity: AVAudioFrameCount(file.length)) else { return [] }
+        do { try file.read(into: buf) } catch { return [] }
+        guard let ch = buf.floatChannelData?[0] else { return [] }
+        return Array(UnsafeBufferPointer(start: ch, count: Int(buf.frameLength)))
+    }
+
+    // MARK: - Audio session events
 
     private func registerNotifications() {
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(onInterruption(_:)),
                        name: AVAudioSession.interruptionNotification, object: nil)
-        nc.addObserver(self, selector: #selector(onRouteChange(_:)),
-                       name: AVAudioSession.routeChangeNotification, object: nil)
         nc.addObserver(self, selector: #selector(onMediaReset(_:)),
                        name: AVAudioSession.mediaServicesWereResetNotification, object: nil)
-        nc.addObserver(self, selector: #selector(onConfigChange(_:)),
-                       name: .AVAudioEngineConfigurationChange, object: nil)
+        // NOTE: route changes are handled inside AVAudioRecorder; no engine to rebuild.
     }
 
     @objc private func onInterruption(_ n: Notification) {
@@ -227,30 +241,23 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
             guard let self else { return }
             switch type {
             case .began:
-                self.lock.lock(); let c = self.isCapturing; self.lock.unlock()
-                if c { self.finish(transcribe: true) }
-                self.teardownEngine()          // iOS took the session
+                if self.isRecording { self.finish(transcribe: true) }
+                self.keepAlivePlayer?.pause()
             case .ended:
-                self.startEngine()             // bring the mic back
+                self.startKeepAlive()   // reactivate session + resume silent loop
             @unknown default:
-                self.restartEngine()
+                self.startKeepAlive()
             }
         }
     }
 
-    @objc private func onRouteChange(_ n: Notification) {
-        queue.async { [weak self] in self?.restartEngine() }
-    }
-
-    @objc private func onConfigChange(_ n: Notification) {
-        queue.async { [weak self] in
-            guard let self, self.running else { return }   // ignore the install-time change
-            self.restartEngine()
-        }
-    }
-
     @objc private func onMediaReset(_ n: Notification) {
-        queue.async { [weak self] in self?.restartEngine() }
+        queue.async { [weak self] in
+            guard let self else { return }
+            self.cleanupRecorder()
+            self.keepAlivePlayer = nil
+            self.startKeepAlive()
+        }
     }
 
     deinit { NotificationCenter.default.removeObserver(self) }

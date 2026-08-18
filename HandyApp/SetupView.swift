@@ -3,6 +3,7 @@ import AVFoundation
 
 struct SetupView: View {
     @State private var micGranted = AVAudioApplication.shared.recordPermission == .granted
+    @State private var polishOn = PolishService.isEnabled
     @ObservedObject private var diag = VoiceDiagnostics.shared
     var onBack: () -> Void = {}
 
@@ -54,6 +55,27 @@ struct SetupView: View {
                     StepRow(number: "4", text: "Tap **Handy** again → turn on **Allow Full Access**")
                 }
                 .padding(.horizontal, 24)
+
+                // Polish toggle (Apple on-device LLM)
+                if PolishService.isAvailable {
+                    Toggle(isOn: $polishOn) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("✨ Polish my dictation")
+                                .font(.system(size: 15, weight: .semibold))
+                                .foregroundStyle(Handy.cream)
+                            Text("Clean up filler & grammar into professional text — on device.")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Handy.text(0.5))
+                        }
+                    }
+                    .tint(Handy.pinkDeep)
+                    .onChange(of: polishOn) { _, v in PolishService.isEnabled = v }
+                    .padding(14)
+                    .background(Handy.surface.opacity(0.5))
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
+                }
 
                 // Diagnostics + self-test
                 VStack(alignment: .leading, spacing: 8) {

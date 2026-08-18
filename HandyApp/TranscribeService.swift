@@ -43,9 +43,11 @@ final class TranscribeService: ObservableObject {
         if await !inference.isLoaded() { await loadEngine() }
         guard await inference.isLoaded() else { return nil }
         do {
-            let text = try await inference.transcribe(samples: samples)
+            let raw = try await inference.transcribe(samples: samples)
                 .trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !text.isEmpty else { return nil }
+            guard !raw.isEmpty else { return nil }
+            // Optionally clean the raw dictation into professional text (on-device).
+            let text = await PolishService.polish(raw)
             bridge.writeResult(text)
             return text
         } catch {

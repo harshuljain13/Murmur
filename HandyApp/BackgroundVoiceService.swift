@@ -32,6 +32,8 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
 
     private var observing = false
     private var running = false
+    private var idleTimer: DispatchSourceTimer?
+    private let idleTimeout: TimeInterval = 90   // release the mic after 90s idle
     private weak var transcribeService: TranscribeService?
 
     private let targetFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32,
@@ -107,6 +109,7 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
             try engine.start()
             self.engine = engine
             running = true
+            armIdleTimer()
             VoiceDiagnostics.shared.set(status: "ready (mic warm)", keepAlive: true, error: "")
         } catch {
             running = false
@@ -114,6 +117,29 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
             VoiceDiagnostics.shared.set(status: "engine failed", keepAlive: false,
                                         error: "startEngine: \(error.localizedDescription)")
         }
+    }
+
+    // MARK: - Idle auto-sleep (release the mic when unused)
+
+    private func armIdleTimer() {
+        idleTimer?.cancel()
+        let t = DispatchSource.makeTimerSource(queue: queue)
+        t.schedule(deadline: .now() + idleTimeout)
+        t.setEventHandler { [weak self] in self?.sleepMic() }
+        idleTimer = t
+        t.resume()
+    }
+
+    private func cancelIdleTimer() {
+        idleTimer?.cancel(); idleTimer = nil
+    }
+
+    private func sleepMic() {
+        cancelIdleTimer()
+        lock.lock(); let capturing = isCapturing; lock.unlock()
+        guard !capturing else { return }          // don't sleep mid-dictation
+        teardownEngine()                           // mic OFF; app may now suspend
+        VoiceDiagnostics.shared.set(status: "mic asleep — open Handy to re-arm", keepAlive: false)
     }
 
     private func teardownEngine() {
@@ -129,6 +155,7 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
     // MARK: - Capture (engine already running → works in background)
 
     private func beginCapture() {
+        cancelIdleTimer()                 // active use — keep the mic warm
         if !running { startEngine() }
         guard running else {
             VoiceDiagnostics.shared.set(status: "engine not running")
@@ -151,7 +178,8 @@ final class BackgroundVoiceService: NSObject, @unchecked Sendable {
         let samples = captured
         captured.removeAll(keepingCapacity: false)
         lock.unlock()
-        // Engine keeps running (mic warm) — never stopped here.
+        // Engine keeps running (mic warm); idle timer will release it if unused.
+        armIdleTimer()
 
         let peak = samples.map { abs($0) }.max() ?? 0
         guard transcribe, samples.count > 1_600 else {

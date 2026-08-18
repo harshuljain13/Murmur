@@ -194,13 +194,53 @@ final class KeyboardViewController: UIInputViewController {
         guard ts > last else { return }
         cancelTimers()
         UserDefaults.standard.set(ts, forKey: lastInsertedKey)
-        textDocumentProxy.insertText(text)
+        smartInsert(text)
         bridge.clearResult()
         setMode(.idle)
         hintLabel.text = "Inserted ✓"
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [weak self] in
             if self?.mode == .idle { self?.hintLabel.text = "Tap to dictate" }
         }
+    }
+
+    /// Merge the transcript with whatever's already in the field: fix the join
+    /// spacing and capitalization instead of blindly appending.
+    private func smartInsert(_ raw: String) {
+        var text = raw.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !text.isEmpty else { return }
+
+        let before = textDocumentProxy.documentContextBeforeInput ?? ""
+        let trimmedBefore = before.trimmingCharacters(in: .whitespacesAndNewlines)
+        let atStart = trimmedBefore.isEmpty
+        let afterSentence = trimmedBefore.hasSuffix(".") || trimmedBefore.hasSuffix("!")
+                          || trimmedBefore.hasSuffix("?") || trimmedBefore.hasSuffix("\n")
+
+        // Capitalization: start of field / new sentence → capitalize;
+        // continuing mid-sentence → lowercase the (usually capitalized) first word.
+        if atStart || afterSentence {
+            text = text.prefix(1).uppercased() + text.dropFirst()
+        } else if let first = text.first, first.isUppercase,
+                  !isLikelyProperNoun(text) {
+            text = text.prefix(1).lowercased() + text.dropFirst()
+        }
+
+        // Spacing: ensure a single space between existing text and the new words,
+        // unless we're starting fresh or the new text begins with punctuation.
+        if !before.isEmpty, let lastChar = before.last, !lastChar.isWhitespace,
+           let firstNew = text.first, !",.!?;:)]".contains(firstNew) {
+            text = " " + text
+        }
+
+        textDocumentProxy.insertText(text)
+    }
+
+    /// Crude guard so we don't lowercase obvious proper nouns / "I".
+    private func isLikelyProperNoun(_ s: String) -> Bool {
+        let firstWord = s.split(separator: " ").first.map(String.init) ?? s
+        if firstWord == "I" || firstWord.hasPrefix("I'") { return true }
+        // Two capitals or an all-caps token → treat as a name/acronym.
+        let caps = firstWord.filter { $0.isUppercase }.count
+        return caps >= 2
     }
 
     private func backToIdle(after: TimeInterval) {

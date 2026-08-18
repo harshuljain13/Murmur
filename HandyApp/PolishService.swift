@@ -1,55 +1,59 @@
 import Foundation
 
-#if canImport(FoundationModels)
-import FoundationModels
-#endif
-
-/// Rewrites raw dictation into clean, professional text using Apple's on-device
-/// Foundation model (iOS 26 + Apple Intelligence). Fully local; falls back to
-/// the raw transcript if the model is unavailable or errors.
+/// Rewrites raw dictation into clean, professional text using an on-device,
+/// open-source LLM (Qwen2.5-0.5B-Instruct via llama.cpp). We control the system
+/// prompt, so it only re-words — it never adds content or answers questions.
+/// Runs on CPU (background-safe). Falls back to the raw transcript on any error.
 enum PolishService {
 
-    private static let key = "handy.polishEnabled"
+    // Model
+    static let modelURL = URL(string: "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct-GGUF/resolve/main/qwen2.5-0.5b-instruct-q4_k_m.gguf")!
+    static let modelFilename = "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    static let modelExpectedBytes: Int64 = 491_400_032
+
+    private static let enabledKey = "handy.polishEnabled"
+    private static let engine = LlamaEngine()
+
+    private static let systemPrompt = """
+    You are a text-cleanup tool for voice dictation. Rewrite the user's message \
+    to fix grammar, spelling, punctuation and capitalization, and to remove filler \
+    words like "um", "uh", "you know", and repeated "like". Keep the original \
+    meaning, wording and tone as much as possible. Do NOT add new information, do \
+    NOT answer questions, do NOT explain, do NOT add greetings or sign-offs. \
+    Output ONLY the cleaned-up text.
+    """
+
+    // MARK: - Toggle
 
     static var isEnabled: Bool {
-        get { UserDefaults.standard.object(forKey: key) as? Bool ?? true }   // on by default
-        set { UserDefaults.standard.set(newValue, forKey: key) }
+        get { UserDefaults.standard.object(forKey: enabledKey) as? Bool ?? false }
+        set { UserDefaults.standard.set(newValue, forKey: enabledKey) }
     }
 
-    /// Whether the on-device model is usable right now.
-    static var isAvailable: Bool {
-        #if canImport(FoundationModels)
-        if #available(iOS 26.0, *) {
-            if case .available = SystemLanguageModel.default.availability { return true }
-        }
-        #endif
-        return false
+    // MARK: - Model file
+
+    static var modelPath: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("Models/\(modelFilename)")
     }
 
-    private static let instructions = """
-    You clean up dictated speech into clear, professional writing. Fix grammar, \
-    spelling, punctuation and capitalization, and remove filler words such as \
-    "um", "uh", "you know" and repeated "like". Preserve the speaker's meaning \
-    and tone; do not add new information or answer questions. Respond with ONLY \
-    the cleaned-up text and nothing else.
-    """
+    static var isModelDownloaded: Bool {
+        guard let size = try? FileManager.default.attributesOfItem(atPath: modelPath.path)[.size] as? Int64 else { return false }
+        return size >= Int64(Double(modelExpectedBytes) * 0.99)
+    }
+
+    // MARK: - Polish
 
     static func polish(_ text: String) async -> String {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard isEnabled, !trimmed.isEmpty else { return text }
+        guard isEnabled, isModelDownloaded, !trimmed.isEmpty else { return text }
 
-        #if canImport(FoundationModels)
-        if #available(iOS 26.0, *), case .available = SystemLanguageModel.default.availability {
-            do {
-                let session = LanguageModelSession(instructions: instructions)
-                let response = try await session.respond(to: trimmed)
-                let out = response.content.trimmingCharacters(in: .whitespacesAndNewlines)
-                return out.isEmpty ? text : out
-            } catch {
-                return text   // fall back to the raw transcript
-            }
-        }
-        #endif
+        await engine.loadIfNeeded(path: modelPath.path)
+        guard await engine.isLoaded else { return text }
+
+        let cleaned = await engine.rewrite(system: systemPrompt, text: trimmed)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        if let cleaned, !cleaned.isEmpty { return cleaned }
         return text
     }
 }

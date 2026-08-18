@@ -107,7 +107,7 @@ public final class ModelManager: ObservableObject {
 
 /// Downloads a large file to disk at native speed using URLSessionDownloadTask,
 /// reporting progress. `didFinishDownloadingTo` only fires on a COMPLETE download.
-private final class ModelDownloader: NSObject, URLSessionDownloadDelegate, @unchecked Sendable {
+final class ModelDownloader: NSObject, URLSessionDownloadDelegate, @unchecked Sendable {
     private var continuation: CheckedContinuation<URL, Error>?
     private var progressHandler: (@Sendable (Double) -> Void)?
     private var savedURL: URL?

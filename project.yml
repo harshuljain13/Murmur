@@ -50,9 +50,13 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: computer.handy.app
         INFOPLIST_FILE: HandyApp/Info.plist
         SWIFT_OBJC_BRIDGING_HEADER: TranscribeCpp/transcribe_bridge.h
-        LIBRARY_SEARCH_PATHS: $(PROJECT_DIR)/build-ios
-        OTHER_LDFLAGS: -ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
-        HEADER_SEARCH_PATHS: $(PROJECT_DIR)/TranscribeCpp/include
+        LIBRARY_SEARCH_PATHS:
+          - $(PROJECT_DIR)/build-ios
+          - $(PROJECT_DIR)/build-llama-ios
+        OTHER_LDFLAGS: -ltranscribe -lhandyllm -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation
+        HEADER_SEARCH_PATHS:
+          - $(PROJECT_DIR)/TranscribeCpp/include
+          - $(PROJECT_DIR)/LlamaLLM/include
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     entitlements:
       path: HandyApp/HandyApp.entitlements

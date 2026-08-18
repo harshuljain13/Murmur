@@ -4,6 +4,7 @@ import AVFoundation
 struct SetupView: View {
     @State private var micGranted = AVAudioApplication.shared.recordPermission == .granted
     @State private var polishOn = PolishService.isEnabled
+    @StateObject private var polishModel = PolishModelManager()
     @ObservedObject private var diag = VoiceDiagnostics.shared
     var onBack: () -> Void = {}
 
@@ -56,26 +57,44 @@ struct SetupView: View {
                 }
                 .padding(.horizontal, 24)
 
-                // Polish toggle (Apple on-device LLM)
-                if PolishService.isAvailable {
+                // Polish toggle — on-device open-source LLM (Qwen 0.5B)
+                VStack(alignment: .leading, spacing: 8) {
                     Toggle(isOn: $polishOn) {
                         VStack(alignment: .leading, spacing: 2) {
                             Text("✨ Polish my dictation")
                                 .font(.system(size: 15, weight: .semibold))
                                 .foregroundStyle(Handy.cream)
-                            Text("Clean up filler & grammar into professional text — on device.")
+                            Text("Clean filler & grammar into professional text — on-device, open-source (Qwen 0.5B).")
                                 .font(.system(size: 12))
                                 .foregroundStyle(Handy.text(0.5))
                         }
                     }
                     .tint(Handy.pinkDeep)
-                    .onChange(of: polishOn) { _, v in PolishService.isEnabled = v }
-                    .padding(14)
-                    .background(Handy.surface.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .padding(.horizontal, 24)
-                    .padding(.top, 16)
+                    .onChange(of: polishOn) { _, v in
+                        PolishService.isEnabled = v
+                        if v && polishModel.state != .ready { Task { await polishModel.download() } }
+                    }
+
+                    switch polishModel.state {
+                    case .downloading(let p):
+                        ProgressView(value: p).tint(Handy.pink)
+                        Text("Downloading model… \(Int(p * 100))%")
+                            .font(.system(size: 12)).foregroundStyle(Handy.text(0.5))
+                    case .ready:
+                        Text("Model ready ✓").font(.system(size: 12)).foregroundStyle(Handy.pink)
+                    case .notDownloaded:
+                        if polishOn {
+                            Text("Needs a one-time ~469 MB download.")
+                                .font(.system(size: 12)).foregroundStyle(.orange)
+                        }
+                    }
                 }
+                .padding(14)
+                .background(Handy.surface.opacity(0.5))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
+                .onAppear { polishModel.refresh() }
 
                 // Diagnostics + self-test
                 VStack(alignment: .leading, spacing: 8) {

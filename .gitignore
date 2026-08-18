@@ -22,3 +22,13 @@ build-ios/CMakeCache.txt
 Pods/
 .build/
 HandyShared/Models/
+build-llama-ios/CMakeFiles/
+build-llama-ios/*.xcodeproj/
+build-llama-ios/build/
+build-llama-ios/ggml/
+build-llama-ios/src/
+build-llama-ios/common/
+build-llama-ios/*.cmake
+build-llama-ios/CMakeCache.txt
+build-llama-ios/*.o
+build-llama-ios/*.txt

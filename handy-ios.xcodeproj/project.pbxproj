@@ -10,6 +10,7 @@
 		1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E079793B8C65B3D871F504C8 /* ModelVariant.swift */; };
 		1C8B5AD5D3C220B29D7CC019 /* HandyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B5B6B9C9428726E767722 /* HandyColors.swift */; };
 		27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81D2832195FDCA62F53744A /* LandingView.swift */; };
+		296527CE5C69D2EAA9EE82C1 /* PolishModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB974CC3C312DB356DDAC10 /* PolishModelManager.swift */; };
 		2B2CBEBDAF293C793CB9E617 /* KeychainTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707B27D1B468DCE360CEA79C /* KeychainTransfer.swift */; };
 		2CFFEE88C086840002085F71 /* DarwinSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2F46EC4102802E6F5107FB /* DarwinSignal.swift */; };
 		42721359941CB835A56BFEB4 /* AppRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5FAED1EBDBEFC82EFEFD17 /* AppRecorder.swift */; };
@@ -25,6 +26,7 @@
 		7B80F22AD41B92F005CDA881 /* HandyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B5B6B9C9428726E767722 /* HandyColors.swift */; };
 		7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */; };
 		8D0E7C89A112A2D27F71481E /* TranscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1E048FE98BB7A92378930E /* TranscribeService.swift */; };
+		8E27B36B23AF8B946CEE3C43 /* LlamaPolisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E924AAB36F5AE7B87A56D567 /* LlamaPolisher.swift */; };
 		911B1C4CA65631D6BBF908AD /* VoiceDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCCF014D0155C5966051806 /* VoiceDiagnostics.swift */; };
 		9225CB2D271B9570AA164AE2 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */; };
 		AE0862F40B111665AAAF8475 /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */; };
@@ -76,6 +78,7 @@
 		5DCCF014D0155C5966051806 /* VoiceDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDiagnostics.swift; sourceTree = "<group>"; };
 		6A1E048FE98BB7A92378930E /* TranscribeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeService.swift; sourceTree = "<group>"; };
 		6ABAF8E560540ECEA15BDEE1 /* voxtral_realtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voxtral_realtime.h; sourceTree = "<group>"; };
+		6BB974CC3C312DB356DDAC10 /* PolishModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishModelManager.swift; sourceTree = "<group>"; };
 		707B27D1B468DCE360CEA79C /* KeychainTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTransfer.swift; sourceTree = "<group>"; };
 		74787F760F3C8527E901E8F4 /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
 		785CAF7887C80651EEA9FBE6 /* HandyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HandyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +102,7 @@
 		CF95A4CE429A9C6F0FE888D2 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
 		E079793B8C65B3D871F504C8 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
 		E90A5C44EA8026922EF89CD7 /* HandyKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HandyKeyboard.entitlements; sourceTree = "<group>"; };
+		E924AAB36F5AE7B87A56D567 /* LlamaPolisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaPolisher.swift; sourceTree = "<group>"; };
 		EEAC76452683F44EE6E24F93 /* TranscribeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,7 +173,9 @@
 				03B58C4182B7EDB383C8789F /* HandyTheme.swift */,
 				CD7BB4D351697B4CBB0AB085 /* Info.plist */,
 				B81D2832195FDCA62F53744A /* LandingView.swift */,
+				E924AAB36F5AE7B87A56D567 /* LlamaPolisher.swift */,
 				0A236BA13B6D0C6660F689C0 /* ModelPickerView.swift */,
+				6BB974CC3C312DB356DDAC10 /* PolishModelManager.swift */,
 				8C4EC6320C51D237985755B4 /* PolishService.swift */,
 				A85AAE11EF9F3A55A76890E2 /* RecordingView.swift */,
 				CD853313E2F5286232652686 /* SetupView.swift */,
@@ -321,9 +327,11 @@
 				C7A5570F45E4227229190E8D /* HandyTheme.swift in Sources */,
 				2B2CBEBDAF293C793CB9E617 /* KeychainTransfer.swift in Sources */,
 				27A2F741762A2C305B5BC8ED /* LandingView.swift in Sources */,
+				8E27B36B23AF8B946CEE3C43 /* LlamaPolisher.swift in Sources */,
 				D18FA7DC5201967082B1199A /* ModelManager.swift in Sources */,
 				7F709546C86BA4FFC2B6BE74 /* ModelPickerView.swift in Sources */,
 				1A0747B383A2A21B0684B450 /* ModelVariant.swift in Sources */,
+				296527CE5C69D2EAA9EE82C1 /* PolishModelManager.swift in Sources */,
 				6FAAECF59F0405DE6FE7693A /* PolishService.swift in Sources */,
 				AE0862F40B111665AAAF8475 /* RecordingView.swift in Sources */,
 				C1B8A76C3D785BCF1BB0F7F4 /* SetupView.swift in Sources */,
@@ -492,14 +500,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/TranscribeCpp/include",
+					"$(PROJECT_DIR)/LlamaLLM/include",
+				);
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build-ios",
+					"$(PROJECT_DIR)/build-llama-ios",
+				);
+				OTHER_LDFLAGS = "-ltranscribe -lhandyllm -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
@@ -529,14 +543,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HandyApp/HandyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/TranscribeCpp/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/TranscribeCpp/include",
+					"$(PROJECT_DIR)/LlamaLLM/include",
+				);
 				INFOPLIST_FILE = HandyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/build-ios";
-				OTHER_LDFLAGS = "-ltranscribe -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build-ios",
+					"$(PROJECT_DIR)/build-llama-ios",
+				);
+				OTHER_LDFLAGS = "-ltranscribe -lhandyllm -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
 				PRODUCT_BUNDLE_IDENTIFIER = computer.handy.app;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;

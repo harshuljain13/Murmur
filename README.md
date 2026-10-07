@@ -10,8 +10,8 @@
 <br/>
 
 [![Platform](https://img.shields.io/badge/platform-iOS%2017%2B-black?style=for-the-badge&logo=apple)](https://developer.apple.com)
-[![Offline](https://img.shields.io/badge/100%25-offline-7c67ea?style=for-the-badge)](#)
-[![Model](https://img.shields.io/badge/Parakeet-0.6B-8b5cf6?style=for-the-badge)](https://huggingface.co/handy-computer)
+[![Offline](https://img.shields.io/badge/100%25-offline-0f766e?style=for-the-badge)](#)
+[![Model](https://img.shields.io/badge/Parakeet-0.6B-0d9488?style=for-the-badge)](https://huggingface.co/handy-computer)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 
 </div>

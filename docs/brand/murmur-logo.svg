@@ -3,24 +3,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <defs>
     <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#8b78f2"/>
-      <stop offset="1" stop-color="#6350d8"/>
+      <stop offset="0" stop-color="#1c1f29"/>
+      <stop offset="1" stop-color="#0d0f14"/>
+    </linearGradient>
+    <linearGradient id="mint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7ef0dd"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
     </linearGradient>
   </defs>
   <rect x="32" y="32" width="960" height="960" rx="215" ry="215" fill="url(#tile)"/>
-  <g fill="none" stroke="#f6f6f9" stroke-linecap="round" transform="translate(512 512) scale(0.9) translate(-512 -512)">
-    <g stroke-width="58" opacity="1">
-      <path d="M612.4 400.5 A150 150 0 0 1 612.4 623.5"/>
-      <path d="M411.6 400.5 A150 150 0 0 0 411.6 623.5"/>
-    </g>
-    <g stroke-width="50" opacity="0.70">
-      <path d="M679.3 326.2 A250 250 0 0 1 679.3 697.8"/>
-      <path d="M344.7 326.2 A250 250 0 0 0 344.7 697.8"/>
-    </g>
-    <g stroke-width="42" opacity="0.42">
-      <path d="M746.2 251.9 A350 350 0 0 1 746.2 772.1"/>
-      <path d="M277.8 251.9 A350 350 0 0 0 277.8 772.1"/>
-    </g>
+  <g transform="translate(512 512) scale(0.9) translate(-512 -512)">
+    <path d="M224 744 L368 280 L512 584 L656 280 L800 744"
+          fill="none" stroke="url(#mint)" stroke-width="76"
+          stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <circle cx="512" cy="512" r="50.4" fill="#f6f6f9"/>
 </svg>

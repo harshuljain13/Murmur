@@ -1,10 +1,10 @@
-# Spec: handy-ios
+# Spec: murmur-ios
 
 Status: Draft
 Last updated: 2026-08-16
 
 ## Summary
-handy-ios is a two-target iOS app (main app + custom keyboard extension) that
+murmur-ios is a two-target iOS app (main app + custom keyboard extension) that
 runs Parakeet GGUF speech-to-text inference on-device via transcribe.cpp
 (Metal-accelerated). The keyboard extension captures audio and delegates
 inference to the main app via an App Group shared container + Darwin
@@ -33,7 +33,7 @@ local (no network service needed).
 **Options considered**: Darwin notifications + UserDefaults (App Group), NSXPCConnection, openURL
 **Chosen**: App Group shared files + openURL wakeup
 **Why**: Darwin notifications from a keyboard extension cannot reliably wake a
-suspended main app. `openURL` with a custom scheme (`handy://transcribe`) forces
+suspended main app. `openURL` with a custom scheme (`murmur://transcribe`) forces
 iOS to bring the main app to foreground or wake it in background. Audio file
 written to App Group container; result written back; keyboard polls UserDefaults
 for the result. Simple, no entitlement beyond App Group.
@@ -59,7 +59,7 @@ hero text, minimal flourish, developer-first feel.
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                   HandyApp                       │
+│                   MurmurApp                       │
 │  ┌────────────┐   ┌───────────────────────────┐ │
 │  │ LandingView│   │ TranscribeService          │ │
 │  │ + Model    │   │  - loads TranscribeEngine  │ │
@@ -70,15 +70,15 @@ hero text, minimal flourish, developer-first feel.
 │  - downloads GGUF to App Group /Models/          │
 │  - tracks active model in UserDefaults           │
 └──────────────────────┬──────────────────────────┘
-                       │ App Group: group.computer.handy
+                       │ App Group: group.app.murmur
                        │ (shared files + UserDefaults)
 ┌──────────────────────┴──────────────────────────┐
-│               HandyKeyboard                      │
+│               MurmurKeyboard                      │
 │  KeyboardViewController                          │
 │  - mic button (tap to record / tap to stop)      │
 │  - AudioRecorder: 16 kHz mono PCM → WAV file     │
 │  - writes WAV to App Group /pending_audio.wav    │
-│  - calls openURL(handy://transcribe) to wake app │
+│  - calls openURL(murmur://transcribe) to wake app │
 │  - polls UserDefaults every 300 ms for result    │
 │  - inserts result via textDocumentProxy          │
 └─────────────────────────────────────────────────┘
@@ -94,16 +94,16 @@ hero text, minimal flourish, developer-first feel.
 ## File Layout (within Xcode project)
 
 ```
-handy-ios/
-├── HandyApp/
-│   ├── HandyApp.swift          # @main, registers handy:// URL scheme
+murmur-ios/
+├── MurmurApp/
+│   ├── MurmurApp.swift          # @main, registers murmur:// URL scheme
 │   ├── ContentView.swift       # Landing ↔ ModelPicker router
 │   ├── LandingView.swift       # Hero + Get Started CTA
 │   ├── ModelPickerView.swift   # Model cards + download progress
 │   └── TranscribeService.swift # Background watcher + inference caller
-├── HandyKeyboard/
+├── MurmurKeyboard/
 │   └── KeyboardViewController.swift  # Custom keyboard UI + IPC
-├── HandyShared/
+├── MurmurShared/
 │   ├── ModelVariant.swift      # Enum: Q4_K_M, Q8_0 + URLs
 │   ├── ModelManager.swift      # Download, state, active model
 │   ├── AudioRecorder.swift     # AVAudioEngine → [Float] samples
@@ -120,12 +120,12 @@ handy-ios/
 ## IPC Flow (keyboard → app → keyboard)
 
 ```
-1. User taps mic in HandyKeyboard
+1. User taps mic in MurmurKeyboard
 2. AudioRecorder records 16 kHz mono PCM
 3. User taps stop → WAV written to App Group /Audio/pending.wav
-4. KeyboardViewController calls UIApplication.shared.open(URL("handy://transcribe"))
-5. iOS wakes / foregrounds HandyApp
-6. HandyApp.swift handles URL → TranscribeService.handleTranscribeRequest()
+4. KeyboardViewController calls UIApplication.shared.open(URL("murmur://transcribe"))
+5. iOS wakes / foregrounds MurmurApp
+6. MurmurApp.swift handles URL → TranscribeService.handleTranscribeRequest()
 7. TranscribeService reads /Audio/pending.wav → [Float] samples
 8. TranscribeEngine.transcribe(samples:) → String  (Metal inference)
 9. Result written to UserDefaults(suiteName: appGroup)["transcriptionResult"]
@@ -135,10 +135,10 @@ handy-ios/
 
 ## Edge Cases and Error Handling
 
-- **No model downloaded**: keyboard shows "Open Handy app to download a model"
+- **No model downloaded**: keyboard shows "Open Murmur app to download a model"
   with a button that calls openURL to the main app
 - **Main app killed / not responding**: keyboard poll times out after 30 s,
-  shows "Transcription timed out — open Handy app"
+  shows "Transcription timed out — open Murmur app"
 - **Audio permission denied**: keyboard shows inline permission prompt directing
   user to Settings; requires Full Access to be enabled
 - **Model load failure** (corrupt file): TranscribeEngine throws, TranscribeService

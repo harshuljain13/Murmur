@@ -21,7 +21,7 @@ build-ios/CMakeCache.txt
 *.dSYM
 Pods/
 .build/
-HandyShared/Models/
+MurmurShared/Models/
 build-llama-ios/CMakeFiles/
 build-llama-ios/*.xcodeproj/
 build-llama-ios/build/

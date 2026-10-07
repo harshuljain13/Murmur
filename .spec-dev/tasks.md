@@ -1,4 +1,4 @@
-# Tasks: handy-ios
+# Tasks: murmur-ios
 
 ## Phase 1: Compile transcribe.cpp for iOS
 - [✓] Run build_transcribe_ios.sh and get libtranscribe.a building cleanly
@@ -7,12 +7,12 @@
 - [✓] Update project.yml to link libtranscribe.a and set library search path
 
 ## Phase 2: Core transcription pipeline (main app)
-- [✓] Add handy:// URL scheme to Info.plist and handle it in HandyApp.swift
+- [✓] Add murmur:// URL scheme to Info.plist and handle it in MurmurApp.swift
 - [✓] Write TranscribeService.swift — loads active model, handles transcribe URL, runs inference, writes result to App Group UserDefaults
-- [✓] Wire TranscribeService into HandyApp @main on launch
+- [✓] Wire TranscribeService into MurmurApp @main on launch
 
 ## Phase 3: Keyboard extension end-to-end
-- [✓] Update KeyboardViewController — mic button → record → write WAV to App Group → openURL(handy://transcribe) → poll for result → insertText
+- [✓] Update KeyboardViewController — mic button → record → write WAV to App Group → openURL(murmur://transcribe) → poll for result → insertText
 - [✓] Handle "no model downloaded" state in keyboard (show prompt to open app)
 - [✓] Handle timeout (30s) gracefully in keyboard UI
 
@@ -22,6 +22,6 @@
 - [✓] Persist active model selection across app restarts
 
 ## Phase 5: Polish + ship
-- [ ] Test full flow on device: WhatsApp → Handy keyboard → mic → text inserted
+- [ ] Test full flow on device: WhatsApp → Murmur keyboard → mic → text inserted
 - [ ] Handle mic permission denied state in keyboard
 - [ ] Commit each phase as it completes

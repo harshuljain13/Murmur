@@ -1,4 +1,4 @@
-# Requirements: handy-ios
+# Requirements: murmur-ios
 
 ## Problem Statement
 There is no iOS equivalent of Handy (handy.computer) — a free, offline,

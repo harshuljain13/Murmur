@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0DCCF60EF48137D306F09005 /* MurmurColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50BA37B769E1391C5256CC /* MurmurColors.swift */; };
+		1386F2DCCE2981B7335D39BC /* LlamaPolisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A2232919F14B1D24848269 /* LlamaPolisher.swift */; };
+		14DFEB65417327CC5BBB01A6 /* AppRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30726DBA5733A0110C552BA /* AppRecorder.swift */; };
+		1A6B9CE193DF52110493FF0B /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914A0278024C0151F10E79C /* SetupView.swift */; };
+		21DC7213BF3F8BAB6C878F8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55721480E2B5B6E1A24A9A5 /* ContentView.swift */; };
+		2223DA56CEEB654E0B92B601 /* MurmurKeyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 74E71E7B5BD9959FEF53EFE4 /* MurmurKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		222A613BA0910DF984AC4C2B /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2932DD6F9386F31FC418654 /* ModelVariant.swift */; };
+		44F78211E44E263C0FD6C096 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633027231CB64D501917AED /* AudioRecorder.swift */; };
+		4C57F3AC3C4C6A4F0661D746 /* PolishModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF578D8D29F6A900E4EF81A0 /* PolishModelManager.swift */; };
+		4D22C09CB23A01803DE25D7F /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA10AF9C3E765FCE69BB3F8 /* ModelManager.swift */; };
+		5CDBC5ACC44CD743AD60CC51 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B89320B46348715A19D2CC /* LandingView.swift */; };
+		60FA142885A2F08887085E51 /* KeychainTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35327C208E83CA1AC07D71 /* KeychainTransfer.swift */; };
+		62A7C5E2AC81B70F4555D915 /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2AB3E6FF2654C23CD8453D /* TranscriptionBridge.swift */; };
+		6413A3AF81CDD2FA23E0D6AD /* MurmurTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2821A28A799AFC79A42E730 /* MurmurTheme.swift */; };
+		6AAC110D42AA3063A7E59CCE /* MurmurApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08431B34F587E4AEE301643 /* MurmurApp.swift */; };
+		6CECCE0B7346EA3DC91DC779 /* ModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA10AF9C3E765FCE69BB3F8 /* ModelManager.swift */; };
+		6F9ED118E9507195682141AC /* DarwinSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775CF66305A501D03FDCE604 /* DarwinSignal.swift */; };
+		725A42D39C11F1CBB8C0C33D /* BackgroundVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8F2E4F7AF0D4037BDA7ED08 /* BackgroundVoiceService.swift */; };
+		831415573B22F63DACBAFFEA /* DarwinSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775CF66305A501D03FDCE604 /* DarwinSignal.swift */; };
+		94AD36E12429D0CCE8CA9DD4 /* VoiceDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB2E08AFD9B840C0D0F1ACD /* VoiceDiagnostics.swift */; };
+		957ACEA93DDCE2D1850AF630 /* TranscriptionBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2AB3E6FF2654C23CD8453D /* TranscriptionBridge.swift */; };
+		95A93F33E9255FA887F928A8 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C500F8ECF810AA907CF06 /* KeyboardViewController.swift */; };
+		9822D82FF58297CA592A273D /* TranscribeEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B85C62237AB2B91E83748ED /* TranscribeEngine.swift */; };
+		9A6B951D5C9A01782AEC4134 /* KeychainTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A35327C208E83CA1AC07D71 /* KeychainTransfer.swift */; };
+		A13E6729718A8B42A8074C6B /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3792E1CA9F05D349C7BD99 /* RecordingView.swift */; };
+		B0C0576407A204FD405B7C06 /* PolishService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559F349752638D790E30DBD0 /* PolishService.swift */; };
+		D6D114D416D92F4A4BBFE8B9 /* ModelPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AE5C1781DECAF572DD7915 /* ModelPickerView.swift */; };
+		E0E309EB60CAD9D9D1097D32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793B77DA2B86201026AE0AC4 /* Assets.xcassets */; };
+		EC361D26CCE540428EBA82B7 /* MurmurColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50BA37B769E1391C5256CC /* MurmurColors.swift */; };
+		F65D427ECB79149B0A1DD4DE /* TranscribeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEE57684E742DD624BCDCAE /* TranscribeService.swift */; };
+		FBBBFCEE9E31CFBC9423FB03 /* ModelVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2932DD6F9386F31FC418654 /* ModelVariant.swift */; };
+		FDE4288051DF737CD444957F /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1633027231CB64D501917AED /* AudioRecorder.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBB003B389B24EC1E5192869 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C4DC77BE3531CA1CA3CC382 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D235C032B8BCF1BFD83961BE;
+			remoteInfo = MurmurKeyboard;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B8EE61672F25DDF281C6B271 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2223DA56CEEB654E0B92B601 /* MurmurKeyboard.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0D5991CF91B139B4EEAA6FF4 /* extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = extensions.h; sourceTree = "<group>"; };
+		12427307FD4432D689E11295 /* MurmurKeyboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MurmurKeyboard.entitlements; sourceTree = "<group>"; };
+		1633027231CB64D501917AED /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		30D77F835E9BF6D75AE80744 /* sortformer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sortformer.h; sourceTree = "<group>"; };
+		40B89320B46348715A19D2CC /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		4386C30EBEF9B4A689D3E51E /* whisper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = whisper.h; sourceTree = "<group>"; };
+		4E2AB3E6FF2654C23CD8453D /* TranscriptionBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionBridge.swift; sourceTree = "<group>"; };
+		528C500F8ECF810AA907CF06 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		54840E490C68DDBC9403925C /* moonshine_streaming.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moonshine_streaming.h; sourceTree = "<group>"; };
+		559F349752638D790E30DBD0 /* PolishService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishService.swift; sourceTree = "<group>"; };
+		5A35327C208E83CA1AC07D71 /* KeychainTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTransfer.swift; sourceTree = "<group>"; };
+		5FB2E08AFD9B840C0D0F1ACD /* VoiceDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceDiagnostics.swift; sourceTree = "<group>"; };
+		67AE5C1781DECAF572DD7915 /* ModelPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPickerView.swift; sourceTree = "<group>"; };
+		6B85C62237AB2B91E83748ED /* TranscribeEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEngine.swift; sourceTree = "<group>"; };
+		74E71E7B5BD9959FEF53EFE4 /* MurmurKeyboard.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = MurmurKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7635A3E9E71007D8B992F8BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		775CF66305A501D03FDCE604 /* DarwinSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarwinSignal.swift; sourceTree = "<group>"; };
+		793B77DA2B86201026AE0AC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		87FDDB3CABFBAF8D898471EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8B50BA37B769E1391C5256CC /* MurmurColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MurmurColors.swift; sourceTree = "<group>"; };
+		8BA10AF9C3E765FCE69BB3F8 /* ModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManager.swift; sourceTree = "<group>"; };
+		8D3792E1CA9F05D349C7BD99 /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		A20E72DFAE6C5AAF1C9998EF /* transcribe_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe_bridge.h; sourceTree = "<group>"; };
+		B0E8CFBD9EF17462C193D20A /* voxtral_realtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = voxtral_realtime.h; sourceTree = "<group>"; };
+		B30726DBA5733A0110C552BA /* AppRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecorder.swift; sourceTree = "<group>"; };
+		B6A2232919F14B1D24848269 /* LlamaPolisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaPolisher.swift; sourceTree = "<group>"; };
+		B95E01B631C4641A1BF9E45E /* MurmurApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MurmurApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C914A0278024C0151F10E79C /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		CF578D8D29F6A900E4EF81A0 /* PolishModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolishModelManager.swift; sourceTree = "<group>"; };
+		D2821A28A799AFC79A42E730 /* MurmurTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MurmurTheme.swift; sourceTree = "<group>"; };
+		D55721480E2B5B6E1A24A9A5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D8F2E4F7AF0D4037BDA7ED08 /* BackgroundVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundVoiceService.swift; sourceTree = "<group>"; };
+		DDA2A84A5A5B4C0C250F7FD1 /* MurmurApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MurmurApp.entitlements; sourceTree = "<group>"; };
+		E5DF5ABFB4AB7826F9C33C51 /* parakeet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parakeet.h; sourceTree = "<group>"; };
+		F08431B34F587E4AEE301643 /* MurmurApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MurmurApp.swift; sourceTree = "<group>"; };
+		F2932DD6F9386F31FC418654 /* ModelVariant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelVariant.swift; sourceTree = "<group>"; };
+		F810879843637F6915469046 /* transcribe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transcribe.h; sourceTree = "<group>"; };
+		FEEE57684E742DD624BCDCAE /* TranscribeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		0561638D1040F19739A78E06 /* transcribe */ = {
+			isa = PBXGroup;
+			children = (
+				0D5991CF91B139B4EEAA6FF4 /* extensions.h */,
+				54840E490C68DDBC9403925C /* moonshine_streaming.h */,
+				E5DF5ABFB4AB7826F9C33C51 /* parakeet.h */,
+				30D77F835E9BF6D75AE80744 /* sortformer.h */,
+				B0E8CFBD9EF17462C193D20A /* voxtral_realtime.h */,
+				4386C30EBEF9B4A689D3E51E /* whisper.h */,
+			);
+			path = transcribe;
+			sourceTree = "<group>";
+		};
+		2AE1142ADC9131DBD01F7117 /* MurmurKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				7635A3E9E71007D8B992F8BC /* Info.plist */,
+				528C500F8ECF810AA907CF06 /* KeyboardViewController.swift */,
+				12427307FD4432D689E11295 /* MurmurKeyboard.entitlements */,
+			);
+			path = MurmurKeyboard;
+			sourceTree = "<group>";
+		};
+		3ED6D7C0AC9051223C651350 /* TranscribeCpp */ = {
+			isa = PBXGroup;
+			children = (
+				A20E72DFAE6C5AAF1C9998EF /* transcribe_bridge.h */,
+				6B85C62237AB2B91E83748ED /* TranscribeEngine.swift */,
+				F9F35232876386DB073F267D /* include */,
+			);
+			path = TranscribeCpp;
+			sourceTree = "<group>";
+		};
+		402447EAA5E55B1862EF8974 /* MurmurApp */ = {
+			isa = PBXGroup;
+			children = (
+				B30726DBA5733A0110C552BA /* AppRecorder.swift */,
+				793B77DA2B86201026AE0AC4 /* Assets.xcassets */,
+				D8F2E4F7AF0D4037BDA7ED08 /* BackgroundVoiceService.swift */,
+				D55721480E2B5B6E1A24A9A5 /* ContentView.swift */,
+				87FDDB3CABFBAF8D898471EB /* Info.plist */,
+				40B89320B46348715A19D2CC /* LandingView.swift */,
+				B6A2232919F14B1D24848269 /* LlamaPolisher.swift */,
+				67AE5C1781DECAF572DD7915 /* ModelPickerView.swift */,
+				DDA2A84A5A5B4C0C250F7FD1 /* MurmurApp.entitlements */,
+				F08431B34F587E4AEE301643 /* MurmurApp.swift */,
+				D2821A28A799AFC79A42E730 /* MurmurTheme.swift */,
+				CF578D8D29F6A900E4EF81A0 /* PolishModelManager.swift */,
+				559F349752638D790E30DBD0 /* PolishService.swift */,
+				8D3792E1CA9F05D349C7BD99 /* RecordingView.swift */,
+				C914A0278024C0151F10E79C /* SetupView.swift */,
+				FEEE57684E742DD624BCDCAE /* TranscribeService.swift */,
+				5FB2E08AFD9B840C0D0F1ACD /* VoiceDiagnostics.swift */,
+			);
+			path = MurmurApp;
+			sourceTree = "<group>";
+		};
+		A7FC3F115E621FB4E7214C70 = {
+			isa = PBXGroup;
+			children = (
+				402447EAA5E55B1862EF8974 /* MurmurApp */,
+				2AE1142ADC9131DBD01F7117 /* MurmurKeyboard */,
+				D3FC6C3D69AF6B9E709D1159 /* MurmurShared */,
+				3ED6D7C0AC9051223C651350 /* TranscribeCpp */,
+				D5AA6EAAF670DB461C7EA5F2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D3FC6C3D69AF6B9E709D1159 /* MurmurShared */ = {
+			isa = PBXGroup;
+			children = (
+				1633027231CB64D501917AED /* AudioRecorder.swift */,
+				775CF66305A501D03FDCE604 /* DarwinSignal.swift */,
+				5A35327C208E83CA1AC07D71 /* KeychainTransfer.swift */,
+				8BA10AF9C3E765FCE69BB3F8 /* ModelManager.swift */,
+				F2932DD6F9386F31FC418654 /* ModelVariant.swift */,
+				8B50BA37B769E1391C5256CC /* MurmurColors.swift */,
+				4E2AB3E6FF2654C23CD8453D /* TranscriptionBridge.swift */,
+			);
+			path = MurmurShared;
+			sourceTree = "<group>";
+		};
+		D5AA6EAAF670DB461C7EA5F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B95E01B631C4641A1BF9E45E /* MurmurApp.app */,
+				74E71E7B5BD9959FEF53EFE4 /* MurmurKeyboard.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9F35232876386DB073F267D /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F810879843637F6915469046 /* transcribe.h */,
+				0561638D1040F19739A78E06 /* transcribe */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FD2BEB9F3987BB6D96108D2 /* MurmurApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6A079BFB84BE40288DF0693D /* Build configuration list for PBXNativeTarget "MurmurApp" */;
+			buildPhases = (
+				2844D49E7CEDBB712AD92E19 /* Sources */,
+				AD4B675244A32199BFBF716F /* Resources */,
+				B8EE61672F25DDF281C6B271 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E48F74B0EB6EA2466ACE517D /* PBXTargetDependency */,
+			);
+			name = MurmurApp;
+			packageProductDependencies = (
+			);
+			productName = MurmurApp;
+			productReference = B95E01B631C4641A1BF9E45E /* MurmurApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D235C032B8BCF1BFD83961BE /* MurmurKeyboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FEADE5C9545CCE095FCFC89 /* Build configuration list for PBXNativeTarget "MurmurKeyboard" */;
+			buildPhases = (
+				D047BE0A94D8F3D7FD8DBFE2 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MurmurKeyboard;
+			packageProductDependencies = (
+			);
+			productName = MurmurKeyboard;
+			productReference = 74E71E7B5BD9959FEF53EFE4 /* MurmurKeyboard.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9C4DC77BE3531CA1CA3CC382 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					8FD2BEB9F3987BB6D96108D2 = {
+						DevelopmentTeam = ML63WLS943;
+						ProvisioningStyle = Automatic;
+					};
+					D235C032B8BCF1BFD83961BE = {
+						DevelopmentTeam = ML63WLS943;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A671AF374C9BA57013C26089 /* Build configuration list for PBXProject "murmur-ios" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = A7FC3F115E621FB4E7214C70;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FD2BEB9F3987BB6D96108D2 /* MurmurApp */,
+				D235C032B8BCF1BFD83961BE /* MurmurKeyboard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AD4B675244A32199BFBF716F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E0E309EB60CAD9D9D1097D32 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2844D49E7CEDBB712AD92E19 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14DFEB65417327CC5BBB01A6 /* AppRecorder.swift in Sources */,
+				44F78211E44E263C0FD6C096 /* AudioRecorder.swift in Sources */,
+				725A42D39C11F1CBB8C0C33D /* BackgroundVoiceService.swift in Sources */,
+				21DC7213BF3F8BAB6C878F8A /* ContentView.swift in Sources */,
+				6F9ED118E9507195682141AC /* DarwinSignal.swift in Sources */,
+				9A6B951D5C9A01782AEC4134 /* KeychainTransfer.swift in Sources */,
+				5CDBC5ACC44CD743AD60CC51 /* LandingView.swift in Sources */,
+				1386F2DCCE2981B7335D39BC /* LlamaPolisher.swift in Sources */,
+				6CECCE0B7346EA3DC91DC779 /* ModelManager.swift in Sources */,
+				D6D114D416D92F4A4BBFE8B9 /* ModelPickerView.swift in Sources */,
+				FBBBFCEE9E31CFBC9423FB03 /* ModelVariant.swift in Sources */,
+				6AAC110D42AA3063A7E59CCE /* MurmurApp.swift in Sources */,
+				0DCCF60EF48137D306F09005 /* MurmurColors.swift in Sources */,
+				6413A3AF81CDD2FA23E0D6AD /* MurmurTheme.swift in Sources */,
+				4C57F3AC3C4C6A4F0661D746 /* PolishModelManager.swift in Sources */,
+				B0C0576407A204FD405B7C06 /* PolishService.swift in Sources */,
+				A13E6729718A8B42A8074C6B /* RecordingView.swift in Sources */,
+				1A6B9CE193DF52110493FF0B /* SetupView.swift in Sources */,
+				9822D82FF58297CA592A273D /* TranscribeEngine.swift in Sources */,
+				F65D427ECB79149B0A1DD4DE /* TranscribeService.swift in Sources */,
+				62A7C5E2AC81B70F4555D915 /* TranscriptionBridge.swift in Sources */,
+				94AD36E12429D0CCE8CA9DD4 /* VoiceDiagnostics.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D047BE0A94D8F3D7FD8DBFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDE4288051DF737CD444957F /* AudioRecorder.swift in Sources */,
+				831415573B22F63DACBAFFEA /* DarwinSignal.swift in Sources */,
+				95A93F33E9255FA887F928A8 /* KeyboardViewController.swift in Sources */,
+				60FA142885A2F08887085E51 /* KeychainTransfer.swift in Sources */,
+				4D22C09CB23A01803DE25D7F /* ModelManager.swift in Sources */,
+				222A613BA0910DF984AC4C2B /* ModelVariant.swift in Sources */,
+				EC361D26CCE540428EBA82B7 /* MurmurColors.swift in Sources */,
+				957ACEA93DDCE2D1850AF630 /* TranscriptionBridge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E48F74B0EB6EA2466ACE517D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D235C032B8BCF1BFD83961BE /* MurmurKeyboard */;
+			targetProxy = EBB003B389B24EC1E5192869 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		064AD5E807CD62C3B06E9BEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = ML63WLS943;
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		090FE6D151E65DFAE1CEAAC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = ML63WLS943;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		15ADC64A290A5516076C903E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MurmurKeyboard/MurmurKeyboard.entitlements;
+				INFOPLIST_FILE = MurmurKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.murmur.app.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2E329CC1354BF7A48125EB33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MurmurApp/MurmurApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/TranscribeCpp/include",
+					"$(PROJECT_DIR)/LlamaLLM/include",
+				);
+				INFOPLIST_FILE = MurmurApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build-ios",
+					"$(PROJECT_DIR)/build-llama-ios",
+				);
+				OTHER_LDFLAGS = "-ltranscribe -lmurmurllm -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
+				PRODUCT_BUNDLE_IDENTIFIER = app.murmur.app;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE0992779F390DB6E4993DBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MurmurKeyboard/MurmurKeyboard.entitlements;
+				INFOPLIST_FILE = MurmurKeyboard/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = app.murmur.app.keyboard;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C49193E19A4952E5F483A845 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MurmurApp/MurmurApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/TranscribeCpp/include",
+					"$(PROJECT_DIR)/LlamaLLM/include",
+				);
+				INFOPLIST_FILE = MurmurApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/build-ios",
+					"$(PROJECT_DIR)/build-llama-ios",
+				);
+				OTHER_LDFLAGS = "-ltranscribe -lmurmurllm -lc++ -framework Accelerate -framework Metal -framework MetalKit -framework Foundation";
+				PRODUCT_BUNDLE_IDENTIFIER = app.murmur.app;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = TranscribeCpp/transcribe_bridge.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3FEADE5C9545CCE095FCFC89 /* Build configuration list for PBXNativeTarget "MurmurKeyboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15ADC64A290A5516076C903E /* Debug */,
+				BE0992779F390DB6E4993DBD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6A079BFB84BE40288DF0693D /* Build configuration list for PBXNativeTarget "MurmurApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E329CC1354BF7A48125EB33 /* Debug */,
+				C49193E19A4952E5F483A845 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A671AF374C9BA57013C26089 /* Build configuration list for PBXProject "murmur-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				090FE6D151E65DFAE1CEAAC1 /* Debug */,
+				064AD5E807CD62C3B06E9BEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9C4DC77BE3531CA1CA3CC382 /* Project object */;
+}
